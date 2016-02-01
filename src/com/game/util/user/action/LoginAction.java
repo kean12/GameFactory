@@ -2,6 +2,7 @@ package com.game.util.user.action;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
 import com.game.util.base.action.BaseAction;
 import com.game.util.domain.User;
 import com.game.util.domain.UserInfo;

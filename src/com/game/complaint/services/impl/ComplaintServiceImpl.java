@@ -1,11 +1,12 @@
 package com.game.complaint.services.impl;
 
 import java.util.List;
+
+import com.game.complaint.services.ComplaintService;
 import com.game.util.base.dao.impl.GenericServiceImpl;
 import com.game.util.domain.Complaint;
 import com.game.util.web.Page;
 import com.game.util.web.Validator;
-import com.game.complaint.services.ComplaintService;
 
 public class ComplaintServiceImpl extends GenericServiceImpl<Complaint, Long> implements ComplaintService {
 

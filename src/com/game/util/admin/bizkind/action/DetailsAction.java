@@ -1,6 +1,7 @@
 package com.game.util.admin.bizkind.action;
 
 import java.util.List;
+
 import com.game.util.admin.bizkind.services.DetailsService;
 import com.game.util.admin.bizkind.services.GameKindService;
 import com.game.util.base.action.BaseAction;

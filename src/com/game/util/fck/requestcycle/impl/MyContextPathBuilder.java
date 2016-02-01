@@ -1,13 +1,14 @@
 package com.game.util.fck.requestcycle.impl;
 
 import javax.servlet.http.HttpServletRequest;
+
+import net.fckeditor.handlers.PropertiesLoader;
+import net.fckeditor.requestcycle.impl.ContextPathBuilder;
+
 import com.game.util.domain.Manage;
 import com.game.util.domain.User;
 import com.game.util.web.Constant;
 import com.game.util.web.Validator;
-
-import net.fckeditor.handlers.PropertiesLoader;
-import net.fckeditor.requestcycle.impl.ContextPathBuilder;
 
 public class MyContextPathBuilder extends ContextPathBuilder {
 	

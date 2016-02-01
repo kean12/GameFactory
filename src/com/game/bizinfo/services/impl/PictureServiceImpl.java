@@ -1,6 +1,7 @@
 package com.game.bizinfo.services.impl;
 
 import java.util.List;
+
 import com.game.bizinfo.services.PictureService;
 import com.game.util.base.dao.impl.GenericServiceImpl;
 import com.game.util.domain.Picture;

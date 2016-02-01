@@ -1,6 +1,7 @@
 package com.game.util.admin.manage.services;
 
 import java.util.List;
+
 import com.game.util.base.dao.GenericService;
 import com.game.util.domain.Manage;
 import com.game.util.web.Page;

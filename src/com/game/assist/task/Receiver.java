@@ -1,8 +1,9 @@
 package com.game.assist.task;
 
-import java.io.*;
-import java.net.*;
-import java.util.concurrent.*;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.net.Socket;
+import java.util.concurrent.BlockingQueue;
 
 /**
  * Socket接收器 用于连续不断地将从套接字通道中接收的信息放入一个队列之中。 然后队列等待用户取出

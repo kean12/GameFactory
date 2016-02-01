@@ -2,11 +2,11 @@ package com.game.util.fck.requestcycle.impl;
 
 import javax.servlet.http.HttpServletRequest;
 
+import net.fckeditor.requestcycle.UserAction;
+
 import com.game.util.domain.Manage;
 import com.game.util.domain.User;
 import com.game.util.web.Constant;
-
-import net.fckeditor.requestcycle.UserAction;
 
 public class MyEnabledUserAction implements UserAction {
 	private Manage manage ;

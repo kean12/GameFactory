@@ -1,11 +1,12 @@
 package com.game.util.web;
 
-import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
-import java.net.URL;
-import java.net.URLConnection;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 
 /**
  * 常用工具包。包括生成各种密码随机串，加密解密，编码解码，执行url等

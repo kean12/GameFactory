@@ -1,13 +1,26 @@
 package com.game.assist.client;
 
-import com.game.assist.task.*;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
+import java.net.UnknownHostException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Vector;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
-import java.io.*;
-import java.net.*;
-import java.util.*;
-import java.util.concurrent.*;
-import javax.swing.text.DefaultStyledDocument;
 import javax.swing.AbstractListModel;
+import javax.swing.text.DefaultStyledDocument;
+
+import com.game.assist.task.Information;
+import com.game.assist.task.Receiver;
+import com.game.assist.task.Sender;
+import com.game.assist.task.Setting;
 
 /**
  * 聊天室客户端数据处理程序 和服务器类似，本类具有两个线程，分别处理发送信息到服务器以及接收服务器信息

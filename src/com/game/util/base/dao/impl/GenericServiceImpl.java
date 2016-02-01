@@ -2,6 +2,7 @@ package com.game.util.base.dao.impl;
 
 import java.io.Serializable;
 import java.util.Collection;
+
 import com.game.util.base.dao.BaseDAO;
 import com.game.util.base.dao.GenericService;
 

@@ -1,13 +1,27 @@
 package com.game.assist.client;
 
-import com.game.assist.task.*;
-
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.net.SocketAddress;
 import java.util.Observable;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import javax.swing.text.*;
+
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
+import javax.swing.KeyStroke;
+import javax.swing.text.DefaultStyledDocument;
+
+import com.game.assist.task.Information;
+import com.game.assist.task.Setting;
 
 /**
  * UDP客户端，用于用户之间单独聊天 本类含有一个独立的JFrame,当发送完信息之后隐藏窗口。

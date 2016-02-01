@@ -1,8 +1,18 @@
 package com.game.assist.client;
 
-import java.io.*;
-import java.net.*;
-import java.util.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetSocketAddress;
+import java.net.SocketAddress;
+import java.net.SocketException;
+import java.util.Observable;
+import java.util.Scanner;
 
 public class UDPClientModel extends Observable implements Runnable {
 	private DatagramSocket socket;

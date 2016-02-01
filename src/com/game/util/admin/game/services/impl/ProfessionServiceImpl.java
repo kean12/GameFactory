@@ -1,6 +1,7 @@
 package com.game.util.admin.game.services.impl;
 
 import java.util.List;
+
 import com.game.util.admin.game.services.ProfessionService;
 import com.game.util.base.dao.impl.GenericServiceImpl;
 import com.game.util.domain.Profession;

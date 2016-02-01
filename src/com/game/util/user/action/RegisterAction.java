@@ -6,8 +6,8 @@ import com.game.util.user.services.UserService;
 import com.game.util.web.Constant;
 import com.game.util.web.DateUtil;
 import com.game.util.web.Struts2Util;
-import com.game.util.web.Validator;
 import com.game.util.web.TradeMD5;
+import com.game.util.web.Validator;
 
 public class RegisterAction extends BaseAction {
 	private static final long serialVersionUID = 1580047163545416154L;

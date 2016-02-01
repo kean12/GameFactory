@@ -3,8 +3,10 @@ package com.game.util.web;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import com.game.util.domain.User;
+
 import uk.ltd.getahead.dwr.WebContextFactory;
+
+import com.game.util.domain.User;
 
 @SuppressWarnings("deprecation")
 public class DWRUtil {

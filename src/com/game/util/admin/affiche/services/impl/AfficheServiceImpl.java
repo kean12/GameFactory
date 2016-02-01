@@ -1,6 +1,7 @@
 package com.game.util.admin.affiche.services.impl;
 
 import java.util.List;
+
 import com.game.util.admin.affiche.services.AfficheService;
 import com.game.util.base.dao.impl.GenericServiceImpl;
 import com.game.util.domain.Affiche;

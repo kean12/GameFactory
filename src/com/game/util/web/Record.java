@@ -1,7 +1,9 @@
 package com.game.util.web;
 
 import java.util.Random;
+
 import org.apache.commons.lang.StringUtils;
+
 import com.game.util.domain.Particulars;
 import com.game.util.domain.User;
 import com.game.util.user.services.ParticularsService;

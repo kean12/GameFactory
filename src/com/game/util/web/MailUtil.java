@@ -3,8 +3,10 @@ package com.game.util.web;
 import java.util.Properties;
 
 import javax.mail.internet.MimeMessage;
+
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
+
 import com.game.util.domain.User;
 import com.game.util.user.services.UserService;
 

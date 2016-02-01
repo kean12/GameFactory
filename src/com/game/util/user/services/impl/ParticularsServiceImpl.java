@@ -1,6 +1,7 @@
 package com.game.util.user.services.impl;
 
 import java.util.List;
+
 import com.game.util.base.dao.impl.GenericServiceImpl;
 import com.game.util.domain.Particulars;
 import com.game.util.user.services.ParticularsService;

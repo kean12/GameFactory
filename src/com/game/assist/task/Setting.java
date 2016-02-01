@@ -1,14 +1,15 @@
 package com.game.assist.task;
 
+import java.awt.Container;
+import java.awt.event.ActionListener;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.HashSet;
-import javax.swing.text.Element;
+
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
-import java.awt.Container;
-import java.awt.event.ActionListener;
+import javax.swing.text.Element;
 
 /**
  * 属性设置类 包含一些程序属性字段和类方法

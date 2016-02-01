@@ -1,6 +1,7 @@
 package com.game.util.admin.bizkind.services.impl;
 
 import java.util.List;
+
 import com.game.util.admin.bizkind.services.GameKindService;
 import com.game.util.base.dao.impl.GenericServiceImpl;
 import com.game.util.domain.GameKind;
