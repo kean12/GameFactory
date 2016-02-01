@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="examine" extends="core" namespace="/user/trade/order/examine">
+		<!-- 检查订单信息 -->
+		<action name="examine_order_info" class="com.game.order.action.ExamineAction" method="examineOrderInfo">
+			<result name="examineOrderInfo">/WEB-INF/index/examine/examine_order_info.jsp</result>
+		</action>
+		
+		<!-- 检查订单信息-下一步 -->
+		<action name="examine_order_next" class="com.game.order.action.ExamineAction" method="examineOrderNext">
+			<result name="examineOrderNext">/WEB-INF/index/examine/examine_order_next.jsp</result>
+		</action>
+		
+		<!-- 检查订单信息-修改 -->
+		<action name="examine_order_amend" class="com.game.order.action.ExamineAction" method="examineOrderAmend">
+			<result name="examineOrderAmend">/WEB-INF/index/examine/examine_order_amend.jsp</result>
+		</action>
+		
+		<!-- 检查订单信息-修改-提交 -->
+		<action name="examine_order_amend_submit" class="com.game.order.action.ExamineAction" method="examineOrderAmendSubmit">
+			<result name="input" type="redirect-action">
+				<param name="actionName">examine_order_amend</param>
+            	<param name="namespace">/user/trade/order/examine</param>
+            	<param name="orderNum">${orderNum}</param>
+			</result>
+			<result name="examineOrderAmendSubmit" type="redirect-action">
+				<param name="actionName">examine_order_next</param>
+            	<param name="namespace">/user/trade/order/examine</param>
+            	<param name="orderNum">${orderNum}</param>
+			</result>
+		</action>
+		
+	</package>
+</struts>

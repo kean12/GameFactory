@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="userAdmin" extends="admin" namespace="/admin/user">
+		<action name="user" class="com.game.util.admin.user.action.UserAction" method="allUsers">
+			<result name="listUsers">/WEB-INF/admin/user/listUsers.jsp</result>
+			<result name="checkUser">/WEB-INF/admin/user/checkUser.jsp</result>
+			<result name="editUser">/WEB-INF/admin/user/editUser.jsp</result>
+			<result name="buyerGradeUsers">/WEB-INF/admin/user/buyerGradeUsers.jsp</result>
+			<result name="sellerGradeUsers">/WEB-INF/admin/user/sellerGradeUsers.jsp</result>
+			<result name="search4EditUser">/WEB-INF/admin/user/search4EditUser.jsp</result>
+			
+			<result name="success" type="redirect">/admin/user/user.shtml</result>
+			
+		</action>
+	</package>
+	
+</struts>
+ 

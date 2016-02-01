@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class
+        name="com.game.util.domain.Assign"
+        table="JD_ORDER_ASSIGN"
+    >
+	    
+	    <id name="id" column="ID" type="java.lang.Long">
+	        <generator class="native">
+	      		<param name="sequence">ORACLE_SEQ</param>
+			</generator>
+	    </id>
+	    
+       <property
+            name="state"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="STATE"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="startTime"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="START_TIME"
+            length="32"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="endTime"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="END_TIME"
+            length="32"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="costTime"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="COST_TIME"
+            length="32"
+            not-null="false"
+            unique="false"
+        />
+       
+        <property
+            name="remark"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="REMARK"
+            length="255"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="overtime"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="OVER_TIME"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="reason"
+            type="org.springframework.orm.hibernate3.support.ClobStringType"
+            update="true"
+            insert="true"
+            access="property"
+            column="REASON"
+            lazy="true"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="outcome"
+            type="org.springframework.orm.hibernate3.support.ClobStringType"
+            update="true"
+            insert="true"
+            access="property"
+            column="OUTCOME"
+            lazy="true"
+            not-null="false"
+            unique="false"
+        />
+        
+        <many-to-one name="order" lazy="false" column="ORDER_ID"  class="com.game.util.domain.Order"></many-to-one>
+        <many-to-one name="manage" lazy="false" column="MANAGE_ID"  class="com.game.util.domain.Manage"></many-to-one>
+        <many-to-one name="operate" lazy="false" column="OPERATE_ID"  class="com.game.util.domain.Manage"></many-to-one>
+        
+        
+        </class>
+</hibernate-mapping>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:spring/*.xml</param-value>
+	</context-param>
+
+	<filter>
+		<filter-name>OpenSessionInViewFilter</filter-name>
+		<filter-class>
+			org.springframework.orm.hibernate3.support.OpenSessionInViewFilter
+		</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>OpenSessionInViewFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>
+			org.apache.struts2.dispatcher.FilterDispatcher
+		</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>*.shtml</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	<filter>
+		<filter-name>struts-cleanup</filter-name>
+		<filter-class>
+			org.apache.struts2.dispatcher.ActionContextCleanUp
+		</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>struts-cleanup</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+        <filter-name>sitemesh</filter-name>
+        <filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>sitemesh</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    
+	<filter> 
+		<filter-name>Set Character Encoding </filter-name>
+		<filter-class>com.game.util.web.SetCharacterEncodingFilter </filter-class>
+		<init-param>
+			<param-name>encoding </param-name>
+			<param-value>UTF-8 </param-value>
+		</init-param>
+		<init-param>
+			<param-name>ignore </param-name>
+			<param-value>true </param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>Set Character Encoding </filter-name>
+		<servlet-name>action </servlet-name>
+	</filter-mapping>
+    
+    
+    <listener>
+		<listener-class>
+			org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
+    
+    <display-name>testServletListener</display-name>
+	<listener>
+		<listener-class>com.game.util.web.InitService</listener-class>
+	</listener>
+	
+	<!-- 图形验证码 -->
+	<servlet>
+		<servlet-name>authImg</servlet-name>
+		<servlet-class>
+			com.game.util.web.RandomCodeServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>authImg</servlet-name>
+		<url-pattern>/authImg</url-pattern>
+	</servlet-mapping>
+	<!-- 配置DWR -->
+	<servlet>
+		<servlet-name>dwr-game</servlet-name>
+		<servlet-class>
+			org.directwebremoting.servlet.DwrServlet
+		</servlet-class>
+		<init-param>
+			<param-name>debug</param-name>
+			<param-value>true</param-value>
+		</init-param>
+
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>dwr-game</servlet-name>
+		<url-pattern>/dwr/*</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 欢迎页面 -->
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+
+	
+	<!-- FCK在线编辑器 配置 -->
+	<display-name>FCKeditor.Java Sample Web Application</display-name>
+	<description>FCKeditor.Java Sample Web Application</description>
+
+	<servlet>
+		<servlet-name>ConnectorServlet</servlet-name>
+		<servlet-class>net.fckeditor.connector.ConnectorServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+ 
+	<servlet-mapping>
+		<servlet-name>ConnectorServlet</servlet-name>
+		<!-- fck 目录在plugins目录下 -->
+		<url-pattern>/plugins/fckeditor/editor/filemanager/connectors/*</url-pattern>
+	</servlet-mapping>
+</web-app>

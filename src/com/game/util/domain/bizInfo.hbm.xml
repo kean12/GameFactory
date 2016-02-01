@@ -1,0 +1,342 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class
+        name="com.game.util.domain.BizInfo"
+        table="JD_BIZ_BIZINFO"
+        lazy="true"
+    >
+	
+    <id name="id" column="ID" type="java.lang.Long">
+        <generator class="native">
+      		<param name="sequence">ORACLE_SEQ</param>
+		</generator>
+    </id>
+    
+    	<property
+            name="serial"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="SERIAL"
+            length="32"
+            not-null="false"
+            unique="false"
+        />
+    
+        <property
+            name="buyType"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="BUY_TYPE"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="stock"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="STOCK"
+            length="16"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="price"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="PRICE"
+            length="32"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="isBuy"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="IS_BUY"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="bizCreTime"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="BIZ_CRETIME"
+            length="32"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="amount"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="AMOUNT"
+            length="32"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="proportion"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="PROPORTION"
+            length="16"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="unit"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="UNIT"
+            length="8"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="sellModel"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="SELL_MODEL"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="site"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="SITE"
+            length="255"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="startSellTime"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="START_SELL_TIME"
+            length="32"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="endSellTime"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="END_SELL_TIME"
+            length="32"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="tradeStart"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="TRADE_TIME_START"
+            length="32"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="tradeEnd"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="TRADE_TIME_END"
+            length="32"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="qq"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="QQ"
+            length="16"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="phoneNum"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="PHONE_NUM"
+            length="16"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="title"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="TITLE"
+            length="255"
+            not-null="false"
+            unique="false"
+        />
+       
+         <property
+            name="info"
+            type="org.springframework.orm.hibernate3.support.ClobStringType"
+            update="true"
+            insert="true"
+            access="property"
+            column="INFO"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="account"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="ACCOUNT"
+            length="32"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="accountInfo"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="ACCOUNT_INFO"
+            length="2048"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="password"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="PASSWORD"
+            length="64"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="pwdSrc"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="PWDSRC"
+            length="255"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="roleName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="ROLE_NAME"
+            length="32"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="coded_lock"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="CODED_LOCK"
+            length="255"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="place"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="PLACE"
+            length="128"
+            not-null="false"
+            unique="false"
+        />
+        
+        
+        <set name="pictures"  lazy="true" inverse="true" cascade="all" order-by="id">
+			<key column="BIZINFO_ID" />
+			<one-to-many class="com.game.util.domain.Picture" />
+		</set>
+		
+		<set name="identities"  lazy="true" inverse="true" cascade="all" order-by="id">
+			<key column="BIZINFO_ID" />
+			<one-to-many class="com.game.util.domain.Identity" />
+		</set>
+        
+        <many-to-one name="bizKind" column="BIZKIND_ID" class="com.game.util.domain.BizKind"></many-to-one>
+        <many-to-one name="game" column="GAME_ID"  class="com.game.util.domain.Game"></many-to-one>
+        <many-to-one name="server" column="SERVER_ID"  class="com.game.util.domain.Server"></many-to-one>
+        <many-to-one name="owner" column="OWNER"  class="com.game.util.domain.User"></many-to-one>
+		
+        </class>
+</hibernate-mapping>

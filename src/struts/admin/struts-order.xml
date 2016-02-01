@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	
+	<package name="orderAdmin" extends="admin" namespace="/admin/order">
+		<action name="order" class="com.game.util.admin.order.action.OrderAction" method="allOrders">
+			<result name="allOrders">/WEB-INF/admin/order/allOrders.jsp</result>
+			<result name="checkOrder">/WEB-INF/admin/order/checkOrder.jsp</result>
+			<result name="successupdate" type="redirect-action">
+				<param name="actionName">order</param>   
+            	<param name="namespace">/admin/order</param>
+            	<param name="method">checkOrder</param>
+            	<param name="order.id">${order.id}</param>
+            </result>
+		</action>
+	</package>
+
+<!-- 寄售管理 -->	
+	<package name="saleAdmin" extends="admin" namespace="/admin/order">
+		<action name="sale_list" class="com.game.util.admin.order.action.SaleAction" method="saleList">
+			<result name="saleList">/WEB-INF/admin/order/sale_list.jsp</result>
+		</action>
+		<action name="sale_index" class="com.game.util.admin.order.action.SaleAction" method="saleIndex">
+			<result name="saleIndex">/WEB-INF/admin/order/sale_index.jsp</result>
+		</action>
+		<action name="sale_detail" class="com.game.util.admin.order.action.SaleAction" method="saleDetail">
+			<result name="saleDetail">/WEB-INF/admin/order/sale_detail.jsp</result>
+		</action>
+		<action name="sale_shipments" class="com.game.util.admin.order.action.SaleAction" method="saleShipments">
+			<result name="saleShipments">/WEB-INF/admin/order/sale_shipments.jsp</result>
+		</action>
+		
+		<action name="sale_shipments_submit" class="com.game.util.admin.order.action.SaleAction" method="saleShipmentsSubmit">
+			<result name="saleShipmentsSubmit" type="redirect-action">
+				<param name="actionName">sale_shipments_success</param>   
+            	<param name="namespace">/admin/order</param>
+            	<param name="message">${message}</param>
+			</result>
+		</action>
+		<action name="sale_shipments_success" class="com.game.util.admin.order.action.SaleAction" method="saleShipmentsSuccess">
+			<result name="saleShipmentsSuccess">/WEB-INF/admin/order/success.jsp</result>
+		</action>
+		
+		<action name="sale_look_pic" class="com.game.util.admin.order.action.SaleAction" method="saleLookPic">
+			<result name="saleLookPic">/WEB-INF/admin/order/sale_look_pic.jsp</result>
+		</action>
+		<action name="sale_look_info" class="com.game.util.admin.order.action.SaleAction" method="saleLookInfo">
+			<result name="saleLookInfo">/WEB-INF/admin/order/sale_look_info.jsp</result>
+		</action>
+	</package>
+<!-- END -->	
+
+<!-- 寄售分配管理 -->		
+	<package name="assignAdmin" extends="admin" namespace="/admin/order">
+		<action name="list_assign" class="com.game.util.admin.order.action.AssignAction" method="list_assign">
+			<result name="list_assign">/WEB-INF/admin/order/list_assign.jsp</result>
+		</action>
+		<action name="reset" class="com.game.util.admin.order.action.AssignAction" method="reset">
+			<result name="reset" type="redirect-action">
+				<param name="actionName">list_assign</param>   
+            	<param name="namespace">/admin/order</param>
+			</result>
+		</action>
+		
+		<action name="list_overtime_assign" class="com.game.util.admin.order.action.AssignAction" method="list_overtime_assign">
+			<result name="list_overtime_assign">/WEB-INF/admin/order/list_overtime_assign.jsp</result>
+		</action>
+		
+		<action name="overtime_detail" class="com.game.util.admin.order.action.AssignAction" method="overtime_detail">
+			<result name="overtime_detail">/WEB-INF/admin/order/overtime_detail.jsp</result>
+		</action>
+		
+		<action name="overtime_detail_save" class="com.game.util.admin.order.action.AssignAction" method="overtime_detail_save">
+			<result name="overtime_detail_save" type="redirect-action">
+				<param name="actionName">overtime_detail</param>
+            	<param name="namespace">/admin/order</param>
+            	<param name="orderNum">${orderNum}</param>
+            	<param name="reload">${reload}</param>
+			</result>
+		</action>
+	</package>
+<!-- END -->
+	
+<!-- 寄售退款管理 -->
+	<package name="refundmentAdmin" extends="admin" namespace="/admin/order">
+		<action name="refundment_list" class="com.game.util.admin.order.action.RefundmentAction" method="refundmentList">
+			<result name="refundmentList">/WEB-INF/admin/order/refundment_list.jsp</result>
+		</action>
+		
+		<action name="oos_refundment" class="com.game.util.admin.order.action.RefundmentAction" method="refundment">
+			<result name="refundment" type="redirect-action">
+				<param name="actionName">list_assign</param>
+            	<param name="namespace">/admin/order</param>
+			</result>
+		</action>
+		
+		<action name="refundment_detail" class="com.game.util.admin.order.action.RefundmentAction" method="refundmentDetail">
+			<result name="refundmentDetail">/WEB-INF/admin/order/refundment_detail.jsp</result>
+		</action>
+		
+		<action name="refundment_process" class="com.game.util.admin.order.action.RefundmentAction" method="refundmentProcess">
+			<result name="refundmentProcess" type="redirect-action">
+				<param name="actionName">refundment_list</param>
+            	<param name="namespace">/admin/order</param>
+			</result>
+		</action>
+		
+	</package>
+<!-- END -->
+	
+	
+	
+</struts>
+ 

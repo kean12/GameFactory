@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="extractAdmin" extends="admin" namespace="/admin/extract">
+		<action name="extractAdmin" class="com.game.util.admin.extract.action.ExtractAction" method="listExtract">
+			<result name="listExtract">/WEB-INF/admin/extract/listExtract.jsp</result>
+		</action>
+	</package>
+</struts>

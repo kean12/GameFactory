@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="credit" extends="admin" namespace="/admin/credit">
+		<action name="creditAdmin" class="com.game.util.admin.credit.action.CreditAction" method="listCredit">
+			<result name="listcredit">/WEB-INF/admin/credit/listcredit.jsp</result>
+			<result name="add">/WEB-INF/admin/credit/addcredit.jsp</result>
+			<result name="batchaddcredit">/WEB-INF/admin/credit/batchaddcredit.jsp</result>
+			<result name="savecredit" type="redirect">/admin/credit/creditAdmin.shtml</result>
+		</action>
+	</package>
+</struts>
+ 

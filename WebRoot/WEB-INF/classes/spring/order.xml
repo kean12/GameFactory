@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+	<beans>
+		<bean id="orderService" parent="baseTxProxy">
+        <property name="target">
+            <bean class="com.game.order.services.impl.OrderServiceImpl" autowire="byName"/>
+        </property>
+    </bean>
+    
+    <bean id="orderserver" class="com.game.assist.server.Server"></bean>
+</beans>

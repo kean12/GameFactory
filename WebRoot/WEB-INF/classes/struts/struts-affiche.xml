@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="affiche" extends="struts-default" namespace="/affiche">
+		<action name="more" class="com.game.affiche.action.AfficheAction" method="more">
+			<result name="more">/WEB-INF/index/affiche/more.jsp</result>
+		</action>
+		
+		<action name="show" class="com.game.affiche.action.AfficheAction" method="show">
+			<result name="show">/WEB-INF/index/affiche/show.jsp</result>
+			<result name="input" type="redirect-action">
+				<param name="actionName">more</param>   
+            	<param name="namespace">/affiche</param>
+			</result>
+		</action>
+	</package>
+</struts>
+ 

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<decorators defaultdir="/WEB-INF/index/decorators">
+	<excludes>
+        <pattern>/ajax*</pattern>
+        <pattern>/applyYj*</pattern>
+        <pattern>/applyManager*</pattern>
+        <pattern>/scoreProductManager*</pattern>
+        <pattern>/tousuManager*</pattern>
+        <pattern>/valuationManager*</pattern>
+        <pattern>/tip*</pattern>
+        <pattern>/kindeditor/*.*</pattern>
+        <pattern>/editor/*.*</pattern>
+    </excludes>
+    <decorator name="index" page="index.jsp">
+        <pattern>/firstpage.jsp*</pattern>
+        <pattern>/ranking.jsp*</pattern>
+        <pattern>/login.jsp*</pattern>
+        <pattern>/error.jsp*</pattern>
+        <pattern>/WEB-INF/index/register/register.jsp*</pattern>
+        <pattern>/WEB-INF/index/affiche/more.jsp*</pattern>
+        <pattern>/WEB-INF/index/affiche/show.jsp*</pattern>
+        <pattern>/WEB-INF/index/bizInfo/bizInfo_search.jsp*</pattern>
+        <pattern>/WEB-INF/index/bizInfo/bizInfo_browse.jsp*</pattern>
+        <pattern>/WEB-INF/index/charge/deposit.jsp*</pattern>
+        <pattern>/WEB-INF/index/charge/deposit_verify.jsp*</pattern>
+        
+        <pattern>/WEB-INF/index/findpsw/findpsw_index.jsp*</pattern>
+        <pattern>/WEB-INF/index/findpsw/findpsw_answer.jsp*</pattern>
+    </decorator>
+    <decorator name="userInfo" page="userInfo.jsp">
+        <pattern>/WEB-INF/index/user/home.jsp*</pattern>
+		<pattern>/WEB-INF/index/user/message.jsp*</pattern>
+		<pattern>/WEB-INF/index/user/read.jsp*</pattern>
+		<pattern>/WEB-INF/index/order/list_sold_items.jsp*</pattern>
+		<pattern>/WEB-INF/index/order/list_bought_items.jsp*</pattern>
+		<pattern>/WEB-INF/index/bizInfo/storehouse.jsp*</pattern>
+		<pattern>/WEB-INF/index/bizInfo/sale.jsp*</pattern>
+		<pattern>/WEB-INF/index/account/account.jsp*</pattern>
+		<pattern>/WEB-INF/index/account/particulars.jsp*</pattern>
+		<pattern>/WEB-INF/index/account/role.jsp*</pattern>
+		<pattern>/WEB-INF/index/charge/charge_record.jsp*</pattern>
+		<pattern>/WEB-INF/index/extract/list_extract_record.jsp*</pattern>
+		<pattern>/WEB-INF/index/complaint/complaint.jsp*</pattern>
+		<pattern>/WEB-INF/index/complaint/circumstance.jsp*</pattern>
+		<pattern>/WEB-INF/index/complaint/list_complaint.jsp*</pattern>
+		<pattern>/WEB-INF/index/complaint/list_defendant.jsp*</pattern>
+		<pattern>/WEB-INF/index/order/refundment.jsp*</pattern>
+    </decorator>
+    <decorator name="publish" page="publish.jsp">
+		<pattern>/WEB-INF/index/bizInfo/publish_1.jsp*</pattern>
+		<pattern>/WEB-INF/index/bizInfo/publish_2_0.jsp*</pattern>
+		<pattern>/WEB-INF/index/bizInfo/publish_2_1_1.jsp*</pattern>
+		<pattern>/WEB-INF/index/bizInfo/publish_2_1_2.jsp*</pattern>
+		<pattern>/WEB-INF/index/bizInfo/publish_2_2.jsp*</pattern>
+		<pattern>/WEB-INF/index/bizInfo/publish_3_0.jsp*</pattern>
+    </decorator>
+    <decorator name="bizInfo" page="bizInfo.jsp">
+		<pattern>/WEB-INF/index/bizInfo/bizInfo_detail.jsp*</pattern>
+		<pattern>/WEB-INF/index/order/buy_now.jsp*</pattern>
+		<pattern>/WEB-INF/index/order/trade_payment.jsp*</pattern>
+		<pattern>/WEB-INF/index/order/trade_payment_scuuess.jsp*</pattern>
+		<pattern>/WEB-INF/index/examine/examine_order_info.jsp*</pattern>
+		<pattern>/WEB-INF/index/examine/examine_order_next.jsp*</pattern>
+		<pattern>/WEB-INF/index/examine/examine_order_amend.jsp*</pattern>
+		<pattern>/WEB-INF/index/order/detail.jsp*</pattern>
+		<pattern>/WEB-INF/index/order/shipments.jsp*</pattern>
+		<pattern>/WEB-INF/index/credit/credit1.jsp*</pattern>
+		<pattern>/WEB-INF/index/credit/credit2.jsp*</pattern>
+		<pattern>/WEB-INF/index/credit/credit3.jsp*</pattern>
+		<pattern>/WEB-INF/index/extract/extract_apply.jsp*</pattern>
+		<pattern>/WEB-INF/index/extract/extract_success.jsp*</pattern>
+		<pattern>/WEB-INF/index/account/bank.jsp*</pattern>
+		<pattern>/WEB-INF/index/findpsw/findpsw_success.jsp*</pattern>
+    </decorator>
+    
+    
+</decorators>

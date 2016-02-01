@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="index" extends="struts-default">
+		<action name="index" class="com.game.util.system.action.IndexAction" method="indexPage">
+			<result name="index">/firstpage.jsp</result>
+		</action>
+		<action name="ranking" class="com.game.util.system.action.IndexAction" method="ranking">
+			<result name="ranking">/ranking.jsp</result>
+		</action>
+	</package>
+	
+	<package name="findpsw" extends="struts-default" namespace="/findpsw">
+		<action name="findpsw_index" class="com.game.util.system.action.IndexAction" method="findpswIndex">
+			<result name="findpswIndex">/WEB-INF/index/findpsw/findpsw_index.jsp</result>
+		</action>
+		<action name="findpsw_answer" class="com.game.util.system.action.IndexAction" method="findpswAnswer">
+			<result name="findpswAnswer" >/WEB-INF/index/findpsw/findpsw_answer.jsp</result>
+			
+			<result name="input" type="redirect-action">
+				<param name="actionName">findpsw_index</param>
+            	<param name="namespace">/findpsw</param>
+			</result>
+			
+			
+		</action>
+		
+		<action name="findpsw_submit" class="com.game.util.system.action.IndexAction" method="findpswSubmit">
+			<result name="findpswSubmit" type="redirect-action">
+				<param name="actionName">findpsw_success</param>
+            	<param name="namespace">/findpsw</param>
+            	<param name="findtype">${findtype}</param>
+            	<param name="email">${email}</param>
+			</result>
+			
+			<result name="input" type="redirect-action">
+				<param name="actionName">findpsw_index</param>
+            	<param name="namespace">/findpsw</param>
+			</result>
+		</action>
+		
+		<action name="findpsw_success" class="com.game.util.system.action.IndexAction" method="findpswSuccess">
+			<result name="findpswSuccess" >/WEB-INF/index/findpsw/findpsw_success.jsp</result>
+		</action>
+	</package>
+</struts>
+ 

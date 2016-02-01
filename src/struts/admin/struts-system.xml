@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="systemAdmin" extends="admin" namespace="/admin/system">
+		<action name="sysParaSet" class="com.game.util.admin.system.action.SystemAction" method="sysParaSet">
+			<result name="sysParaSet">/WEB-INF/admin/system/sysParaSet.jsp</result>
+			<result name="input" type="redirect-action">
+				<param name="actionName">sysParaSet</param>
+            	<param name="namespace">/admin/system</param>
+			</result>
+			<result name="success" type="redirect-action">
+				<param name="actionName">sysParaSet</param>
+            	<param name="namespace">/admin/system</param>
+            	<param name="isSuccess">${isSuccess}</param>
+			</result>
+		</action>
+		
+		<action name="yeePaySet" class="com.game.util.admin.system.action.YeePaySetAction" method="yeePaySet">
+			<result name="yeePaySet">/WEB-INF/admin/system/yeePaySet.jsp</result>
+			<result name="input" type="redirect-action">
+				<param name="actionName">yeePaySet</param>
+            	<param name="namespace">/admin/system</param>
+			</result>
+			<result name="success" type="redirect-action">
+				<param name="actionName">yeePaySet</param>
+            	<param name="namespace">/admin/system</param>
+            	<param name="isSuccess">${isSuccess}</param>
+			</result>
+		</action>
+		
+		<action name="database" class="com.game.util.admin.system.action.DatabaseAction" method="database">
+			<result name="database">/WEB-INF/admin/system/database.jsp</result>
+			<result name="input" type="redirect-action">
+				<param name="actionName">database</param>
+            	<param name="namespace">/admin/system</param>
+			</result>
+			<result name="success" type="redirect-action">
+				<param name="actionName">database</param>
+            	<param name="namespace">/admin/system</param>
+            	<param name="isSuccess">${isSuccess}</param>
+			</result>
+		</action>
+		
+		<action name="envAdmin" class="com.game.util.admin.system.action.EnvAction" method="env">
+			<result name="env">/WEB-INF/admin/system/env.jsp</result>
+			<result name="input" type="redirect-action">
+				<param name="actionName">env</param>
+            	<param name="namespace">/admin/system</param>
+			</result>
+		</action>
+	</package>
+</struts>
+ 

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC
+    "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN"
+    "http://getahead.org/dwr/dwr20.dtd">
+<dwr>
+	<allow>
+	<!-- 动态游戏列表 -->
+		<create javascript="ajaxList" creator="new">
+			<param name="class" value="com.game.util.ajax.AjaxList"></param>
+		</create>
+		<convert converter="hibernate3" match="com.game.util.domain.Game"></convert>
+		<convert converter="hibernate3" match="com.game.util.domain.Area"></convert>
+		<convert converter="hibernate3" match="com.game.util.domain.Server" ></convert>
+		<convert converter="hibernate3" match="com.game.util.domain.BizKind" ></convert>
+		
+		
+	<!-- END -->
+	
+	<!-- 检验用户名是否存在 -->	
+		<create javascript="ajaxUser" creator="new">
+			<param name="class" value="com.game.util.ajax.AjaxUser"></param>
+		</create>
+		<convert converter="hibernate3" match="com.game.util.domain.User" ></convert>
+	<!-- END -->
+		
+	<!-- 更改用户信息 -->	
+		<create javascript="account" creator="new">
+			<param name="class" value="com.game.util.ajax.Account"></param>
+		</create>
+	<!-- END -->
+	
+	<!-- 订单状态 -->	
+		<create javascript="ajaxOrder" creator="new">
+			<param name="class" value="com.game.util.ajax.AjaxOrder"></param>
+		</create>
+	<!-- END -->
+	</allow>
+</dwr>

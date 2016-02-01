@@ -1,0 +1,90 @@
+﻿<%@ page contentType="text/html; charset=utf-8"%>
+<%@ include file="/WEB-INF/index/common/taglibs.jsp"%>
+
+<div class="search_select" id="search_select_box" style="display:none">
+	<div class="search_select_in">
+		<h1><a href="javascript:close_nav('search_select_box')" target="_self">[关闭]</a><strong>请选择游戏</strong></h1>
+		<div class='search_select_navbox' id='search_nav'>
+			<a class='search_nav1' style="width:118px" href='javascript:void(0)'>热门游戏</a>
+			<a href='javascript:void(0)'>A</a>
+			<a href='javascript:void(0)'>B</a>
+			<a href='javascript:void(0)'>C</a>
+			<a href='javascript:void(0)'>D</a>
+			<a href='javascript:void(0)'>E</a>
+			<a href='javascript:void(0)'>F</a>
+			<a href='javascript:void(0)'>G</a>
+			<a href='javascript:void(0)'>H</a>
+			<a href='javascript:void(0)'>J</a>
+			<a href='javascript:void(0)'>K</a>
+			<a href='javascript:void(0)'>L</a>
+			<a href='javascript:void(0)'>M</a>
+			<a href='javascript:void(0)'>N</a>
+			<a href='javascript:void(0)'>O</a>
+			<a href='javascript:void(0)'>P</a>
+			<a href='javascript:void(0)'>Q</a>
+			<a href='javascript:void(0)'>R</a>
+			<a href='javascript:void(0)'>S</a>
+			<a href='javascript:void(0)'>T</a>
+			<a href='javascript:void(0)'>W</a>
+			<a href='javascript:void(0)'>X</a>
+			<a href='javascript:void(0)'>Y</a>
+			<a href='javascript:void(0)'>Z</a>
+		</div>
+
+		<div id='gameListContent' class="search_listbox">
+		    <div id="gamelist0"><a title="00010" href="javascript:doSelectGame('传奇世界','00010')">传奇世界</a></div>
+		    <div id="gamelist1"><a title="00056" href="javascript:doSelectGame('暗黑破壞神2(台服)','00056')">暗黑破壞神2(台服)</a></div>
+		    <div id="gamelist2"><a title="00061" href="javascript:doSelectGame('霸王','00061')">霸王</a></div>
+		    <div id="gamelist3"><a title="00010" href="javascript:doSelectGame('传奇世界','00010')">传奇世界</a></div>
+		    <div id="gamelist4"><a title="00001" href="javascript:doSelectGame('地下城与勇士','00001')">地下城与勇士</a></div>
+		    <div id="gamelist5"><a title="00129" href="javascript:doSelectGame('2061','00129')">2061</a></div>
+		    <div id="gamelist6"><a title="00044" href="javascript:doSelectGame('封神榜Ⅱ','00044')">封神榜Ⅱ</a></div>
+		    <div id="gamelist7"><a title="00154" href="javascript:doSelectGame('鬼吹灯外传','00154')">鬼吹灯外传</a></div>
+		    <div id="gamelist8"><a title="00051" href="javascript:doSelectGame('华夏Ⅱ','00051')">华夏Ⅱ</a></div>
+		    <div id="gamelist9"><a title="00455" href="javascript:doSelectGame('91玩武易','00455')">91玩武易</a></div>
+		    <div id="gamelist10"><a title="00038" href="javascript:doSelectGame('口袋西游','00038')">口袋西游</a></div>
+		    <div id="gamelist11"><a title="00233" href="javascript:doSelectGame('绿色征途','00233')">绿色征途</a></div>
+		    <div id="gamelist12"><a title="00002" href="javascript:doSelectGame('魔兽世界','00002')">魔兽世界</a></div>
+		    <div id="gamelist13"><a title="00304" href="javascript:doSelectGame('纳雅外传OL','00304')">纳雅外传OL</a></div>
+		    <div id="gamelist14"><a href="javascript:void(0)">没有相关游戏</a></div>
+		    <div id="gamelist15"><a title="00306" href="javascript:doSelectGame('跑跑卡丁车','00306')">跑跑卡丁车</a></div>
+		    <div id="gamelist16"><a title="00319" href="javascript:doSelectGame('QQ侠义道Ⅱ','00319')">QQ侠义道Ⅱ</a></div>
+		    <div id="gamelist17"><a title="00347" href="javascript:doSelectGame('R2','00347')">R2</a></div>
+		    <div id="gamelist18"><a title="00360" href="javascript:doSelectGame('神泣','00360')">神泣</a></div>
+		    <div id="gamelist19"><a title="00409" href="javascript:doSelectGame('天下贰','00409')">天下贰</a></div>
+		    <div id="gamelist20"><a title="00448" href="javascript:doSelectGame('武林群侠传2','00448')">武林群侠传2</a></div>
+		    <div id="gamelist21"><a title="00479" href="javascript:doSelectGame('新破天一剑','00479')">新破天一剑</a></div>
+		    <div id="gamelist22"><a title="00539" href="javascript:doSelectGame('预言OL','00539')">预言OL</a></div>
+		    <div id="gamelist23"><a title="00567" href="javascript:doSelectGame('真·三国无双OL','00567')">真·三国无双OL</a></div>
+		    <div id="gamelist24"><a title="00327" href="javascript:doSelectGame('奇迹','00327')">奇迹</a></div>
+		    <div id="gamelist25"><a title="00409" href="javascript:doSelectGame('天下贰','00409')">天下贰</a></div>
+		    <div id="gamelist26"><a title="00003" href="javascript:doSelectGame('诛仙2','00003')">诛仙2</a></div>
+		    <div id="gamelist27"><a title="00007" href="javascript:doSelectGame('天龙八部','00007')">天龙八部</a></div>
+		    <div id="gamelist28"><a title="00568" href="javascript:doSelectGame('征服','00568')">征服</a></div>
+		    <div id="gamelist29"><a title="00575" href="javascript:doSelectGame('征途时间版','00575')">征途时间版</a></div>
+		    <div id="gamelist30"><a title="00413" href="javascript:doSelectGame('天堂','00413')">天堂</a></div>
+		    <div id="gamelist31"><a title="00323" href="javascript:doSelectGame('QQ炫舞','00323')">QQ炫舞</a></div>
+		    <div id="gamelist32"><a title="00530" href="javascript:doSelectGame('仙侣奇缘二','00530')">仙侣奇缘二</a></div>
+		    <div id="gamelist33"><a href="javascript:void(0)">没有相关游戏</a></div>
+		    <div id="gamelist34"><a title="00485" href="javascript:doSelectGame('仙剑OL','00485')">仙剑OL</a></div>
+		    <div id="gamelist35"><a href="javascript:void(0)">没有相关游戏</a></div>
+		</div>
+		
+		<div class="search_yx_main" id='GameProvider'>
+			<a href="javascript:void(0)">九城游戏</a>
+			<a href="javascript:void(0)">网易游戏</a>
+			<a href="javascript:void(0)">完美游戏</a>
+			<a href="javascript:void(0)">搜狐游戏</a>
+			<a href="javascript:void(0)">网龙游戏</a>
+			<a href="javascript:void(0)">巨人游戏</a>
+			<a href="javascript:void(0)">盛大游戏</a>
+			<a href="javascript:void(0)">腾讯游戏</a>
+			<a href="javascript:void(0)">金山游戏</a>
+			<a href="javascript:void(0)">摩力游戏</a>
+			<a href="javascript:void(0)">久游游戏</a>
+			<a href="javascript:void(0)">网域游戏</a>
+		</div>
+		<div class="blank5"></div>
+	</div>
+</div>
+<!--游戏 end -->

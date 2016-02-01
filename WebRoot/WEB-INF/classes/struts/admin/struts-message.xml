@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="messageAdmin" extends="admin" namespace="/admin/message">
+		<action name="messageAdmin" class="com.game.util.admin.message.action.MessageAction" method="list">
+			<result name="list">/WEB-INF/admin/message/listmessage.jsp</result>
+			<result name="add">/WEB-INF/admin/message/addmessage.jsp</result>
+			<result name="save" type="redirect-action">
+				<param name="actionName">messageAdmin</param>
+            	<param name="namespace">/admin/message</param>
+			</result>
+		</action>
+	</package>
+</struts>
+ 

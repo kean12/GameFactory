@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="charge" extends="core" namespace="/user/charge">
+		<action name="deposit" class="com.game.charge.action.ChargeAction" method="deposit">
+			<result name="deposit">/WEB-INF/index/charge/deposit.jsp</result>
+		</action>
+		<action name="deposit_verify" class="com.game.charge.action.ChargeAction" method="depositVerify">
+			<result name="depositVerify">/WEB-INF/index/charge/deposit_verify.jsp</result>
+		</action>
+		<action name="charge" class="com.game.charge.action.ChargeAction" method="charge">
+			<result name="yeepay" type="chain">
+				<param name="actionName">yeepay</param>
+				<param name="namespace">/pay</param>
+				<param name="method">pay</param>
+			</result>
+		</action>
+		
+		<action name="record" class="com.game.charge.action.ChargeAction" method="record">
+			<result name="record">/WEB-INF/index/charge/charge_record.jsp</result>
+		</action>
+	</package>
+</struts>
+ 

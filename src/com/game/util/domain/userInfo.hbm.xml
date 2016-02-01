@@ -1,0 +1,219 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class
+        name="com.game.util.domain.UserInfo"
+        table="JD_USER_USERINFO"
+    >
+	    
+	    <id name="id" column="USER_ID">
+	        <generator class="foreign">
+				<param name="property">user</param>
+	        </generator>
+	    </id>
+	    
+        <property
+            name="money"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="MONEY"
+            length="32"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="buyerCredit"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="BUYER_CREDIT"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="buyerGrade"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="BUYER_GRADE"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="sellerCredit"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="SELLER_CREDIT"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="sellerGrade"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="SELLER_GRADE"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="freemoney"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="FREE_MONEY"
+            length="32"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="applyPwd"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="APPLY_PWD"
+            length="64"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="ip"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="IP"
+            length="16"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="loginTime"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="LOGIN_TIME"
+            length="32"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="tmpIp"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="TMP_IP"
+            length="16"
+            not-null="false"
+            unique="false"
+        />
+        
+         <property
+            name="tmpTime"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="TMP_TIME"
+            length="32"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="sellerPositiveRatio"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="SELLER_POSITIVE_RATIO"
+            length="16"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="buyerPositiveRatio"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="BUYER_POSITIVE_RATIO"
+            length="16"
+            not-null="false"
+            unique="false"
+        />
+        
+        
+        <property
+            name="bankName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="BANK_NAME"
+            length="32"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="bankSite"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="BANK_SITE"
+            length="255"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="bankNum"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="BANK_NUM"
+            length="32"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="route"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="ROUTE"
+            length="255"
+            not-null="false"
+            unique="false"
+        />
+        
+        <one-to-one name="user" cascade="all" class="com.game.util.domain.User"></one-to-one>
+        </class>
+</hibernate-mapping>

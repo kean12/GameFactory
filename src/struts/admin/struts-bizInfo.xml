@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	
+	<package name="bizInfoAdmin" extends="admin" namespace="/admin/bizInfo">
+		<action name="bizInfo" class="com.game.util.admin.bizinfo.action.BizInfoAction" method="allBizInfos">
+			<result name="allBizInfos">/WEB-INF/admin/bizInfo/allBizInfos.jsp</result>
+			<result name="checkBizInfo">/WEB-INF/admin/bizInfo/checkBizInfo.jsp</result>
+			
+			<result name="successupdate" type="redirect-action">
+				<param name="actionName">bizInfo</param>   
+            	<param name="namespace">/admin/bizInfo</param>
+            	<param name="method">checkBizInfo</param>
+            	<param name="bizInfo.id">${bizInfo.id}</param>
+            </result>
+		</action>
+	</package>
+</struts>
+ 

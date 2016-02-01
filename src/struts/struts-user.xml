@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="user" extends="core" namespace="/user">
+		<action name="home" class="com.game.util.user.action.UserAction" method="home">
+			<result name="home">/WEB-INF/index/user/home.jsp</result>
+		</action>
+		
+		<action name="portrait" class="com.game.util.user.action.UserAction" method="portrait">
+			<result name="portrait">/WEB-INF/index/user/portrait.jsp</result>
+		</action>
+	</package>
+	
+	<package name="account" extends="core" namespace="/user/account">
+		<action name="my_account" class="com.game.util.user.action.UserAction" method="account">
+			<result name="account">/WEB-INF/index/account/account.jsp</result>
+		</action>
+		
+		<action name="particulars" class="com.game.util.user.action.UserAction" method="particulars">
+			<result name="particulars">/WEB-INF/index/account/particulars.jsp</result>
+		</action>
+		
+		<!-- 修改银行账号 -->
+		<action name="bank" class="com.game.util.user.action.UserAction" method="bank">
+			<result name="bank">/WEB-INF/index/account/bank.jsp</result>
+		</action>
+		
+		<!-- 修改银行账号 -->
+		<action name="update_bank" class="com.game.util.user.action.UserAction" method="updateBank">
+			<result name="updateBank" type="redirect-action">
+				<param name="actionName">my_account</param>
+            	<param name="namespace">/user/account</param>
+			</result>
+		</action>
+		
+	</package>
+	
+	<package name="role" extends="core" namespace="/user/account">
+		<action name="role" class="com.game.util.user.action.UserAction" method="role">
+			<result name="role">/WEB-INF/index/account/role.jsp</result>
+		</action>
+		
+		<action name="delete_role" class="com.game.util.user.action.UserAction" method="deleteRole">
+			<result name="deleteRole" type="redirect-action">
+				<param name="actionName">role</param>
+            	<param name="namespace">/user/account</param>
+			</result>
+		</action>
+		<action name="save_role" class="com.game.util.user.action.UserAction" method="saveRole">
+			<result name="saveRole" type="redirect-action">
+				<param name="actionName">role</param>
+            	<param name="namespace">/user/account</param>
+			</result>
+		</action>
+	</package>
+	
+	
+	
+	<package name="message" extends="core" namespace="/user/message">
+		<action name="message" class="com.game.util.user.action.UserAction" method="message">
+			<result name="message">/WEB-INF/index/user/message.jsp</result>
+			<result name="inputmessage" type="redirect-action">message</result>
+		</action>
+		<action name="read" class="com.game.util.user.action.UserAction" method="read">
+			<result name="read">/WEB-INF/index/user/read.jsp</result>
+			<result name="inputmessage" type="redirect-action">message</result>
+		</action>
+		<action name="delete" class="com.game.util.user.action.UserAction" method="deleteMessage">
+			<result name="deleteMessage" type="redirect-action">
+				<param name="actionName">message</param>
+            	<param name="namespace">/user/message</param>
+            	<param name="goPage">${goPage}</param>
+            	<param name="type">${type}</param>
+			</result>
+			<result name="inputmessage" type="redirect-action">message</result>
+		</action>
+		
+		<action name="deleteAll" class="com.game.util.user.action.UserAction" method="deleteMessageAll">
+			<result name="deleteMessageAll" type="redirect-action">
+				<param name="actionName">message</param>
+            	<param name="namespace">/user/message</param>
+            	<param name="goPage">${goPage}</param>
+            	<param name="type">${type}</param>
+			</result>
+			<result name="inputmessage" type="redirect-action">message</result>
+		</action>
+	</package>
+	
+	
+	
+	<package name="login" extends="struts-default" namespace="/user">
+		<action name="login" class="com.game.util.user.action.LoginAction" method="login">
+			<result name="login">/login.jsp</result>
+			<result name="success">/WEB-INF/index/user/success.jsp</result>
+			
+			<result name="input2register" type="redirect-action">
+				<param name="actionName">register</param>
+            	<param name="namespace">/user</param>
+            	<param name="registerType">${registerType}</param>
+            	<param name="u">${user.username}</param>
+            	<param name="p">${user.password}</param>
+			</result>
+			
+			<result name="input" type="redirect-action">
+				<param name="actionName">login</param>
+            	<param name="namespace">/user</param>
+            	<param name="flag">${flag}</param>
+			</result>
+		</action>
+		<action name="logout" class="com.game.util.user.action.LoginAction" method="logout">
+			<result name="logout" type="redirect-action">
+				<param name="actionName">index</param>   
+            	<param name="namespace">/</param>
+			</result>
+		</action>
+	</package>
+	
+	
+	
+	
+	<package name="register" extends="struts-default" namespace="/user">
+		<action name="register" class="com.game.util.user.action.RegisterAction" method="register">
+			<result name="register">/WEB-INF/index/register/register.jsp</result>
+			<result name="input" type="redirect-action">
+				<param name="actionName">register</param>   
+            	<param name="namespace">/user</param>
+			</result>
+		</action>
+		
+		<action name="verify" class="com.game.util.user.action.RegisterAction" method="execute">
+			<result name="success" type="redirect-action">
+				<param name="actionName">index</param>   
+            	<param name="namespace">/</param>
+			</result>
+			
+			<result name="execute" type="chain">
+				<param name="actionName">register</param>   
+            	<param name="namespace">/user</param>
+			</result>
+			
+			<result name="input" type="redirect-action">
+				<param name="actionName">register</param>   
+            	<param name="namespace">/user</param>
+			</result>
+		</action>
+	</package>
+	
+	
+	
+	
+	
+</struts>
+ 

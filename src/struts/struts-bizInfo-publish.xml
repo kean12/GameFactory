@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="publish" extends="core" namespace="/user/trade/bizInfo">
+		<!-- 开始发布数据-->
+		<action name="publish" class="com.game.bizinfo.action.PublishAction" method="publish">
+			<result name="publish">/WEB-INF/index/bizInfo/publish_1.jsp</result>
+		</action>
+		<!-- 发布数据-->
+		<action name="publish_data" class="com.game.bizinfo.action.PublishAction" method="publishData">
+			<result name="publishDefaultData">/WEB-INF/index/bizInfo/publish_2_0.jsp</result>
+			<result name="publishAccountData">/WEB-INF/index/bizInfo/publish_2_1_1.jsp</result>
+			<result name="publishDefinitionData">/WEB-INF/index/bizInfo/publish_2_2.jsp</result>
+			<result name="error" type="redirect-action">
+				<param name="actionName">publish</param>
+            	<param name="namespace">/user/trade/bizInfo</param>
+			</result>
+		</action>
+		
+		<!-- 自定义属性方式-发布数据-->
+		<action name="publish_data_2_save" class="com.game.bizinfo.action.PublishAction" method="publishDefinitionDataSave">
+			<result name="publishDefinitionDataSave" type="redirect-action">
+				<param name="actionName">publish_success</param>
+            	<param name="namespace">/user/trade/bizInfo</param>
+            	<param name="flag">${flag}</param>
+			</result>
+			<result name="error" type="redirect-action">
+				<param name="actionName">publish_data</param>
+            	<param name="namespace">/user/trade/bizInfo</param>
+            	<param name="gameID">${gameID}</param>
+            	<param name="typeID">${typeID}</param>
+            	<param name="serverID">${serverID}</param>
+            	<param name="bizKindID">${bizKindID}</param>
+            	<param name="flag">${flag}</param>
+			</result>
+		</action>
+		
+		<!-- 账号交易第二页 -发布数据-->
+		<action name="publish_data_1_2" class="com.game.bizinfo.action.PublishAction" method="publishAccountSecondPage">
+			<result name="publishAccountSecondPage">/WEB-INF/index/bizInfo/publish_2_1_2.jsp</result>
+			<result name="error" type="redirect-action">
+				<param name="actionName">publish</param>
+            	<param name="namespace">/user/trade/bizInfo</param>
+			</result>
+			<result name="error" type="redirect-action">
+				<param name="actionName">publish_data</param>
+            	<param name="namespace">/user/trade/bizInfo</param>
+            	<param name="gameID">${gameID}</param>
+            	<param name="typeID">${typeID}</param>
+            	<param name="serverID">${serverID}</param>
+            	<param name="bizKindID">${bizKindID}</param>
+            	<param name="flag">${flag}</param>
+			</result>
+		</action>
+		
+		<!-- 账号交易保存数据-->
+		<action name="publish_data_1_2_save" class="com.game.bizinfo.action.PublishAction" method="publishAccountDataSave">
+			<result name="publishAccountDataSave" type="redirect-action">
+				<param name="actionName">publish_success</param>
+            	<param name="namespace">/user/trade/bizInfo</param>
+            	<param name="flag">${flag}</param>
+			</result>
+			<result name="error" type="redirect-action">
+				<param name="actionName">publish_data_1_2</param>
+            	<param name="namespace">/user/trade/bizInfo</param>
+            	<param name="gameID">${gameID}</param>
+            	<param name="typeID">${typeID}</param>
+            	<param name="parentID">${parentID}</param>
+            	<param name="serverID">${serverID}</param>
+            	<param name="gameKindID">${gameKindID}</param>
+            	<param name="flag">${flag}</param>
+			</result>
+		</action>
+		
+		<!-- 默认方式保存数据-->
+		<action name="publish_data_save" class="com.game.bizinfo.action.PublishAction" method="publishDefaultDataSave">
+			<result name="publishDefaultDataSave" type="redirect-action">
+				<param name="actionName">publish_success</param>
+            	<param name="namespace">/user/trade/bizInfo</param>
+            	<param name="flag">${flag}</param>
+			</result>
+			<result name="error" type="redirect-action">
+				<param name="actionName">publish_data</param>
+            	<param name="namespace">/user/trade/bizInfo</param>
+            	<param name="gameID">${gameID}</param>
+            	<param name="typeID">${typeID}</param>
+            	<param name="serverID">${serverID}</param>
+            	<param name="bizKindID">${bizKindID}</param>
+            	<param name="flag">${flag}</param>
+			</result>
+		</action>
+		
+		<!-- 成功发布-->
+		<action name="publish_success" class="com.game.bizinfo.action.PublishAction" method="publishSuccess">
+			<result name="success">/WEB-INF/index/bizInfo/publish_3_0.jsp</result>
+		</action>
+	</package>
+</struts>
+ 

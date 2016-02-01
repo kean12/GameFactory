@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:conf/config.properties</value>
+		</property>
+	</bean>
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName">
+			<value>${hibernate.connection.driver_class}</value>
+		</property>
+		<property name="url">
+			<value>${hibernate.connection.url}</value>
+		</property>
+		<property name="username">
+			<value>${hibernate.connection.username}</value>
+		</property>
+		<property name="password">
+			<value>${hibernate.connection.password}</value>
+		</property>
+		<property name="maxActive">
+			<value>100</value>
+		</property>
+		<property name="maxWait">
+			<value>3000</value>
+		</property>
+		<property name="maxIdle">
+			<value>20</value>
+		</property>
+		<property name="defaultAutoCommit">
+			<value>false</value>
+		</property>
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref local="dataSource" />
+		</property>
+
+		<property name="mappingDirectoryLocations">
+			<list>
+				<value>classpath:com/game/util/domain</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					${hibernate.dialect}
+				</prop>
+				<prop key="hibernate.jdbc.use_scrollable_resultset">
+					true
+				</prop>
+				<prop key="hibernate.query.substitutions">1</prop>
+				<prop key="hibernate.connection.provider_class">
+					org.hibernate.connection.DatasourceConnectionProvider
+				</prop>
+				<prop key="hibernate.jdbc.fetch_size">50</prop>
+				<prop key="hibernate.jdbc.batch_size">25</prop>
+				<prop key="hibernate.jdbc.batch_versioned_data">
+					true
+				</prop>
+				<prop key="hibernate.jdbc.use_streams_for_binary">
+					true
+				</prop>
+			
+				<prop key="hibernate.jdbc.use_get_generated_keys">
+					true
+				</prop>
+				<prop key="hibernate.jdbc.AutoCommit">
+					true
+				</prop>
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
+		 		<prop key="hibernate.show_sql">true</prop>
+		 		 
+			</props>
+		</property>
+		<property name="lobHandler">
+  			 <ref bean="bizLobHandler" />
+  		</property>
+	</bean>
+	<bean id="baseDAO" class="com.game.util.base.dao.impl.BaseDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+<!-- 定时器配置 -->
+	<bean id="z" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="cronReportTriggerPublishSpider" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="publish" class="com.game.util.system.timer.PublishQuartz" autowire="byName">
+		<!--<property name="publishDao" ref="publishDao" />-->
+	</bean>
+	<bean id="scheduledReportJobDetailPublishSpider" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="publish" />
+		</property>
+		<property name="targetMethod">
+			<value>quartzDao</value>
+		</property>
+	</bean>
+	<bean id="cronReportTriggerPublishSpider" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="scheduledReportJobDetailPublishSpider" />
+		</property>
+		<property name="cronExpression">
+			<value>0 0/3 * * * ?</value>
+		</property>
+	</bean>
+	
+<!-- 定时器END -->
+	
+	
+	<!-- 简单的message -->
+
+	<bean id="mailMessage"
+		class="org.springframework.mail.SimpleMailMessage">
+		<property name="to" value="58646775@qq.com"/>
+		<property name="from" value="zgjs1208@163.com"/>
+	</bean>
+
+	<!-- 邮件管理 -->
+	
+	
+	<!-- clob 类型配置 -->
+	<bean id="bizLobHandler" class="com.game.util.web.BizLobHandler">
+		<property name="oracleLobHandler">
+			<ref local="oracleLobHandler" />
+		</property>
+		<property name="defaultLobHandler">
+			<ref local="defaultLobHandler" />
+		</property>
+		<!-- 数据库类型，不同数据库处理不一样 -->
+		<property name="dataBaseType">
+			<value>${hibernate.dialect}</value>
+		</property>
+	</bean>
+	<bean id="oracleLobHandler" class="org.springframework.jdbc.support.lob.OracleLobHandler">
+		<property name="nativeJdbcExtractor">
+			<ref local="nativeJdbcExtractor" />
+		</property>
+	</bean>
+	<bean id="defaultLobHandler"
+		class="org.springframework.jdbc.support.lob.DefaultLobHandler">
+	</bean>
+	<bean id="nativeJdbcExtractor"
+		class="org.springframework.jdbc.support.nativejdbc.CommonsDbcpNativeJdbcExtractor">
+	</bean>
+	<!-- 		clob配置结束		 -->
+	
+	
+
+	<!-- 事务管理 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="baseTxProxy" lazy-init="true"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
+		abstract="true">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+				<prop key="find*">PROPAGATION_REQUIRED,readOnly</prop>
+				<prop key="load*">PROPAGATION_REQUIRED,readOnly</prop>
+				<prop key="payment*">
+					PROPAGATION_REQUIRED,-java.lang.Exception
+				</prop>
+				<prop key="create*">
+					PROPAGATION_REQUIRED,-java.lang.Exception
+				</prop>
+				<prop key="update*">
+					PROPAGATION_REQUIRED,-java.lang.Exception
+				</prop>
+				<prop key="remove*">
+					PROPAGATION_REQUIRED,-java.lang.Exception
+				</prop>
+				<prop key="modify*">
+					PROPAGATION_REQUIRED,-java.lang.Exception
+				</prop>
+				<prop key="save*">
+					PROPAGATION_REQUIRED,-java.lang.Exception
+				</prop>
+				<prop key="submit*">
+					PROPAGATION_REQUIRED,-java.lang.Exception
+				</prop>
+				<prop key="edit*">
+					PROPAGATION_REQUIRED,-java.lang.Exception
+				</prop>
+				<prop key="stop*">
+					PROPAGATION_REQUIRED,-java.lang.Exception
+				</prop>
+				<prop key="boot*">
+					PROPAGATION_REQUIRED,-java.lang.Exception
+				</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

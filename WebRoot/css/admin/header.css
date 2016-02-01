@@ -1,0 +1,162 @@
+.header {
+	MARGIN: 0px auto 10px; WIDTH: 980px; POSITION: relative; HEIGHT: 162px; TEXT-ALIGN: left
+}
+.header .headSearch .searchBox .selectBoxLine{
+	BACKGROUND: url(../../images/admin/userFiles/head_search_bg1.gif); FLOAT: left; WIDTH: 80px; CURSOR: hand; COLOR: #000000; TEXT-INDENT: 10px; MARGIN-RIGHT: 5px; PADDING-TOP: 4px; HEIGHT: 17px; TEXT-ALIGN: left
+}
+
+.header .logo {
+	LEFT: 20px; WIDTH: 153px; BOTTOM: 70px; POSITION: absolute; HEIGHT: 80px
+}
+.header .logo A {
+	DISPLAY: block; BACKGROUND: url(../../images/admin/logo.jpg) no-repeat; WIDTH: 153px; TEXT-INDENT: -9999px; HEIGHT: 80px
+}
+.header .topNav {
+	DISPLAY: inline; RIGHT: 1px; WIDTH: 500px; BOTTOM: 124px; POSITION: absolute
+}
+.header .topNav LI {
+	DISPLAY: block; FLOAT: right; MARGIN: 5px; LINE-HEIGHT: 22px; HEIGHT: 22px
+}
+.header .topNav LI A {
+	DISPLAY: block
+}
+.header .topNav .help {
+	BACKGROUND: url(../../images/admin/userFiles/head_Bg.gif) no-repeat -280px -48px; TEXT-INDENT: 18px
+}
+.header .topNav .sup {
+	BACKGROUND: url(../../images/admin/userFiles/head_Bg.gif) no-repeat -154px -49px; TEXT-INDENT: 22px
+}
+.header .topNav .nav {
+	BACKGROUND: url(../../images/admin/userFiles/head_Bg.gif) no-repeat right 0px
+}
+.header .topNav .nav A {
+	DISPLAY: block; PADDING-LEFT: 13px; BACKGROUND: url(../../images/admin/userFiles/head_Bg.gif) no-repeat left 0px; FLOAT: left; WIDTH: 48px; PADDING-TOP: 1px
+}
+.header .topNav .my {
+	BACKGROUND: url(../../images/admin/userFiles/head_Bg.gif) no-repeat right 0px
+}
+.header .topNav .my A {
+	DISPLAY: block; PADDING-LEFT: 19px; BACKGROUND: url(../../images/admin/userFiles/head_Bg.gif) no-repeat 0px -51px; FLOAT: left; WIDTH: 58px; PADDING-TOP: 1px
+}
+.quicklogin {
+	RIGHT: 12px; BOTTOM: 102px; POSITION: absolute
+}
+.headQuicklogin {
+	FLOAT: right
+}
+.headQuicklogin .welcome {
+	DISPLAY: inline; FLOAT: left; COLOR: #666666; MARGIN-RIGHT: 15px
+}
+.headQuicklogin .login {
+	DISPLAY: inline; FLOAT: left
+}
+.header .jiameng {
+	RIGHT: 245px; BOTTOM: 35px; POSITION: absolute
+}
+.header .rexian {
+	RIGHT: 47px; BOTTOM: 32px; POSITION: absolute
+}
+.header .helpPic {
+	RIGHT: 33px; BOTTOM: 4px; POSITION: absolute
+}
+
+.header .headSearch {
+	BACKGROUND: url(../../images/admin/userFiles/head_Bg.gif) repeat-x 0px -78px; LEFT: 0px; WIDTH: 100%; BOTTOM: 0px; POSITION: absolute; HEIGHT: 66px
+}
+.header .headSearch .searchLeft {
+	BACKGROUND: url(../../images/admin/userFiles/head_Bg.gif) no-repeat 0px -149px; LEFT: 0px; WIDTH: 61px; POSITION: absolute; TOP: 0px; HEIGHT: 66px
+}
+.header .headSearch .searchRight {
+	RIGHT: 0px; BACKGROUND: url(../../images/admin/userFiles/head_Bg.gif) no-repeat right -149px; WIDTH: 43px; POSITION: absolute; TOP: 0px; HEIGHT: 66px
+}
+.header .headSearch .searchBox {
+	LEFT: 66px; WIDTH: 700px; PADDING-TOP: 8px; POSITION: absolute; TOP: 0px; HEIGHT: 23px
+}
+
+.header .headSearch .searchBox .gameSelect {
+	DISPLAY: inline; FLOAT: left; MARGIN-RIGHT: 8px
+}
+.header .headSearch .searchBox .searchInput {
+	BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; WIDTH: 200px; BORDER-BOTTOM: #cccccc 1px solid
+}
+.header .headSearch .hotGames {
+	LEFT: 65px; OVERFLOW: hidden; WIDTH: 700px; LINE-HEIGHT: 26px; POSITION: absolute; TOP: 40px; HEIGHT: 26px
+}
+.header .headSearch .hotGames A {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px
+}
+.header .headSearch .hotGames H5 {
+	FONT-WEIGHT: bold; FLOAT: left
+}
+.header .headMenu A:link {
+	COLOR: #333333
+}
+.header .headMenu {
+	LEFT: 173px; OVERFLOW: hidden; WIDTH: 800px; POSITION: absolute; TOP: -31px; HEIGHT: 33px
+}
+.header .headMenu LI {
+	BACKGROUND: url(../../images/admin/userFiles/head_Bg.gif) repeat-x left -259px; FLOAT: left; LINE-HEIGHT: 33px; HEIGHT: 33px
+}
+.header .headMenu LI A {
+	PADDING-RIGHT: 15px; PADDING-LEFT: 10px; BACKGROUND: url(../../images/admin/userFiles/head_Bg.gif) no-repeat right -259px; FLOAT: left; PADDING-BOTTOM: 0px; LINE-HEIGHT: 33px; PADDING-TOP: 0px; HEIGHT: 33px
+}
+.header .headMenu .onHome {
+	BACKGROUND: url(../../images/admin/userFiles/head_Bg.gif) no-repeat right -222px; WIDTH: 80px
+}
+.header .headMenu .onHome A {
+	PADDING-RIGHT: 25px; PADDING-LEFT: 25px; FONT-WEIGHT: bold; FONT-SIZE: 14px; BACKGROUND: url(../../images/admin/userFiles/head_Bg.gif) no-repeat left -222px; FLOAT: left; PADDING-BOTTOM: 0px; COLOR: #ffffff; PADDING-TOP: 0px
+}
+.header .headMenu .bbs A {
+	PADDING-RIGHT: 15px; PADDING-LEFT: 10px; BACKGROUND: url(../../images/admin/userFiles/head_Bg.gif) no-repeat right -294px; FLOAT: left; PADDING-BOTTOM: 0px; LINE-HEIGHT: 33px; PADDING-TOP: 0px; HEIGHT: 33px
+}
+.headSearchBox {
+	BORDER-RIGHT: #a4b3d2 1px solid; BORDER-TOP: #a4b3d2 1px solid; Z-INDEX: 9999999; BACKGROUND: #ffffff; LEFT: 65px; BORDER-LEFT: #a4b3d2 1px solid; WIDTH: 786px!important; COLOR: #203e7b; BORDER-BOTTOM: #a4b3d2 1px solid;  TOP: 30px; TEXT-ALIGN: left
+}
+.headSearchBox .selectTitle {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(); PADDING-BOTTOM: 9px; LINE-HEIGHT: 11px; PADDING-TOP: 9px; HEIGHT: 11px; TEXT-ALIGN: left
+}
+.headSearchBox .selectTitle .tsTitle {
+	PADDING-LEFT: 30px; COLOR: #660000
+}
+.headSearchBox .conbox {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; PADDING-BOTTOM: 10px; PADDING-TOP: 10px
+}
+.headSearchBox H1 {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; BACKGROUND: #def0fa; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; HEIGHT: 11px
+}
+.headSearchBox .seaMenu {
+	PADDING-RIGHT: 20px; PADDING-LEFT: 20px; PADDING-BOTTOM: 0px; PADDING-TOP: 10px
+}
+.headSearchBox .seaMenu LI {
+	FLOAT: left; CURSOR: hand; POSITION: relative; TOP: 1px; TEXT-ALIGN: center
+}
+.headSearchBox .seaMenu .seaMenu_on {
+	FONT-WEIGHT: bold; BACKGROUND: url(images/search_menu_on.jpg); WIDTH: 70px; LINE-HEIGHT: 21px; HEIGHT: 21px
+}
+.headSearchBox .seaMenu .seaMenu_off {
+	BACKGROUND: url(images/search_menu_off.jpg); WIDTH: 70px; LINE-HEIGHT: 21px; HEIGHT: 21px
+}
+.headSearchBox .seaListBox {
+	BORDER-RIGHT: #add0e6 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: #add0e6 1px solid; PADDING-LEFT: 10px; PADDING-BOTTOM: 10px; MARGIN: 0px 2px; OVERFLOW: hidden; BORDER-LEFT: #add0e6 1px solid; WIDTH: 704px!important; PADDING-TOP: 5px; BORDER-BOTTOM: #add0e6 1px solid
+}
+.headSearchBox .seaListBox UL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; LIST-STYLE-TYPE: none
+}
+.headSearchBox .seaListBox LI {
+	PADDING-RIGHT: 0px; DISPLAY: block; PADDING-LEFT: 0px; FLOAT: left; PADDING-BOTTOM: 4px; WORD-BREAK: break-all; word-wrap: normal; PADDING-TOP: 4px; WHITE-SPACE: nowrap; LIST-STYLE-TYPE: none; HEIGHT: 14px
+}
+.headSearchBox .seaListBox LI.sline {
+	PADDING-RIGHT: 4px; PADDING-LEFT: 4px; PADDING-BOTTOM: 4px; PADDING-TOP: 4px; HEIGHT: 14px
+}
+
+/*首页用户登录成功后的css样式*/
+.iframe_user_info {
+	margin-top: 46px;
+	margin-left: 18px;
+}
+.iframe_user_info ul li {
+	margin-left: 18px;
+	padding-bottom: 8px;
+	content: close-quote;
+	color: #C50099;
+}

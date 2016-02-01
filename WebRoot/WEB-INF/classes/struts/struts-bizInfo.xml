@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="bizInfo" extends="core" namespace="/user/trade/bizInfo">
+		<action name="storehouse" class="com.game.bizinfo.action.BizInfoAction" method="storehouse">
+			<result name="storehouse">/WEB-INF/index/bizInfo/storehouse.jsp</result>
+		</action>
+		
+		<action name="sale" class="com.game.bizinfo.action.BizInfoAction" method="sale">
+			<result name="sale">/WEB-INF/index/bizInfo/sale.jsp</result>
+		</action>
+		
+		<action name="top" class="com.game.bizinfo.action.BizInfoAction" method="top">
+			<result name="top" type="redirect-action">
+				<param name="actionName">storehouse</param>
+            	<param name="namespace">/user/trade/bizInfo</param>
+            	<param name="goPage">${goPage}</param>
+			</result>
+		</action>
+		
+		<action name="withdraw" class="com.game.bizinfo.action.BizInfoAction" method="withdraw">
+			<result name="withdraw" type="redirect-action">
+				<param name="actionName">sale</param>
+            	<param name="namespace">/user/trade/bizInfo</param>
+            	<param name="goPage">${goPage}</param>
+			</result>
+		</action>
+		
+		<action name="sale_delete" class="com.game.bizinfo.action.BizInfoAction" method="saleDelete">
+			<result name="saleDelete" type="redirect-action">
+				<param name="actionName">sale</param>
+            	<param name="namespace">/user/trade/bizInfo</param>
+            	<param name="goPage">${goPage}</param>
+			</result>
+		</action>
+		
+		<action name="storehouse_delete" class="com.game.bizinfo.action.BizInfoAction" method="storehouseDelete">
+			<result name="storehouseDelete" type="redirect-action">
+				<param name="actionName">storehouse</param>
+            	<param name="namespace">/user/trade/bizInfo</param>
+            	<param name="goPage">${goPage}</param>
+			</result>
+		</action>
+	</package>
+</struts>
+ 

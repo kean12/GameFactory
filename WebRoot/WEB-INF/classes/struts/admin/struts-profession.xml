@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="professionAdmin" extends="admin" namespace="/admin/profession">
+		<action name="professionAdmin" class="com.game.util.admin.game.action.ProfessionAction" method="listProfession">
+			<result name="listProfession">/WEB-INF/admin/profession/listProfession.jsp</result>
+			<result name="addProfession">/WEB-INF/admin/profession/addProfession.jsp</result>
+			<result name="saveProfession" type="redirect-action">
+				<param name="actionName">professionAdmin</param>
+            	<param name="namespace">/admin/profession</param>
+            	<param name="gameID">${gameID}</param>
+			</result>
+		</action>
+	</package>
+</struts>
+ 

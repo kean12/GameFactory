@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	
+	<package name="loginAdmin" extends="struts-default" namespace="/admin">
+		<action name="login" class="com.game.util.admin.manage.action.LoginAdminAction">
+			<result name="input">/WEB-INF/admin/login/index.jsp</result>
+			<result name="success" type="redirect-action">manage</result>
+		</action>
+		<action name="logout" class="com.game.util.admin.manage.action.LoginAdminAction" method="logout">
+			<result name="success" type="redirect-action">login</result>
+		</action>
+	</package>
+
+	<package name="manage" extends="admin" namespace="/admin">
+		<action name="manage" class="com.game.util.system.action.ManageAction" method="index">
+			<result name="index">/WEB-INF/admin/index/index.jsp</result>
+			<result name="top">/WEB-INF/admin/index/top.jsp</result>
+			<result name="left">/WEB-INF/admin/index/left.jsp</result>
+			<result name="main">/WEB-INF/admin/index/main.jsp</result>
+		</action>
+	</package>
+	<package name="manageAdmin" extends="admin" namespace="/admin/manage">
+		<action name="manage" class="com.game.util.admin.manage.action.ManageAction" method="listManage">
+			<result name="updatePassword">/WEB-INF/admin/manage/updatePassword.jsp</result>
+			<result name="edit">/WEB-INF/admin/manage/updatePassword.jsp</result>
+
+			<result name="listManage">/WEB-INF/admin/manage/listManage.jsp</result>
+			<result name="addManage">/WEB-INF/admin/manage/addManage.jsp</result>
+
+			<result name="success" type="redirect" >/admin/manage/manage.shtml</result>
+		</action>
+	</package>
+</struts>
+ 

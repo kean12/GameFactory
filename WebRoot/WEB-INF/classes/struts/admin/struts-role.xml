@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	
+	<package name="roleAdmin" extends="admin" namespace="/admin/role">
+		<action name="role" class="com.game.util.admin.role.action.RoleAction" method="list">
+			<result name="list">/WEB-INF/admin/role/list.jsp</result>
+			<result name="add">/WEB-INF/admin/role/add.jsp</result>
+			<result name="success" type="redirect">/admin/role/role!list.shtml</result>
+		</action>
+	</package>
+	
+	<package name="roleLimitAdmin" extends="admin" namespace="/admin/roleLimit">
+		<action name="roleLimit" class="com.game.util.admin.role.action.RoleLimitAction" method="checkLimit">
+			<result name="roleLimitsSetup">/WEB-INF/admin/role/roleLimitsSetup.jsp</result>
+			<result name="success" type="redirect">/admin/checkLimit/checkLimit!checkLimit.shtml</result>
+		</action>
+	</package>
+</struts>
+ 

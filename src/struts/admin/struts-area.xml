@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="area" extends="admin" namespace="/admin/area">
+		<action name="areaAdmin" class="com.game.util.admin.area.action.AreaAction" method="listArea">
+			<result name="listarea">/WEB-INF/admin/area/listarea.jsp</result>
+			<result name="add">/WEB-INF/admin/area/addarea.jsp</result>
+			<result name="savearea" type="redirect">/admin/area/areaAdmin.shtml?goPage=${goPage}&amp;gameID=${gameID}&amp;areaName=${areaName}</result>
+			
+			<result name="err" type="redirect">/admin/game/gameAdmin.shtml</result>
+		</action>
+	</package>
+</struts>
+ 

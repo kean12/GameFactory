@@ -1,0 +1,306 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class
+        name="com.game.util.domain.Order"
+        table="JD_ORDER_USERORDER"
+		lazy="true"        
+    >
+	
+    <id name="id" column="ID" type="java.lang.Long">
+        <generator class="native">
+      		<param name="sequence">ORACLE_SEQ</param>
+		</generator>
+    </id>
+    
+         <property
+            name="orderNum"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="ORDER_NUM"
+            length="32"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="title"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="TITLE"
+            length="255"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="price"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="PRICE"
+            length="32"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="buyBum"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="BUY_NUM"
+            length="16"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="sumPrice"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="SUM_PRICE"
+            length="32"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="assureMoney"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="ASSURE_MONEY"
+            length="32"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="state"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="STATE"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="playerGrade"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="PLAYER_GRADE"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="playerRole"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="PLAYER_ROLE"
+            length="32"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="playQQ"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="PLAY_QQ"
+            length="16"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="playPhoneNum"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="PLAY_PHONE_NUM"
+            length="16"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="sellQQ"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="SELL_QQ"
+            length="16"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="sellPhoneNum"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="SELL_PHONE_NUM"
+            length="16"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="orderTime"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="ORDER_TIME"
+            length="32"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="succTime"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="SUCC_TIME"
+            length="32"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="isAssess"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="IS_ASSESS"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="buyType"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="BUY_TYPE"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="site"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="SITE"
+            length="255"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="reason"
+            type="org.springframework.orm.hibernate3.support.ClobStringType"
+            update="true"
+            insert="true"
+            access="property"
+            column="REASON"
+            lazy="true"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="outcome"
+            type="org.springframework.orm.hibernate3.support.ClobStringType"
+            update="true"
+            insert="true"
+            access="property"
+            column="OUTCOME"
+            lazy="true"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="overtime"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="OVERTIME"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="costTime"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="COSTTIME"
+            length="32"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="compensate"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="COMPENSATE"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="quantity"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="QUANTITY"
+            length="32"
+            not-null="false"
+            unique="false"
+        />
+        
+        <many-to-one name="bizKind" column="BIZKIND_ID" class="com.game.util.domain.BizKind"></many-to-one>
+        <many-to-one name="bizInfo" column="BIZINFO_ID" class="com.game.util.domain.BizInfo"></many-to-one>
+        <many-to-one name="owner"  column="OWNER"  class="com.game.util.domain.User"></many-to-one>
+        <many-to-one name="consumer" column="CONSUMER"  class="com.game.util.domain.User"></many-to-one>
+		<many-to-one name="game" column="GAME_ID"  class="com.game.util.domain.Game"></many-to-one>
+        <many-to-one name="server" column="SERVER_ID"  class="com.game.util.domain.Server"></many-to-one>
+        </class>
+</hibernate-mapping>

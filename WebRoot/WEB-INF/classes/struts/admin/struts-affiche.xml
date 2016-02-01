@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="afficheAdmin" extends="admin" namespace="/admin/affiche">
+		<action name="afficheAdmin" class="com.game.util.admin.affiche.action.AfficheAction" method="listAffiche">
+			<result name="listaffiche">/WEB-INF/admin/affiche/listaffiche.jsp</result>
+			<result name="add">/WEB-INF/admin/affiche/addaffiche.jsp</result>
+			<result name="saveaffiche" type="redirect">/admin/affiche/afficheAdmin.shtml?goPage=${goPage}</result>
+		</action>
+	</package>
+</struts>
+ 

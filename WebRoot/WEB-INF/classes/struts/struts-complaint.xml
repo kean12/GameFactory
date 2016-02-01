@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="complaint" extends="core" namespace="/user/trade/order">
+		<action name="complaint" class="com.game.complaint.action.ComplaintAction" method="complaint">
+			<result name="complaint">/WEB-INF/index/complaint/complaint.jsp</result>
+			<result name="circumstance">/WEB-INF/index/complaint/circumstance.jsp</result>
+		</action>
+		
+		<action name="complaint_submit" class="com.game.complaint.action.ComplaintAction" method="complaintSubmit">
+			<result name="complaintSubmit" type="redirect-action">
+				<param name="actionName">complaint</param>   
+            	<param name="namespace">/user/trade/order</param>
+            	<param name="orderID">${orderID}</param>
+			</result>
+		</action>
+		
+		<action name="list_complaint" class="com.game.complaint.action.ComplaintAction" method="listComplaint">
+			<result name="listComplaint">/WEB-INF/index/complaint/list_complaint.jsp</result>
+		</action>
+		
+		<action name="list_defendant" class="com.game.complaint.action.ComplaintAction" method="listDefendant">
+			<result name="listDefendant">/WEB-INF/index/complaint/list_defendant.jsp</result>
+		</action>
+	</package>
+</struts>
+ 

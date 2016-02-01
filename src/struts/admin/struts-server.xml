@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="server" extends="admin" namespace="/admin/server">
+		<action name="serverAdmin" class="com.game.util.admin.server.action.ServerAction" method="listServer">
+			<result name="listserver">/WEB-INF/admin/server/listserver.jsp</result>
+			<result name="add">/WEB-INF/admin/server/addserver.jsp</result>
+			
+		<!--  
+			<result name="saveserver" type="redirect">
+                <param name="location">/admin/server/serverAdmin.shtml?goPage=${goPage}&amp;areaID=${areaID}&amp;serverName=${serverName}</param>
+                <param name="encode">true</param>
+            </result>
+		-->
+			<result name="saveserver" type="redirect-action">
+			    <param name="actionName">serverAdmin</param>
+			    <param name="goPage">${goPage}</param>
+			    <param name="areaID">${areaID}</param>
+			    <param name="serverName">${serverName}</param>
+   			</result>
+			
+			
+			<result name="err" type="redirect">/admin/game/gameAdmin.shtml</result>
+		</action>
+	</package>
+</struts>
+ 

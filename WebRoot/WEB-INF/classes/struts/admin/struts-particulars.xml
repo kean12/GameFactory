@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	
+	<package name="particularsAdmin" extends="admin" namespace="/admin/particulars">
+		<action name="particulars" class="com.game.util.admin.charge.action.ChargeAction" method="allParticularses">
+		
+			<result name="allParticularses">/WEB-INF/admin/particulars/allParticularses.jsp</result>
+			<result name="checkParticulars">/WEB-INF/admin/particulars/checkParticulars.jsp</result>		
+			<result name="successUpdate" type="redirect-action">
+				<param name="actionName">particulars</param>   
+            	<param name="namespace">/admin/particulars</param>
+            	<param name="method">checkParticulars</param>
+            	<param name="particulars.id">${particulars.id}</param>
+            </result>
+            
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class
+        name="com.game.util.domain.Game"
+        table="JD_GAME"
+    >
+	    
+	    <id name="id" column="ID" type="java.lang.Long">
+	        <generator class="assigned" />
+	    </id>
+	    
+        <property
+            name="gameName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="GAME_NAME"
+            length="32"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="pinyin"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="PINYIN"
+            length="128"
+            not-null="false"
+            unique="false"
+        />
+       
+         <property
+            name="state"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="STATE"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="company"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="COMPANY"
+            length="32"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="gameIndex"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="GAME_INDEX"
+            length="16"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="gameHot"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="GAME_HOT"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="gameNum"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="GAME_NUM"
+            length="16"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="orderIndex"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="ORDER_INDEX"
+            not-null="false"
+            unique="false"
+        />
+        
+        </class>
+</hibernate-mapping>

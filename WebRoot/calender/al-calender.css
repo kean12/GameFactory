@@ -1,0 +1,103 @@
+.fd-calcontainer {
+    BORDER: #666 1px solid; POSITION: absolute; TEXT-ALIGN: center; PADDING: 3px; BACKGROUND-COLOR: #ffffff;  WIDTH: 178px; HEIGHT: 178px; FONT-SIZE: 12px
+}
+.fd-calcontainer .caltoday {
+	BACKGROUND-COLOR: #ff7300; COLOR: #ffffff
+}
+.fd-calcontainer .calsettedday {
+	BACKGROUND-COLOR: #80c3ff; COLOR: #ffffff
+}
+.fd-calcontainer .calthisM {
+	BACKGROUND-COLOR: #ffffff; COLOR: #003db8
+}
+.fd-calcontainer .calNthisM {
+	BACKGROUND-COLOR: #ffffff; COLOR: #999999
+}
+.fd-calcontainer .calneedremove {
+	BACKGROUND-COLOR: #ffffff; COLOR: #cccccc
+}
+.fd-calcontainer .calMouseOver {
+	BACKGROUND-COLOR: #fff19f; COLOR: #003db8
+}
+.fd-calcontainer TD {
+	 FONT-SIZE: 12px; BORDER-BOTTOM: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; LINE-HEIGHT: 15px; WIDTH: 13%; FONT-FAMILY: verdana; HEIGHT: 15px; BORDER-TOP: #cccccc 1px solid; BORDER-RIGHT: #cccccc 1px solid
+}
+.fd-calcontainer TH {
+	 text-align:center; vertical-align:middle; FONT-SIZE: 12px; BORDER-BOTTOM: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; LINE-HEIGHT: 15px; WIDTH: 13%; FONT-FAMILY: verdana; HEIGHT: 15px; BORDER-TOP: #cccccc 1px solid; BORDER-RIGHT: #cccccc 1px solid
+}
+.fd-calcontainer .calbottom {
+	BORDER-RIGHT-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; HEIGHT: 22px; BORDER-LEFT-WIDTH: 0px
+}
+.fd-calcontainer .candrag {
+	CURSOR: move
+}
+#fd-container TABLE {
+	BORDER-SPACING: 0pt; BORDER-COLLAPSE: collapse
+}
+.calpoint {
+	CURSOR: pointer;FONT-SIZE: 9px; 
+}
+.calnavleft {
+	Z-INDEX: 1; POSITION: absolute; WIDTH: 9px; BOTTOM: 0pt; BACKGROUND: url(../images/callt.gif) no-repeat 0% 50%; HEIGHT: 12px; TOP: 8px; CURSOR: pointer; RIGHT: 155px
+}
+.calnavright {
+	Z-INDEX: 1; POSITION: absolute; WIDTH: 9px; BOTTOM: 0pt; BACKGROUND: url(../images/calrt.gif) no-repeat 0% 50%; HEIGHT: 12px; TOP: 8px; CURSOR: pointer; RIGHT: 8px
+}
+
+
+
+
+.ipt-text {
+	BORDER: #bbb 1px solid; PADDING:2px 4px 2px 4px; BACKGROUND: url(../images/txt-bg.png) no-repeat; width:98px;
+}
+.ipt-date {
+	BORDER: #bbb 1px solid; PADDING:2px 0 2px 4px; BACKGROUND: url(../images/date-bg.png) no-repeat;width:98px;
+}
+#orderList A {
+	COLOR: #195cad; TEXT-DECORATION: none
+}
+#orderList A:hover {
+	COLOR: #ff7300; TEXT-DECORATION: underline
+}
+#orderList H3 A {
+	BACKGROUND: url(../images/sprite.png) no-repeat
+}
+#orderList .ps SPAN {
+	BACKGROUND: url(../images/sprite.png) no-repeat
+}
+#orderList .ps DIV {
+	BACKGROUND: url(../images/sprite.png) no-repeat
+}
+#listBox LI .title A {
+	BACKGROUND: url(../images/sprite.png) no-repeat
+}
+#listBox .tp {
+	BACKGROUND: url(../images/sprite.png) no-repeat
+}
+#orderList .ft .rule .trade {
+	BACKGROUND: url(../images/sprite.png) no-repeat
+}
+#orderList .ft .rule .dispute {
+	BACKGROUND: url(../images/sprite.png) no-repeat
+}
+.edit .err {
+	BACKGROUND: url(../images/sprite.png) no-repeat
+}
+#orderList .sBox0 {
+	BORDER-BOTTOM: #cee2ec 1px solid; BORDER-LEFT: #cee2ec 1px solid; PADDING-BOTTOM: 8px; BACKGROUND-COLOR: #f3f8fb; PADDING-LEFT: 8px; PADDING-RIGHT: 8px; BORDER-TOP: #cee2ec 1px solid; BORDER-RIGHT: #cee2ec 1px solid; PADDING-TOP: 8px
+}
+#orderList .sBox INPUT {
+	VERTICAL-ALIGN: middle
+}
+#orderList .sBox SELECT {
+	VERTICAL-ALIGN: middle
+}
+#orderList .sBox .ipt-date {
+	MARGIN: 0px 4px
+}
+#orderList .sBox .date {
+	WIDTH: 75px; MARGIN-RIGHT: 4px
+}
+
+
+

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class
+        name="com.game.util.domain.Server"
+        table="JD_GAME_SERVER"
+    >
+	    
+	    <id name="id" column="ID" type="java.lang.Long">
+	        <generator class="assigned" />
+	    </id>
+	    
+        <property
+            name="serverName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="SERVER_NAME"
+            length="128"
+            not-null="false"
+            unique="false"
+        />
+        
+         <property
+            name="state"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="STATE"
+            not-null="false"
+            unique="false"
+        />
+        
+        <many-to-one name="area" column="AREA_ID"  class="com.game.util.domain.Area"></many-to-one>	
+		        
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="menu" extends="admin" namespace="/admin/menu">
+		<action name="menuAdmin" class="com.game.util.admin.menu.action.MenuAction" method="listMenu">
+			<result name="listMenu">/WEB-INF/admin/menu/listmenu.jsp</result>
+			<result name="add">/WEB-INF/admin/menu/addmenu.jsp</result>
+			<result name="saveMenu" type="redirect-action">/admin/menu/menuAdmin.shtml</result>
+			
+			<result name="listsecond">/WEB-INF/admin/menu/listsecond.jsp</result>
+			<result name="addsecond">/WEB-INF/admin/menu/addsecond.jsp</result>
+			<result name="savesecond" type="redirect">/admin/menu/menuAdmin!listSecond.shtml?menuID=${menu.parent.id}</result>
+			
+			<result name="listthird">/WEB-INF/admin/menu/listthird.jsp</result>
+			<result name="addthird">/WEB-INF/admin/menu/addthird.jsp</result>
+			<result name="savethird" type="redirect">/admin/menu/menuAdmin!listThird.shtml?menuID=${menu.parent.id}</result>
+		</action>
+	</package>
+</struts>
+ 

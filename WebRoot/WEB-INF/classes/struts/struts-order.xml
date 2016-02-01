@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="order" extends="core" namespace="/user/trade/order">
+		<!--商家—-卖出的宝贝-->
+		<action name="list_sold_items" class="com.game.order.action.OrderAction" method="sold">
+			<result name="sold">/WEB-INF/index/order/list_sold_items.jsp</result>
+			<result name="shipments">/WEB-INF/index/order/shipments.jsp</result>
+		</action>
+		
+		<!--客户—-买到的宝贝-->
+		<action name="list_bought_items" class="com.game.order.action.OrderAction" method="bought">
+			<result name="bought">/WEB-INF/index/order/list_bought_items.jsp</result>
+			<result name="refundment">/WEB-INF/index/order/refundment.jsp</result>
+		</action>
+		
+		<!--客户—-退款理由提交-->
+		<action name="refundment_submit" class="com.game.order.action.OrderAction" method="refundmentSubmit">
+			<result name="refundmentSubmit" type="redirect-action">
+				<param name="actionName">list_bought_items</param>
+				<param name="namespace">/user/trade/order</param>
+				<param name="goPage">${goPage}</param>
+				<param name="type">${type}</param>
+			</result>
+		</action>
+		
+		<!--交易详情-->
+		<action name="detail" class="com.game.order.action.OrderAction" method="transactionDetail">
+			<result name="transactionDetail">/WEB-INF/index/order/detail.jsp</result>
+		</action>
+	
+	
+		<!-- 下单 -->
+		<action name="buy_now" class="com.game.order.action.OrderAction" method="buyNow">
+			<result name="buyNow">/WEB-INF/index/order/buy_now.jsp</result>
+		</action>
+		<!-- 确认订单 -->
+		<action name="buy_now_submit" class="com.game.order.action.OrderAction" method="buyNowSubmit">
+			<result name="buyNowSubmit">/WEB-INF/index/order/order_success.jsp</result>
+			<result name="input" type="redirect-action">
+				<param name="actionName">buy_now</param>
+				<param name="namespace">/user/trade/order</param>
+				<param name="bizInfoID">${bizInfo.id}</param>
+			</result>
+		</action>
+		<!-- 支付页面 -->
+		<action name="trade_payment" class="com.game.order.action.OrderAction" method="tradePayment">
+			<result name="tradePayment">/WEB-INF/index/order/trade_payment.jsp</result>
+		</action>
+		<!-- 支付订单 -->
+		<action name="trade_payment_submit" class="com.game.order.action.OrderAction" method="tradePaymentSubmit">
+			<result name="yeepay" type="chain">
+				<param name="actionName">yeepay</param>
+				<param name="namespace">/pay</param>
+				<param name="method">pay</param>
+			</result>
+			<result name="tradePaymentSubmit" type="redirect-action">
+				<param name="actionName">trade_payment_scuuess</param>
+				<param name="namespace">/user/trade/order</param>
+				<param name="runningNum">${runningNum}</param>
+				<param name="orderNum">${orderNum}</param>
+			</result>
+		</action>
+		<!-- 支付 成功-->
+		<action name="trade_payment_scuuess" class="com.game.order.action.OrderAction" method="tradePaymentScuuess">
+			<result name="tradePaymentScuuess">/WEB-INF/index/order/trade_payment_scuuess.jsp</result>
+		</action>
+	</package>
+	
+<!--商家发货Action-->
+	<package name="shipments" extends="core" namespace="/user/trade/order">
+		<!--商家—-发货-->
+		<action name="shipments" class="com.game.order.action.ShipmentsAction" method="shipments">
+			<result name="input" type="redirect-action">
+				<param name="actionName">list_sold_items</param>
+				<param name="namespace">/user/trade/order</param>
+			</result>
+			<result name="success" type="redirect-action">
+				<param name="actionName">list_sold_items</param>
+				<param name="namespace">/user/trade/order</param>
+			</result>
+		</action>
+	</package>
+	
+	
+</struts>
+ 

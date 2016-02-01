@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="game" extends="admin" namespace="/admin/game">
+		<action name="gameAdmin" class="com.game.util.admin.game.action.GameAction" method="listGame">
+			<result name="listgame">/WEB-INF/admin/game/listgame.jsp</result>
+			<result name="add">/WEB-INF/admin/game/addgame.jsp</result>
+			<result name="updateList">/WEB-INF/admin/game/updateList.jsp</result>
+			
+			<result name="savegame" type="redirect-action">
+				<param name="actionName">gameAdmin</param>
+				<param name="namespace">/admin/game</param>
+				<param name="method">listGame</param>
+				<param name="goPage">${goPage}</param>
+<!--				<param name="gameName">${gameName}</param>-->
+			</result>
+			
+			<result name="saveGameList" type="redirect-action">
+				<param name="actionName">manage</param>   
+            	<param name="namespace">/admin</param>
+            	<param name="method">main</param>
+			</result>
+		</action>
+	</package>
+</struts>
+ 

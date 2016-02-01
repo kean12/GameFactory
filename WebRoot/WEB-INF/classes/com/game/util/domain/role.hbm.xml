@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class
+        name="com.game.util.domain.Role"
+        table="JD_ROLE"
+        lazy="true"
+    >
+	    
+	    <id name="id" column="ID" type="java.lang.Long">
+	        <generator class="assigned" />
+	    </id>
+	    
+        <property
+            name="name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="NAME"
+            length="32"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="description"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="DESCRIPTION"
+            length="128"
+            not-null="false"
+            unique="false"
+        />
+       
+         <property
+            name="state"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="STATE"
+            not-null="false"
+            unique="false"
+        />
+        
+        </class>
+</hibernate-mapping>

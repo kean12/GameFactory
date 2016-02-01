@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class
+        name="com.game.util.domain.UserRole"
+        table="JD_USER_USERROLE"
+    >
+	    
+	    <id name="id" column="ID" type="java.lang.Long">
+	        <generator class="native">
+	      		<param name="sequence">ORACLE_SEQ</param>
+			</generator>
+	    </id>
+	    
+        <property
+            name="roleName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="ROLE_NAME"
+            length="32"
+            not-null="false"
+            unique="false"
+        />
+        
+       <property
+            name="remark"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="REMARK"
+            length="255"
+            not-null="false"
+            unique="false"
+        />
+        
+       	<many-to-one name="user" column="USER_ID"  class="com.game.util.domain.User"></many-to-one>
+        
+        </class>
+</hibernate-mapping>

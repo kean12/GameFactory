@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="bizKindAdmin" extends="admin" namespace="/admin/bizKind">
+		<action name="bizKindAdmin" class="com.game.util.admin.bizkind.action.BizKindAction" method="listBizKind">
+			<result name="listbizKind">/WEB-INF/admin/bizKind/listbizKind.jsp</result>
+			<result name="add">/WEB-INF/admin/bizKind/addbizKind.jsp</result>
+			<result name="savebizKind" type="redirect">/admin/bizKind/bizKindAdmin.shtml</result>
+		</action>
+	</package>
+	
+	<package name="gameKindAdmin" extends="admin" namespace="/admin/gameKind">
+		<action name="gameKindAdmin" class="com.game.util.admin.bizkind.action.GameKindAction" method="listGame">
+			<result name="listGame">/WEB-INF/admin/gameKind/listGame.jsp</result>
+			<result name="listGameKind">/WEB-INF/admin/gameKind/listGameKind.jsp</result>
+			<result name="savebizKind" type="redirect">/admin/gameKind/gameKindAdmin.shtml</result>
+			
+			<result name="add" type="redirect-action">
+				<param name="actionName">gameKindAdmin</param>
+				<param name="method">listGameKind</param>
+            	<param name="gameID">${gameID}</param>
+			</result>
+		</action>
+	</package>
+	
+	<package name="detailsAdmin" extends="admin" namespace="/admin/details">
+		<action name="detailsAdmin" class="com.game.util.admin.bizkind.action.DetailsAction" method="listDetails">
+			<result name="listDetails">/WEB-INF/admin/details/listDetails.jsp</result>
+			<result name="addDetails">/WEB-INF/admin/details/addDetails.jsp</result>
+			<result name="saveDetails" type="redirect-action">
+				<param name="actionName">detailsAdmin</param>
+				<param name="gameKindID">${gameKindID}</param>
+			</result>
+			<result name="deleteDetails" type="redirect-action">
+				<param name="actionName">detailsAdmin</param>
+				<param name="gameKindID">${gameKindID}</param>
+			</result>
+			
+			<result name="listGroup">/WEB-INF/admin/details/listGroup.jsp</result>
+			<result name="addGroup">/WEB-INF/admin/details/addGroup.jsp</result>
+			<result name="saveGroup" type="redirect-action">
+				<param name="actionName">detailsAdmin</param>
+				<param name="method">listGroup</param>
+				<param name="parentID">${parentID}</param>
+			</result>
+			
+			<result name="listAttribute">/WEB-INF/admin/details/listAttribute.jsp</result>
+			<result name="addAttribute">/WEB-INF/admin/details/addAttribute.jsp</result>
+			<result name="saveAttribute" type="redirect-action">
+				<param name="actionName">detailsAdmin</param>
+				<param name="method">listAttribute</param>
+				<param name="parentID">${parentID}</param>
+			</result>
+			
+			<result name="input" type="redirect-action">
+				<param name="actionName">gameKindAdmin</param>
+			</result>
+		</action>
+	</package>
+</struts>
+ 

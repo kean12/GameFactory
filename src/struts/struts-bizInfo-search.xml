@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="bizInfo_search" extends="struts-default" namespace="/user/trade/bizInfo">
+		<action name="search" class="com.game.bizinfo.action.SearchAction" method="search">
+			<result name="search">/WEB-INF/index/bizInfo/bizInfo_search.jsp</result>
+		</action>
+		
+		<action name="browse" class="com.game.bizinfo.action.SearchAction" method="browse">
+			<result name="browse">/WEB-INF/index/bizInfo/bizInfo_browse.jsp</result>
+			<result name="input" type="redirect-action">
+				<param name="actionName">browse</param>
+            	<param name="namespace">/user/trade/bizInfo</param>
+			</result>
+		</action>
+		
+		<action name="detail" class="com.game.bizinfo.action.SearchAction" method="detail">
+			<result name="detail">/WEB-INF/index/bizInfo/bizInfo_detail.jsp</result>
+			<result name="input" type="redirect"></result>
+		</action>
+		
+		<action name="picture" class="com.game.bizinfo.action.SearchAction" method="picture">
+			<result name="picture">/WEB-INF/index/bizInfo/picture.jsp</result>
+		</action>
+		
+	</package>
+</struts>
+ 

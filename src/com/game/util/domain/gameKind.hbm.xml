@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class
+        name="com.game.util.domain.GameKind"
+        table="JD_BIZKIND_GAMEKIND"
+    >
+	    
+	    <id name="id" column="ID" type="java.lang.Long">
+	        <generator class="native">
+	      		<param name="sequence">ORACLE_SEQ</param>
+			</generator>
+	    </id>
+	    
+        <property
+            name="unit"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="UNIT"
+            length="8"
+            not-null="false"
+            unique="false"
+        />
+        
+        <property
+            name="tradeType"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="TRADE_TYPE"
+            not-null="false"
+            unique="false"
+        />
+        
+         <many-to-one name="bizKind" column="BIZKIND_ID"  class="com.game.util.domain.BizKind"></many-to-one>
+         <many-to-one name="game" column="GAME_ID"  class="com.game.util.domain.Game"></many-to-one>
+        </class>
+</hibernate-mapping>

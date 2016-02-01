@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	
+	<package name="complaintAdmin" extends="admin" namespace="/admin/complaint">
+		<action name="complaint" class="com.game.util.admin.complaint.action.ComplaintAction" method="allComplaints">
+			<result name="allComplaints">/WEB-INF/admin/complaint/allComplaints.jsp</result>
+			<result name="checkComplaint">/WEB-INF/admin/complaint/checkComplaint.jsp</result>
+			
+			<result name="successUpdate" type="redirect-action">
+				<param name="actionName">complaint</param>   
+            	<param name="namespace">/admin/complaint</param>
+            	<param name="method">checkComplaint</param>
+            	<param name="complaint.id">${complaint.id}</param>
+            </result>
+		</action>
+	</package>
+</struts>
+ 

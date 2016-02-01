@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="yeepay" extends="core" namespace="/pay">
+		<!--商家—-发货-->
+		<action name="yeepay" class="com.game.util.system.action.YeePayAction" method="respond">
+			<result name="execute">/WEB-INF/index/yeepay/pay.jsp</result>
+			<result name="success" type="redirect-action">
+				<param name="actionName">list_sold_items</param>
+				<param name="namespace">/user/trade/order</param>
+			</result>
+			<result name="pay_success" type="redirect-action">
+				<param name="actionName">trade_payment_scuuess</param>
+				<param name="namespace">/user/trade/order</param>
+				<param name="runningNum">${r2_TrxId}</param>
+				<param name="orderNum">${orderNum}</param>
+			</result>
+		</action>
+	</package>
+	
+	
+</struts>

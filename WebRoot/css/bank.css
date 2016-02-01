@@ -1,0 +1,186 @@
+@charset "utf-8";
+.bankbody {
+	PADDING-BOTTOM: 12px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 12px}
+TABLE.bankTable {
+	BORDER-BOTTOM: #e7e7e7 1px solid; BORDER-LEFT: #e7e7e7 1px solid; WIDTH: 100%; BORDER-COLLAPSE: collapse; BACKGROUND: #d6d6f8; TABLE-LAYOUT: fixed; CLEAR: both; BORDER-TOP: #e7e7e7 1px solid; BORDER-RIGHT: #e7e7e7 1px solid
+}
+TABLE.bankTable TD {
+	BORDER-BOTTOM: #e7e7e7 1px solid; BORDER-LEFT: #e7e7e7 1px solid; PADDING-BOTTOM: 0px; LINE-HEIGHT: 180%; PADDING-LEFT: 6px; PADDING-RIGHT: 6px; BACKGROUND: #fff; BORDER-TOP: #e7e7e7 1px solid; BORDER-RIGHT: #e7e7e7 1px solid; PADDING-TOP: 0px; height:25px; line-height:25px;
+}
+TABLE.bankTable TH {
+	BORDER-BOTTOM: #e7e7e7 1px solid; BORDER-LEFT: #e7e7e7 1px solid; PADDING-BOTTOM: 0px; LINE-HEIGHT: 180%; PADDING-LEFT: 6px; PADDING-RIGHT: 6px; BACKGROUND: #fff; BORDER-TOP: #e7e7e7 1px solid; BORDER-RIGHT: #e7e7e7 1px solid; PADDING-TOP: 0px
+}
+TABLE.bankTable TD IMG {
+	VERTICAL-ALIGN: middle
+}
+TABLE.bankTable THEAD TR {
+	BORDER-BOTTOM: #505284 2px solid
+}
+* HTML TABLE.bankTable TR.firstRow TD {
+	BORDER-TOP: #505284 2px solid
+}
+* HTML TABLE.bankTable TR.firstRow TH {
+	BORDER-TOP: #505284 2px solid
+}
+TABLE.bankTable TR.firstRow TD {
+	BACKGROUND: #d3d3d3
+}
+TABLE.bankTable TR.firstRow TH {
+	BACKGROUND: #d3d3d3
+}
+TABLE.bankTable TR.evenRow TD {
+	BACKGROUND: #f2f2f2
+}
+TABLE.bankTable TR.evenRow TH {
+	BACKGROUND: #f2f2f2
+}
+TABLE.bankTable THEAD TH {
+	BORDER-BOTTOM: #505284 1px solid; BORDER-LEFT: #505284 1px solid; BACKGROUND: #505284; COLOR: #fff; BORDER-TOP: #505284 1px solid; FONT-WEIGHT: normal; BORDER-RIGHT: #505284 1px solid
+}
+TABLE.bankTable TFOOT TD {
+	BACKGROUND: #fff; COLOR: #f60
+}
+TABLE.bankTable .firstCol {
+	WIDTH: 65px
+}
+.bank {
+	BACKGROUND: url(../images/bg/alipay-bank.png) no-repeat 1000px 1000px
+}
+.linkBank {
+	BACKGROUND: url(../images/bg/alipay-bank.png) no-repeat 1000px 1000px
+}
+
+
+.ABC {
+	BACKGROUND-POSITION: 15px -6px
+}
+.CCB {
+	BACKGROUND-POSITION: 15px -46px
+}
+.ICC{BACKGROUND: url(../images/index_3621.gif) 20px 5px no-repeat}
+.CEBBANK {
+	BACKGROUND-POSITION: 15px -86px
+}
+.CEB {
+	BACKGROUND-POSITION: 15px -86px
+}
+.CMBC {
+	BACKGROUND-POSITION: 15px -126px
+}
+.COMM {
+	BACKGROUND-POSITION: 15px -166px
+}
+.GDB {
+	BACKGROUND-POSITION: 15px -206px
+}
+.CITIC {
+	BACKGROUND-POSITION: 15px -246px
+}
+.SDB {
+	BACKGROUND-POSITION: 15px -286px
+}
+.SPDB {
+	BACKGROUND-POSITION: 15px -326px
+}
+.ICBC {
+	BACKGROUND-POSITION: 15px -366px
+}
+.CMB {
+	BACKGROUND-POSITION: 15px -406px
+}
+.CIB {
+	BACKGROUND-POSITION: 15px -446px
+}
+.POSTGC {
+	BACKGROUND-POSITION: 15px -486px
+}
+.PSBC {
+	BACKGROUND-POSITION: 15px -486px
+}
+.ICBCPub {
+	BACKGROUND-POSITION: 15px -531px
+}
+.ICBCPer {
+	BACKGROUND-POSITION: 15px -576px
+}
+.SPDBPub {
+	BACKGROUND-POSITION: 15px -621px
+}
+.SPDBPer {
+	BACKGROUND-POSITION: 15px -661px
+}
+.VISA {
+	BACKGROUND-POSITION: 15px -696px
+}
+.ABC-VISA {
+	BACKGROUND-POSITION: 15px -696px
+}
+.ABCPer {
+	BACKGROUND-POSITION: 15px -741px
+}
+.ABCPub {
+	BACKGROUND-POSITION: 15px -780px
+}
+.BOCB2C {
+	BACKGROUND-POSITION: 15px -820px
+}
+.BOC {
+	BACKGROUND-POSITION: 15px -820px
+}
+.BOCCCL {
+	BACKGROUND-POSITION: 15px -820px
+}
+.BJRCBB2C {
+	BACKGROUND-POSITION: 15px -895px
+}
+.BJRCB {
+	BACKGROUND-POSITION: 15px -895px
+}
+.HZCBB2C {
+	BACKGROUND-POSITION: 15px -862px
+}
+.HZCB {
+	BACKGROUND-POSITION: 15px -862px
+}
+.SHBANK {
+	BACKGROUND-POSITION: 15px -926px
+}
+.NBBANK {
+	BACKGROUND-POSITION: 15px -962px
+}
+.SPABANK {
+	BACKGROUND-POSITION: 15px -1000px
+}
+.arrow {
+	BACKGROUND: url(https://img.alipay.com/assets/i/base/icon/icon_16.png) no-repeat 10000px 10000px
+}
+.arrowed {
+	BACKGROUND: url(https://img.alipay.com/assets/i/base/icon/icon_16.png) no-repeat 10000px 10000px
+}
+.arrow {
+	PADDING-LEFT: 13px; BACKGROUND-POSITION: 0px -628px
+}
+.arrowed {
+	PADDING-LEFT: 13px; BACKGROUND-POSITION: 0px -644px
+}
+UNKNOWN {
+	BACKGROUND: #fff
+}
+.BankHead {
+	PADDING-BOTTOM: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; BACKGROUND: url(https://img.alipay.com/assets/i/style/others/BankHead.jpg) repeat-x; PADDING-TOP: 5px
+}
+.linkBank { cursor:pointer; BORDER: #ccc 1px solid; WIDTH: 140px; DISPLAY: block; FLOAT: left; HEIGHT: 12px; padding:3px 0 15px; margin-right:10px; margin-top:10px}
+.linkBank:hover{ border:#F60 1px solid}
+.bankbody .linkBank,.bankbody .linkBank:hover {border:0}
+.linkBankInfo {
+	HEIGHT: 25px; MARGIN-LEFT: 120px; FONT-SIZE: 14px; PADDING-TOP: 6px
+}
+.linkBankInfo A {
+	FONT: 12px Verdana,Arial,Helvetica,sans-serif; COLOR: #ff7900
+}
+.linkBankInfo SPAN {
+	FONT: 12px Verdana,Arial,Helvetica,sans-serif; COLOR: #ff7900
+}
+.subHead {
+	TEXT-ALIGN: right; PADDING-BOTTOM: 6px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; DISPLAY: inline-block; CLEAR: both; FONT-SIZE: 12px; PADDING-TOP: 6px
+}
