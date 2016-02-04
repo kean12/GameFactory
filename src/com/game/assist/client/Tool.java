@@ -4,7 +4,8 @@ import com.game.assist.task.ManageModel;
 
 public class Tool {
 
-	public static String login(String username, String password) throws Exception {
+	public static String login(String username, String password)
+			throws Exception {
 		ManageModel manageModel = new ManageModel(username, password);
 		manageModel = (ManageModel) TunnelClient.get(manageModel);
 		if (manageModel == null || manageModel.getName() == null) {

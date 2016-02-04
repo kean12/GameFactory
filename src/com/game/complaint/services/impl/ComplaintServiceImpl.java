@@ -8,7 +8,8 @@ import com.game.util.domain.Complaint;
 import com.game.util.web.Page;
 import com.game.util.web.Validator;
 
-public class ComplaintServiceImpl extends GenericServiceImpl<Complaint, Long> implements ComplaintService {
+public class ComplaintServiceImpl extends GenericServiceImpl<Complaint, Long>
+		implements ComplaintService {
 
 	public Complaint getComplaint(Long userId, Long orderId) throws Exception {
 		String hql = "from Complaint a where 1=1";
@@ -29,7 +30,8 @@ public class ComplaintServiceImpl extends GenericServiceImpl<Complaint, Long> im
 		baseDAO.removeEntity(super.getEntity(Complaint.class, id));
 	}
 
-	public Page<Complaint> searchComplaint(Long userID, Long defendant, Integer state, Integer type, int size, int goPage) throws Exception {
+	public Page<Complaint> searchComplaint(Long userID, Long defendant,
+			Integer state, Integer type, int size, int goPage) throws Exception {
 		String hql = "from Complaint a where 1=1";
 		if (userID != null) {
 			hql += " and a.user.id=" + userID;

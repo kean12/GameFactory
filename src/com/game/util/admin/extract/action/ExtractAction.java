@@ -27,7 +27,8 @@ public class ExtractAction extends BaseAction {
 	private List<Extract> extractList;
 	private Page<Extract> page;
 
-	private String username, beginTime, endTime, p_beginTime, p_endTime, moneyMin, moneyMax, extractNum, bank, account;
+	private String username, beginTime, endTime, p_beginTime, p_endTime,
+			moneyMin, moneyMax, extractNum, bank, account;
 	private Integer state;
 	private Long userID;
 
@@ -54,7 +55,8 @@ public class ExtractAction extends BaseAction {
 	 * 后台管理——提现记录
 	 */
 	public String listExtract() throws Exception {
-		page = extractService.searchExtract(setListExtractParam(), 1, super.getGoPage());
+		page = extractService.searchExtract(setListExtractParam(), 1,
+				super.getGoPage());
 		extractList = page.getResultlist();
 		return "listExtract";
 	}
@@ -70,51 +72,71 @@ public class ExtractAction extends BaseAction {
 				User user = null;
 				if (process == 1) {// 同意提现
 					if (extract.getState() == 2) {// 当接受处理订单状态下才能执行此操作
-						if (!manage.getRole().getName().equals("admin") && !extract.getManagerName().equals(manage.getName())) {
+						if (!manage.getRole().getName().equals("admin")
+								&& !extract.getManagerName().equals(
+										manage.getName())) {
 							throw new Exception("对不起，你没有此权限");
 						}
 						extract.setState(1);
 						extract.setManagerName(manage.getName());
-						extract.setProcessTime(DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM_SS));
+						extract.setProcessTime(DateUtil
+								.nowDate(Constant.YYYY_MM_DD_HH_MM_SS));
 						// 用户金额处理
 						user = extract.getUser();
-						double total = Arith.add(extract.getMoney(), extract.getCharge());
-						double freemoney = Arith.sub(user.getUserInfo().getFreemoney(), "" + total);
+						double total = Arith.add(extract.getMoney(),
+								extract.getCharge());
+						double freemoney = Arith.sub(user.getUserInfo()
+								.getFreemoney(), "" + total);
 						if (freemoney < 0) {
 							throw new Exception("此用户冻结金额异常");
 						}
 						user.getUserInfo().setFreemoney("" + freemoney);
 
-						String synopsis = "提现：" + extract.getMoney() + "元，手续费：" + extract.getCharge() + "元";
-						String tolMoney = "" + Arith.add(user.getUserInfo().getMoney(), "" + freemoney);
-						Record.set(user, extract.getExtractNum(), null, extract.getBank(), 5, null, "" + total, tolMoney, synopsis);
+						String synopsis = "提现：" + extract.getMoney() + "元，手续费："
+								+ extract.getCharge() + "元";
+						String tolMoney = ""
+								+ Arith.add(user.getUserInfo().getMoney(), ""
+										+ freemoney);
+						Record.set(user, extract.getExtractNum(), null,
+								extract.getBank(), 5, null, "" + total,
+								tolMoney, synopsis);
 						extractService.updateEntity(extract);
 						userService.updateUser(user);
 
 						// 发送站内信--同意提现
-						MessageUtil.toMessage(4, extract, extract.getProcessTime(), extract.getUser());
+						MessageUtil.toMessage(4, extract,
+								extract.getProcessTime(), extract.getUser());
 					}
 				} else if (process == -1) {// 拒绝提现
 					if (extract.getState() == 2) {// 当接受处理订单状态下才能执行此操作
-						if (!manage.getRole().getName().equals("admin") && !extract.getManagerName().equals(manage.getName())) {
+						if (!manage.getRole().getName().equals("admin")
+								&& !extract.getManagerName().equals(
+										manage.getName())) {
 							throw new Exception("对不起，你没有此权限");
 						}
 						extract.setState(-1);
 						extract.setManagerName(manage.getName());
-						extract.setProcessTime(DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM_SS));
+						extract.setProcessTime(DateUtil
+								.nowDate(Constant.YYYY_MM_DD_HH_MM_SS));
 						// 用户金额处理
 						user = extract.getUser();
-						double total = Arith.add(extract.getMoney(), extract.getCharge());
-						double freemoney = Arith.sub(user.getUserInfo().getFreemoney(), "" + total);
+						double total = Arith.add(extract.getMoney(),
+								extract.getCharge());
+						double freemoney = Arith.sub(user.getUserInfo()
+								.getFreemoney(), "" + total);
 						if (freemoney < 0) {
 							throw new Exception("此用户冻结金额异常");
 						}
 						user.getUserInfo().setFreemoney("" + freemoney);
-						user.getUserInfo().setMoney("" + Arith.add(user.getUserInfo().getMoney(), "" + total));
+						user.getUserInfo().setMoney(
+								""
+										+ Arith.add(user.getUserInfo()
+												.getMoney(), "" + total));
 						extractService.updateEntity(extract);
 						userService.updateUser(user);
 						// 发送站内信--同意提现
-						MessageUtil.toMessage(5, extract, extract.getProcessTime(), extract.getUser());
+						MessageUtil.toMessage(5, extract,
+								extract.getProcessTime(), extract.getUser());
 					}
 				} else if (process == 2) {
 					if (extract.getState() == 0) {

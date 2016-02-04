@@ -48,7 +48,8 @@ public class BizInfoServiceImpl extends GenericServiceImpl<BizInfo, Long>
 			hql += " and a.isBuy=" + state;
 		}
 		if (nowTime != null && !nowTime.equals("")) {
-			hql += " and a.tradeStart<'" + nowTime + "' and a.tradeEnd>'" + nowTime + "'";
+			hql += " and a.tradeStart<'" + nowTime + "' and a.tradeEnd>'"
+					+ nowTime + "'";
 		}
 		if (order_by != null && !order_by.equals("")) {
 			if (order_by.equals("proportion")) {
@@ -88,7 +89,8 @@ public class BizInfoServiceImpl extends GenericServiceImpl<BizInfo, Long>
 	public BizInfo getBizInfo(Long userID, String serial) throws Exception {
 		String hql = null;
 		if (userID != null) {
-			hql = "from BizInfo a where a.owner.id=" + userID + " and a.serial=?";
+			hql = "from BizInfo a where a.owner.id=" + userID
+					+ " and a.serial=?";
 		} else {
 			hql = "from BizInfo a where a.serial=?";
 		}

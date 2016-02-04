@@ -52,11 +52,14 @@ public class PublishQuartz {
 			try {
 				Thread.sleep(200);
 				// 将过期的订单下架
-				bizInfoService.updateBizInfoByHql("update BizInfo a  set a.isBuy=0 where a.isBuy=1 and a.endSellTime<='" + nowTime + "'");
+				bizInfoService
+						.updateBizInfoByHql("update BizInfo a  set a.isBuy=0 where a.isBuy=1 and a.endSellTime<='"
+								+ nowTime + "'");
 
 				// 将30分钟内没有付款的寄售订单自动关闭
-				List<Order> orderList = orderService.findOrderByHql("from Order a where a.state=0 and a.buyType=1 and floor(to_number(sysdate-to_date(a.orderTime,'yyyy-mm-dd hh24:mi:ss'))*24*60)>30");
-				
+				List<Order> orderList = orderService
+						.findOrderByHql("from Order a where a.state=0 and a.buyType=1 and floor(to_number(sysdate-to_date(a.orderTime,'yyyy-mm-dd hh24:mi:ss'))*24*60)>30");
+
 				BizInfo bizInfo = null;
 				int stock;
 				int buyBum;
@@ -64,7 +67,8 @@ public class PublishQuartz {
 					try {
 						order.setState(3);// 将订单关闭
 						orderService.updateEntity(order);
-						bizInfo = bizInfoService.getBizInfo(order.getOwner().getId(), order.getBizInfo().getId());
+						bizInfo = bizInfoService.getBizInfo(order.getOwner()
+								.getId(), order.getBizInfo().getId());
 						if (bizInfo != null) {
 							stock = Integer.parseInt(bizInfo.getStock());
 							buyBum = Integer.parseInt(order.getBuyBum());
@@ -85,24 +89,33 @@ public class PublishQuartz {
 				User owner = null;
 				UserInfo userInfo = null;
 				String assureMoney = null;
-				assignList = assignService.findAssignByHql("from Assign a where a.order.state=2 and a.order.buyType=1 and floor(to_number(sysdate-to_date(a.endTime,'yyyy-mm-dd hh24:mi:ss'))*24*60)>20");
-				
+				assignList = assignService
+						.findAssignByHql("from Assign a where a.order.state=2 and a.order.buyType=1 and floor(to_number(sysdate-to_date(a.endTime,'yyyy-mm-dd hh24:mi:ss'))*24*60)>20");
+
 				for (Assign assign : assignList) {
 					order = assign.getOrder();
 					owner = userService.getUserById(order.getOwner().getId());
 					userInfo = userInfoService.getUserInfoById(owner.getId());
 					assureMoney = order.getAssureMoney();// 中间金额
-					userInfo.setMoney(Arith.intercept(Arith.add(assureMoney, userInfo.getMoney()), 2) + "");
+					userInfo.setMoney(Arith.intercept(
+							Arith.add(assureMoney, userInfo.getMoney()), 2)
+							+ "");
 					order.setState(6);
 					order.setAssureMoney("0.00");
-					order.setSuccTime(DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM));
+					order.setSuccTime(DateUtil
+							.nowDate(Constant.YYYY_MM_DD_HH_MM));
 
 					userInfoService.updateUserInfo(userInfo);
 					orderService.updateEntity(order);
 
-					String tol = "" + Arith.intercept(Arith.add(userInfo.getMoney(), userInfo.getFreemoney()), 2);
-					String synopsis = "订单编号：" + order.getOrderNum() + " " + order.getTitle() + " 交易收款";
-					Record.set(owner, null, null, "游戏买卖网", 2, assureMoney, null, tol, synopsis);
+					String tol = ""
+							+ Arith.intercept(
+									Arith.add(userInfo.getMoney(),
+											userInfo.getFreemoney()), 2);
+					String synopsis = "订单编号：" + order.getOrderNum() + " "
+							+ order.getTitle() + " 交易收款";
+					Record.set(owner, null, null, "游戏买卖网", 2, assureMoney,
+							null, tol, synopsis);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();

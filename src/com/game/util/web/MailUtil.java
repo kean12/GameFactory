@@ -25,9 +25,13 @@ public class MailUtil {
 	 */
 	private void sendMail(String title, String content, String toMail) {
 		try {
-			String username = ConfigUtil.getInstance(Constant.SYS_CONFIG_PATH).getKeyValue("mail_Name");
-			String password = ConfigUtil.getInstance(Constant.SYS_CONFIG_PATH).getKeyValue("mail_Pass");
-			String mailServer = ConfigUtil.getInstance(Constant.SYS_CONFIG_PATH).getKeyValue("mail_Server");
+			String username = ConfigUtil.getInstance(Constant.SYS_CONFIG_PATH)
+					.getKeyValue("mail_Name");
+			String password = ConfigUtil.getInstance(Constant.SYS_CONFIG_PATH)
+					.getKeyValue("mail_Pass");
+			String mailServer = ConfigUtil
+					.getInstance(Constant.SYS_CONFIG_PATH).getKeyValue(
+							"mail_Server");
 			jmail = new JavaMailSenderImpl();
 			jmail.setHost(mailServer);
 			jmail.setUsername(username);
@@ -38,7 +42,8 @@ public class MailUtil {
 			MimeMessage mailMessage = jmail.createMimeMessage();
 			messageHelper = new MimeMessageHelper(mailMessage, true, "UTF-8");
 			messageHelper.setTo(toMail);
-			messageHelper.setText("<html><head></head><body>" + content + "</body></html>", true);
+			messageHelper.setText("<html><head></head><body>" + content
+					+ "</body></html>", true);
 			String from = username + "@" + mailServer.replace("smtp.", "");
 			messageHelper.setFrom(from);
 			messageHelper.setSubject(title);
@@ -56,7 +61,9 @@ public class MailUtil {
 
 	/**
 	 * 通过邮箱找回密码
-	 * @param type 1.登录密码 2.支付密码
+	 * 
+	 * @param type
+	 *            1.登录密码 2.支付密码
 	 * @throws Exception
 	 */
 	public static void getPassword(Integer type, User user) throws Exception {
@@ -66,16 +73,20 @@ public class MailUtil {
 		if (systemMail == null)
 			systemMail = new MailUtil();
 		if (user.getRealName() != null) {
-			content = "<span style=\"font-size:18px;\">" + user.getRealName() + "，您好！</span><br />";
+			content = "<span style=\"font-size:18px;\">" + user.getRealName()
+					+ "，您好！</span><br />";
 		} else {
-			content = "<span style=\"font-size:18px;\">" + user.getUsername() + "，您好！</span><br />";
+			content = "<span style=\"font-size:18px;\">" + user.getUsername()
+					+ "，您好！</span><br />";
 		}
 		if (type == 1) {
 			title = "尊敬的用户，您在游戏买卖网的登录密码";
-			content += "<span style=\"font-size:18px; text-indent:2em;\">你在游戏买卖网的登录密码是：" + systemMail.random_password(type, user) + "</span><br />";
+			content += "<span style=\"font-size:18px; text-indent:2em;\">你在游戏买卖网的登录密码是："
+					+ systemMail.random_password(type, user) + "</span><br />";
 		} else if (type == 2) {
 			title = "尊敬的用户，您在游戏买卖网的支付密码";
-			content += "<span style=\"font-size:18px; text-indent:2em;\">你在游戏买卖网的支付密码是：" + systemMail.random_password(type, user) + "</span><br />";
+			content += "<span style=\"font-size:18px; text-indent:2em;\">你在游戏买卖网的支付密码是："
+					+ systemMail.random_password(type, user) + "</span><br />";
 		}
 		content += "<span style=\"font-size:18px; text-indent:2em;margin-top:20px;\">请用此密码重新登录 http://www.gamemaimai.com/</span><br />";
 		content += "<span style=\"font-size:18px; text-indent:2em;margin-top:20px;\">提示：建议您立即登录修改密码并删除本邮件，以免密码泄漏。</span>";

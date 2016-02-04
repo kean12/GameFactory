@@ -17,7 +17,8 @@ public interface UserService extends GenericService<User, Long> {
 	 */
 	Page<User> getAllUsers(int size, int goPage, User filterU) throws Exception;
 
-	Page<User> getAllUsers(int size, int goPage, User filterU, String orderBy) throws Exception;
+	Page<User> getAllUsers(int size, int goPage, User filterU, String orderBy)
+			throws Exception;
 
 	/**
 	 * @name 添加一个用户

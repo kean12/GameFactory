@@ -26,7 +26,8 @@ public class YeePayAction extends BaseAction {
 	private static final long serialVersionUID = 7188929707538962213L;
 	private String p4_Cur = "CNY";// 交易币种-人民币
 	private String keyValue = YeePayConfig.get("keyValue"); // 商家密钥
-	private String nodeAuthorizationURL = YeePayConfig.get("yeepayCommonReqURL"); // 交易请求地址
+	private String nodeAuthorizationURL = YeePayConfig
+			.get("yeepayCommonReqURL"); // 交易请求地址
 	private String p1_MerId = YeePayConfig.get("p1_MerId");// 商户编号
 
 	private String p0_Cmd = "Buy";// 在线支付请求，固定值 ”Buy”
@@ -42,7 +43,8 @@ public class YeePayAction extends BaseAction {
 	private String pr_NeedResponse = "0";// 是否需要应答机制
 	private String hmac = null;
 
-	private String r0_Cmd, r1_Code, r2_TrxId, r3_Amt, r4_Cur, r5_Pid, r6_Order,r7_Uid, r8_MP, r9_BType;
+	private String r0_Cmd, r1_Code, r2_TrxId, r3_Amt, r4_Cur, r5_Pid, r6_Order,
+			r7_Uid, r8_MP, r9_BType;
 
 	private String flag = null;
 
@@ -112,11 +114,14 @@ public class YeePayAction extends BaseAction {
 
 	// 存钱
 	public void deposit(String place) throws Exception {
-		user.getUserInfo().setMoney("" + Arith.add(user.getUserInfo().getMoney(), r3_Amt));// 充值后账户可用余额
-		double totalString = Arith.add(user.getUserInfo().getMoney(), user.getUserInfo().getFreemoney());
+		user.getUserInfo().setMoney(
+				"" + Arith.add(user.getUserInfo().getMoney(), r3_Amt));// 充值后账户可用余额
+		double totalString = Arith.add(user.getUserInfo().getMoney(), user
+				.getUserInfo().getFreemoney());
 		String total = "" + Arith.intercept(totalString, 2);
 		userService.updateUser(user);
-		Record.set(user, r6_Order, r2_TrxId, place, 3, r3_Amt, null, total, "在线充值");
+		Record.set(user, r6_Order, r2_TrxId, place, 3, r3_Amt, null, total,
+				"在线充值");
 	}
 
 	// 交易支付更改订单状态
@@ -124,18 +129,28 @@ public class YeePayAction extends BaseAction {
 
 		Order order = orderService.getOrder(orderNum, user.getId());
 
-		user.getUserInfo().setMoney(Arith.intercept(Arith.sub(user.getUserInfo().getMoney(), order.getSumPrice()), 2) + ""); // 更新账户可用金额
+		user.getUserInfo().setMoney(
+				Arith.intercept(
+						Arith.sub(user.getUserInfo().getMoney(),
+								order.getSumPrice()), 2)
+						+ ""); // 更新账户可用金额
 		order.setAssureMoney(order.getSumPrice()); // 付款金额保存到中间金额
 		order.setState(1); // 这只订单状态为 已付款
 		orderService.updateEntity(order);
 		userService.updateUser(user);
 
 		// 发送站内信
-		MessageUtil.toMessage(2, order, DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM), order.getConsumer());
+		MessageUtil.toMessage(2, order,
+				DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM),
+				order.getConsumer());
 
-		String total = "" + Arith.intercept(Arith.add(user.getUserInfo().getMoney(), user.getUserInfo().getFreemoney()), 2);
-		String synopsis = "订单编号：" + order.getOrderNum() + " " + order.getTitle();
-		Record.set(user, null, null, YeePay.bourse("游戏买卖网"), 1, null, "-" + order.getSumPrice(), total, synopsis);
+		String total = ""
+				+ Arith.intercept(Arith.add(user.getUserInfo().getMoney(), user
+						.getUserInfo().getFreemoney()), 2);
+		String synopsis = "订单编号：" + order.getOrderNum() + " "
+				+ order.getTitle();
+		Record.set(user, null, null, YeePay.bourse("游戏买卖网"), 1, null, "-"
+				+ order.getSumPrice(), total, synopsis);
 
 		if (order.getBuyType() == 1) {// 寄售交易分配给交易员
 			AssignUtil.to_assign(order);
@@ -297,8 +312,8 @@ public class YeePayAction extends BaseAction {
 
 	public void setR2_TrxId(String r2TrxId) throws UnsupportedEncodingException {
 		if (r2TrxId != null) {
-			r2_TrxId = URLDecoder.decode(URLEncoder.encode(r2TrxId,
-					"iso-8859-1"), "GBK");
+			r2_TrxId = URLDecoder.decode(
+					URLEncoder.encode(r2TrxId, "iso-8859-1"), "GBK");
 		} else {
 			r2_TrxId = r2TrxId;
 		}
@@ -349,8 +364,8 @@ public class YeePayAction extends BaseAction {
 
 	public void setR6_Order(String r6Order) throws UnsupportedEncodingException {
 		if (r6Order != null) {
-			r6_Order = URLDecoder.decode(URLEncoder.encode(r6Order,
-					"iso-8859-1"), "GBK");
+			r6_Order = URLDecoder.decode(
+					URLEncoder.encode(r6Order, "iso-8859-1"), "GBK");
 		} else {
 			r6_Order = r6Order;
 		}
@@ -388,8 +403,8 @@ public class YeePayAction extends BaseAction {
 
 	public void setR9_BType(String r9BType) throws UnsupportedEncodingException {
 		if (r9BType != null) {
-			r9_BType = URLDecoder.decode(URLEncoder.encode(r9BType,
-					"iso-8859-1"), "GBK");
+			r9_BType = URLDecoder.decode(
+					URLEncoder.encode(r9BType, "iso-8859-1"), "GBK");
 		} else {
 			r9_BType = r9BType;
 		}

@@ -8,8 +8,10 @@ import com.game.util.domain.Assign;
 import com.game.util.web.Page;
 import com.game.util.web.Validator;
 
-public class AssignServiceImpl extends GenericServiceImpl<Assign, Long> implements AssignService {
-	public Assign getAssignByOrderNum(String orderNum, Long manageID, Integer state) throws Exception {
+public class AssignServiceImpl extends GenericServiceImpl<Assign, Long>
+		implements AssignService {
+	public Assign getAssignByOrderNum(String orderNum, Long manageID,
+			Integer state) throws Exception {
 		String hql = "from Assign a where a.order.orderNum=?";
 		if (manageID != null) {
 			hql += " and a.manage.id=" + manageID;
@@ -26,7 +28,8 @@ public class AssignServiceImpl extends GenericServiceImpl<Assign, Long> implemen
 		return null;
 	}
 
-	public Page<Assign> findAssignByManage(Long manageID, Integer state, int size, int goPage) throws Exception {
+	public Page<Assign> findAssignByManage(Long manageID, Integer state,
+			int size, int goPage) throws Exception {
 		String hql = "from Assign a where 1=1";
 		if (manageID != null) {
 			hql += " and a.manage.id=" + manageID;
@@ -38,7 +41,8 @@ public class AssignServiceImpl extends GenericServiceImpl<Assign, Long> implemen
 		return baseDAO.search(hql, size, goPage);
 	}
 
-	public Page<Assign> findAssignByRefundment(Long manageID, Integer orderState, int size, int goPage) throws Exception {
+	public Page<Assign> findAssignByRefundment(Long manageID,
+			Integer orderState, int size, int goPage) throws Exception {
 		String hql = "from Assign a where 1=1";
 		if (manageID != null) {
 			hql += " and a.manage.id=" + manageID;
@@ -56,7 +60,8 @@ public class AssignServiceImpl extends GenericServiceImpl<Assign, Long> implemen
 		return baseDAO.findEntity(hql);
 	}
 
-	public Page<Assign> findAssignByOvertime(Long manageID, String orderNum, int size, int goPage) throws Exception {
+	public Page<Assign> findAssignByOvertime(Long manageID, String orderNum,
+			int size, int goPage) throws Exception {
 		String hql = "from Assign a where a.overtime=1";
 		if (manageID != null) {
 			hql += " and a.manage.id=" + manageID;
@@ -68,7 +73,8 @@ public class AssignServiceImpl extends GenericServiceImpl<Assign, Long> implemen
 		return baseDAO.search(hql, size, goPage);
 	}
 
-	public Assign getAssignByOvertime(String orderNum, Long manageID, Integer overtime) throws Exception {
+	public Assign getAssignByOvertime(String orderNum, Long manageID,
+			Integer overtime) throws Exception {
 		String hql = "from Assign a where a.order.orderNum=?";
 		if (manageID != null) {
 			hql += " and a.manage.id=" + manageID;

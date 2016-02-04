@@ -56,15 +56,18 @@ public class DetailsAction extends BaseAction {
 	 */
 	public String saveDetails() throws Exception {
 		if (details != null) {
-			Details tmp = detailsService.findDetailsByGameKind(gameKindID, details.getType());
+			Details tmp = detailsService.findDetailsByGameKind(gameKindID,
+					details.getType());
 
-			if (tmp != null && tmp.getId().equals(details.getId()) || tmp == null) {
+			if (tmp != null && tmp.getId().equals(details.getId())
+					|| tmp == null) {
 				if (details.getType() == 1) {
 					details.setAttributeName("账号交易");
 				} else if (details.getType() == 2) {
 					details.setAttributeName("自定义属性");
 				}
-				details.setGameKind(gameKindService.getEntity(GameKind.class, gameKindID));
+				details.setGameKind(gameKindService.getEntity(GameKind.class,
+						gameKindID));
 				if (details.getId() == null) {
 					detailsService.createEntity(details);
 				} else {

@@ -46,7 +46,8 @@ public class ComplaintAction extends BaseAction {
 			} else {
 				throw new Exception("非法操作");
 			}
-			complaint = complaintService.getComplaint(user.getId(), order.getId());
+			complaint = complaintService.getComplaint(user.getId(),
+					order.getId());
 			if (complaint != null) {
 				return "circumstance";// 已投诉 转到详情页面
 			}
@@ -63,7 +64,8 @@ public class ComplaintAction extends BaseAction {
 		try {
 			order = orderService.getEntity(Order.class, orderID);
 			User user = Struts2Util.getUserSession();
-			complaint = complaintService.getComplaint(user.getId(), order.getId());
+			complaint = complaintService.getComplaint(user.getId(),
+					order.getId());
 			if (complaint == null) {
 				complaint = new Complaint();
 				if (order.getOwner().getId().equals(user.getId())) {
@@ -80,10 +82,12 @@ public class ComplaintAction extends BaseAction {
 				complaint.setOrder(order); // 投诉订单号
 
 				// 将编辑器中的临时图片移到正式文件目录下
-				complaint.setContent(Help.moveKindEditorImage(content, "complaint"));// 响应内容
+				complaint.setContent(Help.moveKindEditorImage(content,
+						"complaint"));// 响应内容
 				complaint.setAnswer(null); // 响应内容
 				complaint.setState(0); // 状态 0.未处理 1.已处理 2.处理中
-				complaint.setApplyTime(DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM)); // 投诉时间
+				complaint.setApplyTime(DateUtil
+						.nowDate(Constant.YYYY_MM_DD_HH_MM)); // 投诉时间
 				complaint.setProcessTime(null); // 处理时间
 				complaint.setManageName(null); // 处理客服名称
 
@@ -100,7 +104,8 @@ public class ComplaintAction extends BaseAction {
 	 */
 	public String listComplaint() throws Exception {
 		User user = Struts2Util.getUserSession();
-		page = complaintService.searchComplaint(user.getId(), null, null, null, 20, super.getGoPage());
+		page = complaintService.searchComplaint(user.getId(), null, null, null,
+				20, super.getGoPage());
 		complaintList = page.getResultlist();
 		return "listComplaint";
 	}
@@ -110,7 +115,8 @@ public class ComplaintAction extends BaseAction {
 	 */
 	public String listDefendant() throws Exception {
 		User user = Struts2Util.getUserSession();
-		page = complaintService.searchComplaint(null, user.getId(), null, null, 20, super.getGoPage());
+		page = complaintService.searchComplaint(null, user.getId(), null, null,
+				20, super.getGoPage());
 		complaintList = page.getResultlist();
 		return "listDefendant";
 	}

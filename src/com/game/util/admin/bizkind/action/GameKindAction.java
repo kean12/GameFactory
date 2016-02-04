@@ -85,7 +85,8 @@ public class GameKindAction extends BaseAction {
 			for (Long id : idKey) {
 				if (!list.contains(id)) {
 					gameKind = new GameKind();
-					gameKind.setBizKind(bizKindService.getEntity(BizKind.class, id));
+					gameKind.setBizKind(bizKindService.getEntity(BizKind.class,
+							id));
 					gameKind.setGame(game);
 					gameKind.setUnit(gameKind.getBizKind().getUnit());
 					gameKind.setTradeType(gameKind.getBizKind().getTradeType());

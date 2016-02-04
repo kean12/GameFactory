@@ -6,8 +6,8 @@ import org.apache.commons.logging.LogFactory;
 /**
  * @author Administrator
  * 
- * To change the template for this generated type comment go to
- * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
+ *         To change the template for this generated type comment go to
+ *         Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
 public class BaseRuntimeException extends RuntimeException {
 	private static final long serialVersionUID = 4233489944402058652L;
@@ -30,7 +30,7 @@ public class BaseRuntimeException extends RuntimeException {
 	 *            message
 	 */
 	public BaseRuntimeException(final String arg0) {
-		//super(arg0);
+		// super(arg0);
 		this(arg0, null);
 		rootCause = this;
 	}

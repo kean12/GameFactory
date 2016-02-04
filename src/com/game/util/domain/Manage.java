@@ -6,6 +6,7 @@ import java.util.List;
 import sun.net.util.IPAddressUtil;
 
 import com.game.util.web.Validator;
+
 public class Manage implements Domain {
 	public static final long serialVersionUID = -4225197768382582908L;
 	private Long id;// 编号
@@ -38,7 +39,6 @@ public class Manage implements Domain {
 	 * 4，当允许ip [getAccessIp()]为空，锁定ip [getLockIp()]不为空 且锁定ip包含IP时，不通过
 	 * 
 	 * 5，当允许ip [getAccessIp()]为空，锁定ip [getLockIp()]不为空 且锁定ip不包含IP时，通过
-	 * 
 	 */
 	public List<String> getAccessIp() {
 		return parseLockIp("^");

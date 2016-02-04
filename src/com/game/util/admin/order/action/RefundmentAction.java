@@ -42,14 +42,16 @@ public class RefundmentAction extends BaseAction {
 	public String refundmentList() throws Exception {
 		Manage manage = Struts2Util.getManageSession();
 		String name = manage.getRole().getName();
-		if (!name.equals("admin") && !name.equals("trade") && !name.equals("temp")) {
+		if (!name.equals("admin") && !name.equals("trade")
+				&& !name.equals("temp")) {
 			throw new Exception("您没有此权限");
 		}
 		Long manageID = null;
 		if (!name.equals("admin")) {
 			manageID = manage.getId();
 		}
-		page = assignService.findAssignByRefundment(manageID, orderState, 20, super.getGoPage());
+		page = assignService.findAssignByRefundment(manageID, orderState, 20,
+				super.getGoPage());
 		assignList = page.getResultlist();
 		return "refundmentList";
 	}
@@ -64,11 +66,14 @@ public class RefundmentAction extends BaseAction {
 		assign = assignService.getEntity(Assign.class, assignID);
 		Manage manage = Struts2Util.getManageSession();
 		String name = manage.getRole().getName();
-		if (!name.equals("admin") && (!assign.getManage().getId().equals(manage.getId()) && !assign.getOperate().getId().equals(manage.getId()))) {
+		if (!name.equals("admin")
+				&& (!assign.getManage().getId().equals(manage.getId()) && !assign
+						.getOperate().getId().equals(manage.getId()))) {
 			throw new Exception("您没有此权限");
 		}
 		if (assign != null) {
-			assign.setShipmentList(shipmentsService.getShipments(assign.getOrder().getId()));
+			assign.setShipmentList(shipmentsService.getShipments(assign
+					.getOrder().getId()));
 		}
 		return "refundmentDetail";
 	}
@@ -103,12 +108,15 @@ public class RefundmentAction extends BaseAction {
 
 	/**
 	 * 同意退款处理
-	 * @param info 备注
+	 * 
+	 * @param info
+	 *            备注
 	 */
 	private void refundment(String info) throws Exception {
 		Manage manage = Struts2Util.getManageSession();
 		String name = manage.getRole().getName();
-		if (!name.equals("admin") && !name.equals("trade") && !name.equals("temp")) {
+		if (!name.equals("admin") && !name.equals("trade")
+				&& !name.equals("temp")) {
 			throw new Exception("您没有此权限");
 		}
 		Long manageID = null;
@@ -122,7 +130,9 @@ public class RefundmentAction extends BaseAction {
 		} else {
 			throw new Exception("非法操作");
 		}
-		if (!name.equals("admin") && (!assign.getManage().getId().equals(manage.getId()) && !assign.getOperate().getId().equals(manage.getId()))) {
+		if (!name.equals("admin")
+				&& (!assign.getManage().getId().equals(manage.getId()) && !assign
+						.getOperate().getId().equals(manage.getId()))) {
 			throw new Exception("您没有此权限");
 		}
 		if (assign != null) {
@@ -133,7 +143,8 @@ public class RefundmentAction extends BaseAction {
 				String money = consumer.getUserInfo().getMoney();
 				String freemoney = consumer.getUserInfo().getFreemoney();
 
-				String tolmoney = "" + Arith.intercept(Arith.add(money, assureMoney), 2);// 交易订单中间金额+用户原余额
+				String tolmoney = ""
+						+ Arith.intercept(Arith.add(money, assureMoney), 2);// 交易订单中间金额+用户原余额
 				consumer.getUserInfo().setMoney(tolmoney);
 
 				order.setAssureMoney("0.00");
@@ -142,18 +153,24 @@ public class RefundmentAction extends BaseAction {
 				userService.updateUser(consumer);
 
 				// 发送站内信
-				MessageUtil.toMessage(4, order, DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM), order.getConsumer());
+				MessageUtil.toMessage(4, order,
+						DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM),
+						order.getConsumer());
 
-				String tol = "" + Arith.intercept(Arith.add(tolmoney, freemoney), 2);
-				String synopsis = "订单编号：" + order.getOrderNum() + " " + order.getTitle() + " 退款";
-				Record.set(consumer, null, null, "游戏买卖网", 4, assureMoney, null, tol, synopsis);
+				String tol = ""
+						+ Arith.intercept(Arith.add(tolmoney, freemoney), 2);
+				String synopsis = "订单编号：" + order.getOrderNum() + " "
+						+ order.getTitle() + " 退款";
+				Record.set(consumer, null, null, "游戏买卖网", 4, assureMoney, null,
+						tol, synopsis);
 
 				assign.setOperate(manage);
 				assign.setState(1);// 设置状态为已处理
 				long time1 = System.currentTimeMillis();
 				long time2 = DateUtil.convertTimeMillis(assign.getStartTime());
 				assign.setCostTime(DateUtil.costTime(time1, time2));
-				assign.setEndTime(DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM,time1));
+				assign.setEndTime(DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM,
+						time1));
 				String remark = assign.getRemark();
 				if (remark != null) {
 					remark += "|" + info + "操作员：" + manage.getName();

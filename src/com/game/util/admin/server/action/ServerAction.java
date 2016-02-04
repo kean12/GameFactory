@@ -28,7 +28,8 @@ public class ServerAction extends BaseAction {
 			return "err";
 		}
 
-		page = serverService.searchServerByArea(serverName, areaID, 20, super.getGoPage());
+		page = serverService.searchServerByArea(serverName, areaID, 20,
+				super.getGoPage());
 		serverList = page.getResultlist();
 		return "listserver";
 	}
@@ -51,10 +52,12 @@ public class ServerAction extends BaseAction {
 		if (areaID == null) {
 			return "err";
 		}
-		Server tmpserver = serverService.findServerByName(server.getServerName(), areaID);
+		Server tmpserver = serverService.findServerByName(
+				server.getServerName(), areaID);
 		if (server.getId() != null) {
 			Server tmp = serverService.getEntity(Server.class, server.getId());
-			if (tmpserver == null || tmp.getServerName().equals(server.getServerName())) {
+			if (tmpserver == null
+					|| tmp.getServerName().equals(server.getServerName())) {
 				tmp.setServerName(server.getServerName());
 				tmp.setState(server.getState());
 				serverService.updateEntity(tmp);

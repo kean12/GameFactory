@@ -86,8 +86,8 @@ public class Client implements ActionListener {
 			try {
 				client = new ClientModel(ip, port);
 			} catch (java.net.UnknownHostException ue) {// ip地址出错
-				JOptionPane.showMessageDialog(logonFrame, "不可知的服务器："
-						+ ue.getMessage());
+				JOptionPane.showMessageDialog(logonFrame,
+						"不可知的服务器：" + ue.getMessage());
 				return;
 			} catch (IOException ie) {
 				JOptionPane.showMessageDialog(logonFrame, ie.getMessage());
@@ -118,14 +118,16 @@ public class Client implements ActionListener {
 			}
 
 			if (!valid) {
-				JOptionPane.showMessageDialog(logonFrame, "无效或已经被使用的名字：" + name);
+				JOptionPane
+						.showMessageDialog(logonFrame, "无效或已经被使用的名字：" + name);
 				return;
 			} else {
 				clientUI = new ClientUI(client) {
 					private static final long serialVersionUID = 1114777373697486673L;
 
 					protected void doWhenStop() {
-						JOptionPane.showMessageDialog(clientUI, "与服务器的连接中断，请重新登录。");
+						JOptionPane.showMessageDialog(clientUI,
+								"与服务器的连接中断，请重新登录。");
 						clientUI.dispose();
 						logonFrame.setVisible(true);
 					}
@@ -146,7 +148,8 @@ public class Client implements ActionListener {
 	 * 退出处理，加入一个选择对话框
 	 */
 	protected void exit() {
-		int option = JOptionPane.showConfirmDialog(logonFrame, "程序正连接到服务器上，您确定退出吗？", "请您选择", JOptionPane.YES_NO_OPTION);
+		int option = JOptionPane.showConfirmDialog(logonFrame,
+				"程序正连接到服务器上，您确定退出吗？", "请您选择", JOptionPane.YES_NO_OPTION);
 		if (option == JOptionPane.YES_OPTION)
 			System.exit(0);
 	}

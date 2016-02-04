@@ -21,16 +21,22 @@ public class ComplaintAction extends BaseAction {
 
 	public String allComplaints() throws Exception {
 		if (null == complaint) {
-			page = complaintService.searchComplaint(null, null, null, null, 15, super.getGoPage());
+			page = complaintService.searchComplaint(null, null, null, null, 15,
+					super.getGoPage());
 		} else {
-			page = complaintService.searchComplaint(complaint.getUser().getId(), complaint.getDefendant().getId(), complaint.getState(), complaint.getType(), 15, super.getGoPage());
+			page = complaintService.searchComplaint(
+					complaint.getUser().getId(), complaint.getDefendant()
+							.getId(), complaint.getState(),
+					complaint.getType(), 15, super.getGoPage());
 		}
 		return "allComplaints";
 	}
 
 	public String checkComplaint() throws Exception {
-		if (complaint != null && complaint.getId() != null && complaint.getId() > 0) {
-			complaint = complaintService.getEntity(Complaint.class, complaint.getId());
+		if (complaint != null && complaint.getId() != null
+				&& complaint.getId() > 0) {
+			complaint = complaintService.getEntity(Complaint.class,
+					complaint.getId());
 		}
 		return "checkComplaint";
 	}

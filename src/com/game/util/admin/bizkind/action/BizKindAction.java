@@ -51,7 +51,8 @@ public class BizKindAction extends BaseAction {
 			bizKindService.createEntity(bizKind);
 		}
 		if (bizKind.getToleration() == 1) {
-			List<Game> gameList = gameService.findGameNotSetBizKind(bizKind.getId());
+			List<Game> gameList = gameService.findGameNotSetBizKind(bizKind
+					.getId());
 			if (!Validator.isEmpty(gameList)) {
 				List<GameKind> gameKindList = new ArrayList<GameKind>();
 				GameKind gameKind = null;

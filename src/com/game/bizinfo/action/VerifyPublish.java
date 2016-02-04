@@ -8,7 +8,8 @@ public class VerifyPublish {
 	public static boolean verify(BizInfo bizInfo) {
 		boolean flag = true;
 		PublishErrorInfo publishErrorInfo = new PublishErrorInfo();
-		if (bizInfo.getBizKind() == null || bizInfo.getGame() == null && bizInfo.getServer() == null) {
+		if (bizInfo.getBizKind() == null || bizInfo.getGame() == null
+				&& bizInfo.getServer() == null) {
 			publishErrorInfo.setBizKind("请重新选择分类");
 			flag = false;
 		}
@@ -53,13 +54,18 @@ public class VerifyPublish {
 		}
 
 		// 有效期
-		if (bizInfo.getTerm_of_validity() == null || bizInfo.getTerm_of_validity() != 7 && bizInfo.getTerm_of_validity() != 15 && bizInfo.getTerm_of_validity() != 30) {
+		if (bizInfo.getTerm_of_validity() == null
+				|| bizInfo.getTerm_of_validity() != 7
+				&& bizInfo.getTerm_of_validity() != 15
+				&& bizInfo.getTerm_of_validity() != 30) {
 			publishErrorInfo.setTerm_of_validity("请选择有效期");
 			flag = false;
 		}
 
 		// 交易时间
-		if (Validator.isBlank(bizInfo.getTradeStart()) || Validator.isBlank(bizInfo.getTradeEnd()) || bizInfo.getTradeStart().compareTo(bizInfo.getTradeEnd()) >= 0) {
+		if (Validator.isBlank(bizInfo.getTradeStart())
+				|| Validator.isBlank(bizInfo.getTradeEnd())
+				|| bizInfo.getTradeStart().compareTo(bizInfo.getTradeEnd()) >= 0) {
 			publishErrorInfo.setTradeTime("设置正确的交易时间");
 			flag = false;
 		}

@@ -10,7 +10,8 @@ public class OnlineUserAction extends BaseAction {
 	private String[] online;
 
 	public String getOnlineUser() {
-		OnlineUser onlineUser = (OnlineUser) Struts2Util.getApplication().get("onlineUser");
+		OnlineUser onlineUser = (OnlineUser) Struts2Util.getApplication().get(
+				"onlineUser");
 		if (onlineUser != null && onlineUser.getName_string() != null) {
 			online = onlineUser.getName_string().split(";;");
 		}

@@ -15,11 +15,13 @@ public interface ProfessionService extends GenericService<Profession, Long> {
 	/**
 	 * @name 根据游戏ID获得职业列表
 	 */
-	public List<Profession> findProfessionByGame(Long gameID, Integer isUse) throws Exception;
+	public List<Profession> findProfessionByGame(Long gameID, Integer isUse)
+			throws Exception;
 
 	/**
 	 * @name 根据游戏ID和职业名称获得实体
 	 */
-	public Profession findProfessionByName(Long gameID, String professionName) throws Exception;
+	public Profession findProfessionByName(Long gameID, String professionName)
+			throws Exception;
 
 }

@@ -70,26 +70,32 @@ public class RegisterAction extends BaseAction {
 		String ver2 = (String) Struts2Util.getSession().get("randomCode");
 		if (ver2 == null || vercode == null || !vercode.equals(ver2)) {
 			flag = false;
-			errorInfo.setVercodeMess("<span style='color:red;'>验证码输入不正确</span>");
+			errorInfo
+					.setVercodeMess("<span style='color:red;'>验证码输入不正确</span>");
 		}
 
 		// 用户名
 		if (Validator.isUserName(user.getUsername())) {
-			User tmp_user = userService.findUserByName(user.getUsername(), null);
+			User tmp_user = userService
+					.findUserByName(user.getUsername(), null);
 			if (tmp_user == null) {
-				errorInfo.setUsernameMess("<span style='color:green;'>通过</span>");
+				errorInfo
+						.setUsernameMess("<span style='color:green;'>通过</span>");
 			} else {
 				flag = false;
-				errorInfo.setUsernameMess("<span style='color:red;'>用户名已被注册</span>");
+				errorInfo
+						.setUsernameMess("<span style='color:red;'>用户名已被注册</span>");
 			}
 		} else {
-			errorInfo.setUsernameMess("<span style='color:red;'>6-20个字符，仅限字母、数字、下划线</span>");
+			errorInfo
+					.setUsernameMess("<span style='color:red;'>6-20个字符，仅限字母、数字、下划线</span>");
 		}
 
 		// 密码
 		if (!Validator.isPasswLength(user.getPassword())) {
 			flag = false;
-			errorInfo.setPasswordMess("<span style='color:red;'>密码长度为6-20</span>");
+			errorInfo
+					.setPasswordMess("<span style='color:red;'>密码长度为6-20</span>");
 		} else {
 			errorInfo.setPasswordMess("<span style='color:green;'>通过</span>");
 		}
@@ -106,7 +112,8 @@ public class RegisterAction extends BaseAction {
 
 		if (Validator.isLtLength(user.getAnswer().trim(), 4)) {
 			flag = false;
-			errorInfo.setAnswerMess("<span style='color:red;'>至少2个汉字或4个字符</span>");
+			errorInfo
+					.setAnswerMess("<span style='color:red;'>至少2个汉字或4个字符</span>");
 		} else {
 			errorInfo.setAnswerMess("<span style='color:green;'>通过</span>");
 		}
@@ -124,7 +131,8 @@ public class RegisterAction extends BaseAction {
 			errorInfo.setQqMess("<span style='color:green;'>通过</span>");
 		} else {
 			flag = false;
-			errorInfo.setQqMess("<span style='color:red;'>请正确输入纯数字的QQ号码</span>");
+			errorInfo
+					.setQqMess("<span style='color:red;'>请正确输入纯数字的QQ号码</span>");
 		}
 
 		// 验证手机号码
@@ -132,7 +140,8 @@ public class RegisterAction extends BaseAction {
 			errorInfo.setPhoneNumMess("<span style='color:green;'>通过</span>");
 		} else {
 			flag = false;
-			errorInfo.setPhoneNumMess("<span style='color:red;'>请输入正确的手机号码</span>");
+			errorInfo
+					.setPhoneNumMess("<span style='color:red;'>请输入正确的手机号码</span>");
 		}
 		return String.valueOf(flag);
 	}

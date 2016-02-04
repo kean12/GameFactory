@@ -31,12 +31,15 @@ public class KindEditorImageUploadAction extends BaseAction {
 				subdirectory = user.getUsername();
 			}
 		}
-		
-		//图片验证
-		if(Validator.isImage(imgFile) && Validator.isLtImageSize(imgFile, Constant.IMAGE_SIZE)){
-			saveUrl = Help.uploadImageToTempPath(imgFile, imgFileFileName, subdirectory);
-		}else{
-			setErrorMessage(imgFileFileName + "不是图片文件或文件大小超过" + Constant.IMAGE_SIZE + "KB");
+
+		// 图片验证
+		if (Validator.isImage(imgFile)
+				&& Validator.isLtImageSize(imgFile, Constant.IMAGE_SIZE)) {
+			saveUrl = Help.uploadImageToTempPath(imgFile, imgFileFileName,
+					subdirectory);
+		} else {
+			setErrorMessage(imgFileFileName + "不是图片文件或文件大小超过"
+					+ Constant.IMAGE_SIZE + "KB");
 			return ERROR;
 		}
 		return SUCCESS;

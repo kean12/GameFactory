@@ -78,9 +78,11 @@ public class UserAction extends BaseAction {
 		buyerAssessCount = buyOrder.size();
 		List<Order> sellOrder = orderService.findSellerOrder(user.getId());
 		sellerAssessCount = sellOrder.size();
-		Page<Order> page1 = orderService.searchOrder(user.getId(), 6, 0, 5, super.getGoPage());
+		Page<Order> page1 = orderService.searchOrder(user.getId(), 6, 0, 5,
+				super.getGoPage());
 		buyerCount = page1.getResultlist().size();
-		Page<Order> page2 = orderService.searchOrder(user.getId(), 6, 1, 5, super.getGoPage());
+		Page<Order> page2 = orderService.searchOrder(user.getId(), 6, 1, 5,
+				super.getGoPage());
 		sellerCount = page2.getResultlist().size();
 		return "home";
 	}
@@ -101,10 +103,12 @@ public class UserAction extends BaseAction {
 			User user = Struts2Util.getUserSession();
 			String subdirectory = user.getUsername() + "/portrait";
 			// 删除之前的头像
-			Help.removeTempImage(Struts2Util.getRealPath(user.getUserInfo().getRoute()));
-			
-			Help.chkImage(imgFile, imgFileFileName, 30);//图片验证
-			String saveUrl = Help.uploadImageToUserPath(imgFile, imgFileFileName, subdirectory);
+			Help.removeTempImage(Struts2Util.getRealPath(user.getUserInfo()
+					.getRoute()));
+
+			Help.chkImage(imgFile, imgFileFileName, 30);// 图片验证
+			String saveUrl = Help.uploadImageToUserPath(imgFile,
+					imgFileFileName, subdirectory);
 			user = userService.getEntity(User.class, user.getId());
 			user.getUserInfo().setRoute(saveUrl);
 			userService.updateEntity(user);
@@ -129,7 +133,9 @@ public class UserAction extends BaseAction {
 	@SuppressWarnings("unchecked")
 	public String particulars() throws Exception {
 		User user = Struts2Util.getUserSession();
-		page = particularsService.findParticulars(user.getId(), orderNum, runningNum, bank, type, beginTime, endTime, 20, super.getGoPage());
+		page = particularsService.findParticulars(user.getId(), orderNum,
+				runningNum, bank, type, beginTime, endTime, 20,
+				super.getGoPage());
 		particularsList = (List<Particulars>) page.getResultlist();
 		return "particulars";
 	}
@@ -157,7 +163,8 @@ public class UserAction extends BaseAction {
 	 * @name 收货角色添加修改
 	 */
 	public String saveRole() throws Exception {
-		if (userRole != null && userRole.getRoleName() != null && !userRole.getRoleName().trim().equals("")) {
+		if (userRole != null && userRole.getRoleName() != null
+				&& !userRole.getRoleName().trim().equals("")) {
 			User user = Struts2Util.getUserSession();
 			userRole.setUser(user);
 			userRoleService.createUserRole(userRole);
@@ -187,7 +194,8 @@ public class UserAction extends BaseAction {
 		}
 		User user = Struts2Util.getUserSession();
 		if (user.getRealName() == null) {
-			throw new Exception("<a class=\"red\" href=\"/user/account/my_account.shtml\">请先设置你的身份证和真实姓名</a>");
+			throw new Exception(
+					"<a class=\"red\" href=\"/user/account/my_account.shtml\">请先设置你的身份证和真实姓名</a>");
 		}
 
 		if (!user.getRealName().equals(bankUserName)) {
@@ -213,9 +221,11 @@ public class UserAction extends BaseAction {
 	public String message() throws Exception {
 		User user = Struts2Util.getUserSession();
 		if (type != null) {
-			page = postService.searchPost(user.getId(), 1, null, 15, super.getGoPage());
+			page = postService.searchPost(user.getId(), 1, null, 15,
+					super.getGoPage());
 		} else {
-			page = postService.searchPost(user.getId(), 1, 0, 15, super.getGoPage());
+			page = postService.searchPost(user.getId(), 1, 0, 15,
+					super.getGoPage());
 		}
 		postList = (List<Post>) page.getResultlist();
 		return "message";

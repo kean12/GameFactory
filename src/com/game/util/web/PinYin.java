@@ -21,13 +21,16 @@ public final class PinYin {
 
 	/**
 	 * 取单个字符的拼音声母
-	 * @param c 要转换的单个汉字
+	 * 
+	 * @param c
+	 *            要转换的单个汉字
 	 * @return String 拼音声母
 	 */
 	public static String getPYChar(String c) {
 		byte[] array = new byte[2];
 		array = String.valueOf(c).getBytes();
-		int i = (short) (array[0] - '\0' + 256) * 256 + ((short) (array[1] - '\0' + 256));
+		int i = (short) (array[0] - '\0' + 256) * 256
+				+ ((short) (array[1] - '\0' + 256));
 		if (i < 0xB0A1)
 			return "*";
 		if (i < 0xB0C5)
@@ -490,7 +493,9 @@ public final class PinYin {
 
 	/**
 	 * 获得单个汉字的Ascii.
-	 * @param cn char 汉字字符
+	 * 
+	 * @param cn
+	 *            char 汉字字符
 	 * @return int 错误返回 0,否则返回ascii
 	 */
 	public static int getCnAscii(char cn) {
@@ -512,9 +517,11 @@ public final class PinYin {
 
 	/**
 	 * 根据ASCII码到SpellMap中查找对应的拼音
-	 * @param ascii int 字符对应的ASCII
+	 * 
+	 * @param ascii
+	 *            int 字符对应的ASCII
 	 * @return String 拼音,首先判断ASCII是否>0&<160,如果是返回对应的字符, <BR>
-	 * 否则到SpellMap中查找,如果没有找到拼音,则返回null,如果找到则返回拼音.
+	 *         否则到SpellMap中查找,如果没有找到拼音,则返回null,如果找到则返回拼音.
 	 */
 	@SuppressWarnings("unchecked")
 	public static String getSpellByAscii(int ascii) {
@@ -550,7 +557,9 @@ public final class PinYin {
 
 	/**
 	 * 返回字符串的全拼,是汉字转化为全拼,其它字符不进行转换
-	 * @param cnStr String 字符串
+	 * 
+	 * @param cnStr
+	 *            String 字符串
 	 * @return String 转换成全拼后的字符串
 	 */
 	@SuppressWarnings("unchecked")

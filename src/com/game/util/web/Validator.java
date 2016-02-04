@@ -16,15 +16,17 @@ public final class Validator {
 
 	/**
 	 * 验证集合是否为空
+	 * 
 	 * @param 待验证的字符串
 	 * @return 如果是符合的字符串,返回true,否则为false
 	 */
 	public static boolean isEmpty(Collection<?> collection) {
 		return collection == null || collection.isEmpty();
 	}
-	
+
 	/**
 	 * 验证数组是否为空
+	 * 
 	 * @param 待验证的字符串
 	 * @return 如果是符合的字符串,返回true,否则为false
 	 */
@@ -34,6 +36,7 @@ public final class Validator {
 
 	/**
 	 * 验证字符串是否为空
+	 * 
 	 * @param 待验证的字符串
 	 * @return 如果是符合的字符串,返回true,否则为false
 	 */
@@ -43,6 +46,7 @@ public final class Validator {
 
 	/**
 	 * 验证字符串长度是否大于指定长度-去除2端空格
+	 * 
 	 * @param 待验证的字符串
 	 * @param 长度
 	 * @return 如果是符合的字符串,返回true,否则为false
@@ -56,6 +60,7 @@ public final class Validator {
 
 	/**
 	 * 验证字符串长度是否小于指定长度-去除2端空格
+	 * 
 	 * @param 待验证的字符串
 	 * @param 长度
 	 * @return 如果是符合的字符串,返回true,否则为false
@@ -69,6 +74,7 @@ public final class Validator {
 
 	/**
 	 * 验证是否是一个价格
+	 * 
 	 * @param 待验证的字符串
 	 * @param 长度
 	 * @return 如果是符合的字符串,返回true,否则为false
@@ -83,6 +89,7 @@ public final class Validator {
 
 	/**
 	 * 验证是否是一个大于零的价格
+	 * 
 	 * @param 待验证的字符串
 	 * @param 长度
 	 * @return 如果是符合的字符串,返回true,否则为false
@@ -97,6 +104,7 @@ public final class Validator {
 
 	/**
 	 * 验证数字输入
+	 * 
 	 * @param 待验证的字符串
 	 * @return 如果是符合格式的字符串,返回true,否则为false
 	 */
@@ -110,6 +118,7 @@ public final class Validator {
 
 	/**
 	 * 验证非零的正整数
+	 * 
 	 * @param 待验证的字符串
 	 * @return 如果是符合格式的字符串,返回true,否则为false
 	 */
@@ -123,6 +132,7 @@ public final class Validator {
 
 	/**
 	 * 验证是否是一个纯数字的QQ号码
+	 * 
 	 * @param 待验证的字符串
 	 * @return 如果是符合格式的字符串,返回true,否则为false
 	 */
@@ -136,6 +146,7 @@ public final class Validator {
 
 	/**
 	 * 验证手机号码
+	 * 
 	 * @param 待验证的字符串
 	 * @return 如果是符合格式的字符串,返回true,否则为false
 	 */
@@ -149,6 +160,7 @@ public final class Validator {
 
 	/**
 	 * 验证电话号码
+	 * 
 	 * @param 待验证的字符串
 	 * @return 如果是符合格式的字符串,返回true,否则为false
 	 */
@@ -162,6 +174,7 @@ public final class Validator {
 
 	/**
 	 * 验证邮箱
+	 * 
 	 * @param 待验证的字符串
 	 * @return 如果是符合的字符串,返回true,否则为false
 	 */
@@ -175,6 +188,7 @@ public final class Validator {
 
 	/**
 	 * 验证输入身份证号
+	 * 
 	 * @param 待验证的字符串
 	 * @return 如果是符合格式的字符串,返回true,否则为false
 	 */
@@ -188,6 +202,7 @@ public final class Validator {
 
 	/**
 	 * 验证真实姓名
+	 * 
 	 * @param 待验证的字符串
 	 * @return 如果是符合格式的字符串,返回true,否则为false
 	 */
@@ -201,6 +216,7 @@ public final class Validator {
 
 	/**
 	 * 验证用户名
+	 * 
 	 * @param 待验证的字符串
 	 * @return 如果是符合格式的字符串,返回true,否则为false
 	 */
@@ -214,6 +230,7 @@ public final class Validator {
 
 	/**
 	 * 验证输入密码条件(字符与数据同时出现)
+	 * 
 	 * @param 待验证的字符串
 	 * @return 如果是符合格式的字符串,返回true,否则为false
 	 */
@@ -227,6 +244,7 @@ public final class Validator {
 
 	/**
 	 * 验证输入密码长度 (6-20位)
+	 * 
 	 * @param 待验证的字符串
 	 * @return 如果是符合格式的字符串,返回true,否则为false
 	 */
@@ -240,6 +258,7 @@ public final class Validator {
 
 	/**
 	 * 验证IP地址
+	 * 
 	 * @param 待验证的字符串
 	 * @return 如果是符合格式的字符串,返回true,否则为false
 	 */
@@ -255,6 +274,7 @@ public final class Validator {
 
 	/**
 	 * 验证网址Url
+	 * 
 	 * @param 待验证的字符串
 	 * @return 如果是符合格式的字符串,返回true,否则为false
 	 */
@@ -265,9 +285,10 @@ public final class Validator {
 		String regex = "http(s)?://([\\w-]+\\.)+[\\w-]+(/[\\w- ./?%&=]*)?";
 		return match(regex, str);
 	}
-	
+
 	/**
 	 * 验证域名地址
+	 * 
 	 * @param 待验证的字符串
 	 * @return 如果是符合格式的字符串,返回true,否则为false
 	 */
@@ -281,6 +302,7 @@ public final class Validator {
 
 	/**
 	 * 验证输入邮政编号
+	 * 
 	 * @param 待验证的字符串
 	 * @return 如果是符合格式的字符串,返回true,否则为false
 	 */
@@ -294,6 +316,7 @@ public final class Validator {
 
 	/**
 	 * 验证输入两位小数
+	 * 
 	 * @param 待验证的字符串
 	 * @return 如果是符合格式的字符串,返回true,否则为false
 	 */
@@ -307,6 +330,7 @@ public final class Validator {
 
 	/**
 	 * 验证输入一年的12个月
+	 * 
 	 * @param 待验证的字符串
 	 * @return 如果是符合格式的字符串,返回true,否则为false
 	 */
@@ -320,6 +344,7 @@ public final class Validator {
 
 	/**
 	 * 验证输入一个月的31天
+	 * 
 	 * @param 待验证的字符串
 	 * @return 如果是符合格式的字符串,返回true,否则为false
 	 */
@@ -333,6 +358,7 @@ public final class Validator {
 
 	/**
 	 * 验证日期时间
+	 * 
 	 * @param 待验证的字符串
 	 * @return 如果是符合网址格式的字符串,返回true,否则为false
 	 */
@@ -346,6 +372,7 @@ public final class Validator {
 
 	/**
 	 * 验证大写字母
+	 * 
 	 * @param 待验证的字符串
 	 * @return 如果是符合格式的字符串,返回true,否则为false
 	 */
@@ -359,6 +386,7 @@ public final class Validator {
 
 	/**
 	 * 验证小写字母
+	 * 
 	 * @param 待验证的字符串
 	 * @return 如果是符合格式的字符串,返回true,否则为false
 	 */
@@ -372,6 +400,7 @@ public final class Validator {
 
 	/**
 	 * 验证输入字母
+	 * 
 	 * @param 待验证的字符串
 	 * @return 如果是符合格式的字符串,返回true,否则为false
 	 */
@@ -385,6 +414,7 @@ public final class Validator {
 
 	/**
 	 * 验证汉字
+	 * 
 	 * @param 待验证的字符串
 	 * @return 如果是符合格式的字符串,返回true,否则为false
 	 */
@@ -398,7 +428,9 @@ public final class Validator {
 
 	/**
 	 * 验证是否是图片文件
-	 * @param file 需要验证的文件
+	 * 
+	 * @param file
+	 *            需要验证的文件
 	 * @return 如果是图片文件,返回true,否则为false
 	 */
 	public static boolean isImage(File file) {
@@ -437,8 +469,11 @@ public final class Validator {
 
 	/**
 	 * 验证是否是图片文件大小是否小于等于指定大小
-	 * @param file 需要验证的文件
-	 * @param size 指定大小 单位kb
+	 * 
+	 * @param file
+	 *            需要验证的文件
+	 * @param size
+	 *            指定大小 单位kb
 	 * @return 如果是小于指定大小,返回true,否则为false
 	 */
 	public static boolean isLtImageSize(File file, int size) {
@@ -452,18 +487,21 @@ public final class Validator {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * 检查是不是图片是否小于指定大小
-	 * @param fileList 需要验证的文件集合
-	 * @param size 指定大小 单位kb
+	 * 
+	 * @param fileList
+	 *            需要验证的文件集合
+	 * @param size
+	 *            指定大小 单位kb
 	 * @return 返回首次匹配到不符合的文件索引 否则返回-1
 	 */
 	public static int chkImage(List<File> fileList, int size) {
-		int i=0;
-		if(!isEmpty(fileList)){
-			for(File file : fileList){
-				if(!isImage(file) || !isLtImageSize(file, size)){
+		int i = 0;
+		if (!isEmpty(fileList)) {
+			for (File file : fileList) {
+				if (!isImage(file) || !isLtImageSize(file, size)) {
 					return i;
 				}
 				i++;
@@ -471,23 +509,28 @@ public final class Validator {
 		}
 		return -1;
 	}
-	
+
 	/**
 	 * 检查是不是图片是否小于指定大小
-	 * @param fileList 需要验证的文件
-	 * @param size 指定大小 单位kb
+	 * 
+	 * @param fileList
+	 *            需要验证的文件
+	 * @param size
+	 *            指定大小 单位kb
 	 * @return 如果是符合,返回true,否则为false
 	 */
 	public static boolean chkImage(File file, int size) {
-		if(!isImage(file) || !isLtImageSize(file, size)){
+		if (!isImage(file) || !isLtImageSize(file, size)) {
 			return false;
 		}
 		return true;
 	}
 
 	/**
-	 * @param regex 正则表达式字符串
-	 * @param str 要匹配的字符串
+	 * @param regex
+	 *            正则表达式字符串
+	 * @param str
+	 *            要匹配的字符串
 	 * @return 如果str 符合 regex的正则表达式格式,返回true, 否则返回 false;
 	 */
 	private static boolean match(String regex, String str) {

@@ -8,6 +8,7 @@ import javazoom.jl.player.Player;//jl1.jar
 
 public class Mp3Player {
 	static Thread pt = null;
+
 	public static void play(final File af) {
 		if (pt != null && pt.isAlive())
 			return;

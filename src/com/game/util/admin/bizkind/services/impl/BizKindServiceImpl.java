@@ -6,7 +6,8 @@ import com.game.util.admin.bizkind.services.BizKindService;
 import com.game.util.base.dao.impl.GenericServiceImpl;
 import com.game.util.domain.BizKind;
 
-public class BizKindServiceImpl extends GenericServiceImpl<BizKind, Long> implements BizKindService {
+public class BizKindServiceImpl extends GenericServiceImpl<BizKind, Long>
+		implements BizKindService {
 
 	public List<BizKind> findAllBizKind() throws Exception {
 		return baseDAO.findEntity("from BizKind a order by a.orderIndex");
@@ -27,7 +28,8 @@ public class BizKindServiceImpl extends GenericServiceImpl<BizKind, Long> implem
 		return baseDAO.findEntity(hql);
 	}
 
-	public List<BizKind> findBizKindByToleration(Integer isUse) throws Exception {
+	public List<BizKind> findBizKindByToleration(Integer isUse)
+			throws Exception {
 		String hql = "from BizKind a where a.toleration=1";
 		if (isUse == null || isUse != 1) {
 			hql += " and a.isUse<>1 or a.isuse is null";
@@ -38,7 +40,8 @@ public class BizKindServiceImpl extends GenericServiceImpl<BizKind, Long> implem
 		return baseDAO.findEntity(hql);
 	}
 
-	public List<BizKind> findGameKindByGame(Long gameID, Integer isUse) throws Exception {
+	public List<BizKind> findGameKindByGame(Long gameID, Integer isUse)
+			throws Exception {
 		String hql = "select a.bizKind from GameKind a where a.game.id=? ";
 		if (isUse == null || isUse != 1) {
 			hql += " and a.bizKind.isUse<>1 or a.isuse is null";

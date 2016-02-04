@@ -39,7 +39,8 @@ import javax.swing.text.StyledEditorKit.UnderlineAction;
 /**
  * 创建作用于指定文本属性编辑工具的工具栏
  */
-public class EditToolBar extends JToolBar implements ActionListener, CaretListener, FocusListener {
+public class EditToolBar extends JToolBar implements ActionListener,
+		CaretListener, FocusListener {
 	private static final long serialVersionUID = 8123412016289588507L;
 	JTextPane editor;
 	protected JFileChooser fileChooser;
@@ -126,7 +127,8 @@ public class EditToolBar extends JToolBar implements ActionListener, CaretListen
 	}
 
 	protected String[] getAllFonts() {
-		return GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
+		return GraphicsEnvironment.getLocalGraphicsEnvironment()
+				.getAvailableFontFamilyNames();
 	}
 
 	protected Integer[] getFontSizeArray() {
@@ -172,26 +174,33 @@ public class EditToolBar extends JToolBar implements ActionListener, CaretListen
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
 		if (source == colors) {
-			Color initColor = StyleConstants.getForeground(editor.getInputAttributes());
-			Color color = JColorChooser.showDialog(EditToolBar.this, "Chooser font color", initColor);
+			Color initColor = StyleConstants.getForeground(editor
+					.getInputAttributes());
+			Color color = JColorChooser.showDialog(EditToolBar.this,
+					"Chooser font color", initColor);
 			if (color != null) {
-				new StyledAction(null, new ForegroundAction("color", color), editor).actionPerformed(e);
+				new StyledAction(null, new ForegroundAction("color", color),
+						editor).actionPerformed(e);
 			}
 		} else if (source == fonts) {
 			String fontName = (String) fonts.getSelectedItem();
-			new StyledAction(null, new FontFamilyAction(fontName, fontName), editor).actionPerformed(e);
+			new StyledAction(null, new FontFamilyAction(fontName, fontName),
+					editor).actionPerformed(e);
 		} else if (source == sizes) {
 			Integer choicSize = (Integer) sizes.getSelectedItem();
-			new StyledAction(null, new FontSizeAction(null, choicSize), editor).actionPerformed(e);
+			new StyledAction(null, new FontSizeAction(null, choicSize), editor)
+					.actionPerformed(e);
 		} else if (source == pictures) {
 			int returnVal = fileChooser.showOpenDialog(getAncestor());
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				try {
-					editor.insertIcon(createPictureIcon(fileChooser.getSelectedFile()));
+					editor.insertIcon(createPictureIcon(fileChooser
+							.getSelectedFile()));
 					editor.insertComponent(new JLabel());
 				} catch (Throwable ex) {
 					System.err.println(ex.getMessage());
-					JOptionPane.showMessageDialog(getAncestor(), ex.getMessage());
+					JOptionPane.showMessageDialog(getAncestor(),
+							ex.getMessage());
 				}
 			}
 		}
@@ -208,7 +217,9 @@ public class EditToolBar extends JToolBar implements ActionListener, CaretListen
 		AttributeSet atts = editor.getInputAttributes();
 		int offset = editor.getCaretPosition();
 		// System.out.println("offset"+offset);
-		atts = editor.getStyledDocument().getCharacterElement(offset > 0 ? offset - 1 : offset).getAttributes();
+		atts = editor.getStyledDocument()
+				.getCharacterElement(offset > 0 ? offset - 1 : offset)
+				.getAttributes();
 		updateItems(atts);
 	}
 
@@ -278,16 +289,20 @@ public class EditToolBar extends JToolBar implements ActionListener, CaretListen
 	 * 本类指定一个StyledTextAction子类acton作为参数，当本类的actionPerformed调用时
 	 * 首先检测ActionEvent所作用的文本组件，如果与指定的组件吻合，则执行 字段action的actionPerformed，作出属性编辑。
 	 * 
-	 * @param mn the name of the action
-	 * @param editor the specified text component
-	 * @param action the action type
+	 * @param mn
+	 *            the name of the action
+	 * @param editor
+	 *            the specified text component
+	 * @param action
+	 *            the action type
 	 */
 	class StyledAction extends StyledTextAction {
 		private static final long serialVersionUID = 4737091671836800589L;
 		protected StyledTextAction action;
 		protected JEditorPane editor;
 
-		public StyledAction(String mn, StyledTextAction action, JEditorPane editor) {
+		public StyledAction(String mn, StyledTextAction action,
+				JEditorPane editor) {
 			super(mn);
 			this.action = action;
 			this.editor = editor;

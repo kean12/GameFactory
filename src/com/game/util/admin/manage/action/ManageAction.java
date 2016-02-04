@@ -81,14 +81,17 @@ public class ManageAction extends BaseAction {
 
 		if (manageInfo.getId() != null && manageInfo.getId() > 0) {
 			manageService.updateEntity(manageInfo);
-			logService.saveLog(manageInfo, Struts2Util.getManageSession() + " 修改后台用户信息 ", com.game.util.domain.Log.INFO);
+			logService.saveLog(manageInfo, Struts2Util.getManageSession()
+					+ " 修改后台用户信息 ", com.game.util.domain.Log.INFO);
 		} else {
 			// 新增
 			manageInfo.setRegip(Struts2Util.getIp());
-			manageInfo.setRegisterTime(DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM));
+			manageInfo.setRegisterTime(DateUtil
+					.nowDate(Constant.YYYY_MM_DD_HH_MM));
 			manageService.createEntity(manageInfo);
 			log.info("新增后台用户信息：" + manageInfo);
-			logService.saveLog(manageInfo, Struts2Util.getManageSession() + " 新增后台用户信息 ", com.game.util.domain.Log.INFO);
+			logService.saveLog(manageInfo, Struts2Util.getManageSession()
+					+ " 新增后台用户信息 ", com.game.util.domain.Log.INFO);
 		}
 		return SUCCESS;
 	}
@@ -102,7 +105,8 @@ public class ManageAction extends BaseAction {
 	public String removeManage() throws Exception {
 		if (id > 0) {
 			manageService.removeManage(id);
-			log.info(Struts2Util.getManageSession() + "删除操作：删除ID为: " + id + " 的后台用户信息!");
+			log.info(Struts2Util.getManageSession() + "删除操作：删除ID为: " + id
+					+ " 的后台用户信息!");
 		}
 		return SUCCESS;
 	}

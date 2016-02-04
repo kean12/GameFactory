@@ -11,7 +11,7 @@ import com.game.util.web.Constant;
 public class CreditAction extends BaseAction {
 
 	private static final long serialVersionUID = -6418965433936600070L;
-	
+
 	private CreditService creditService;
 	private Credit credit;
 	private Long creditID;
@@ -48,7 +48,8 @@ public class CreditAction extends BaseAction {
 					if (value.length != 3) {
 						throw new Exception("你输入的格式不正确");
 					}
-					tmpcredit = creditService.findCreditByGrade(type, Integer.valueOf(value[0]));
+					tmpcredit = creditService.findCreditByGrade(type,
+							Integer.valueOf(value[0]));
 					if (tmpcredit != null) {
 						tmpcredit.setLower(Integer.valueOf(value[1]));
 						tmpcredit.setUpper(Integer.valueOf(value[2]));
@@ -87,7 +88,8 @@ public class CreditAction extends BaseAction {
 		} else {
 			creditService.createEntity(credit);
 		}
-		creditService.updateCreditByMaxGrade(Constant.MAX_CREDIT, credit.getType());
+		creditService.updateCreditByMaxGrade(Constant.MAX_CREDIT,
+				credit.getType());
 		return "savecredit";
 	}
 

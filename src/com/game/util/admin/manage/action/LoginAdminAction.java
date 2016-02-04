@@ -35,7 +35,8 @@ public class LoginAdminAction extends BaseAction {
 			return INPUT;
 		}
 
-		Manage tmp_manage = manageService.findManageByName(manage.getUsername());
+		Manage tmp_manage = manageService
+				.findManageByName(manage.getUsername());
 
 		if (tmp_manage == null) {
 			error = "您输入的用户名或密码不正确！";
@@ -72,10 +73,12 @@ public class LoginAdminAction extends BaseAction {
 		List<String> accessIpList = tmp_manage.getAccessIp();
 		List<String> lockIpList = tmp_manage.getLockIp();
 
-		if (!Validator.isEmpty(accessIpList) && !accessIpList.contains(Struts2Util.getIp())) {
+		if (!Validator.isEmpty(accessIpList)
+				&& !accessIpList.contains(Struts2Util.getIp())) {
 			error = "该IP不在允许IP列表之内！";
 			return INPUT;
-		} else if (!Validator.isEmpty(lockIpList) && lockIpList.contains(Struts2Util.getIp())) {
+		} else if (!Validator.isEmpty(lockIpList)
+				&& lockIpList.contains(Struts2Util.getIp())) {
 			// /** 允许IP列表
 			// * 127.0.0.1
 			// * 192.168.1.1
@@ -102,7 +105,8 @@ public class LoginAdminAction extends BaseAction {
 		{
 			tmp_manage.setTmpTime(tmp_manage.getLoginTime());
 			tmp_manage.setIp(Struts2Util.getIp());
-			tmp_manage.setLoginTime(DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM));
+			tmp_manage
+					.setLoginTime(DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM));
 			manageService.updateEntity(tmp_manage);
 		}
 		String message = "管理员：" + tmp_manage.getUsername() + " 登录系统";

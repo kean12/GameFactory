@@ -11,7 +11,8 @@ import com.game.util.web.Validator;
 public class PostServiceImpl extends GenericServiceImpl<Post, Long> implements
 		PostService {
 
-	public int findPostByCount(Long userID, Integer type, Integer state) throws Exception {
+	public int findPostByCount(Long userID, Integer type, Integer state)
+			throws Exception {
 		String hql = "select count(*) from Post a where 1=1";
 		if (userID != null) {
 			hql += " and a.user.id=" + userID;
@@ -27,7 +28,8 @@ public class PostServiceImpl extends GenericServiceImpl<Post, Long> implements
 		return count;
 	}
 
-	public Page<Post> searchPost(Long userID, Integer type, Integer state, int size, int goPage) throws Exception {
+	public Page<Post> searchPost(Long userID, Integer type, Integer state,
+			int size, int goPage) throws Exception {
 		String hql = "from Post a where 1=1";
 		if (userID != null) {
 			hql += " and a.user.id=" + userID;
@@ -44,7 +46,8 @@ public class PostServiceImpl extends GenericServiceImpl<Post, Long> implements
 
 	public Post getPost(Long id, Long userID) throws Exception {
 		Long[] arr = { id, userID };
-		List<Post> list = baseDAO.findEntity("from Post a where a.id=? and a.user.id=?", arr);
+		List<Post> list = baseDAO.findEntity(
+				"from Post a where a.id=? and a.user.id=?", arr);
 		if (!Validator.isEmpty(list)) {
 			return (Post) list.get(0);
 		}

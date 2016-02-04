@@ -11,7 +11,7 @@ public class DatabaseAction extends BaseAction {
 	private String username;
 	private String password;
 	private String url;
-	
+
 	public String database() throws Exception {
 		return "database";
 	}
@@ -20,23 +20,24 @@ public class DatabaseAction extends BaseAction {
 		if (!Validator.isBlank(dialect)) {
 			DatabaseConfig.write("hibernate.dialect", dialect);
 		}
-		
+
 		if (!Validator.isBlank(driver_class)) {
-			DatabaseConfig.write("hibernate.connection.driver_class", driver_class);
+			DatabaseConfig.write("hibernate.connection.driver_class",
+					driver_class);
 		}
-		
+
 		if (!Validator.isBlank(username)) {
 			DatabaseConfig.write("hibernate.connection.username", username);
 		}
-		
+
 		if (!Validator.isBlank(password)) {
 			DatabaseConfig.write("hibernate.connection.password", password);
 		}
-		
+
 		if (!Validator.isBlank(url)) {
 			DatabaseConfig.write("hibernate.connection.url", url);
 		}
-		
+
 		DatabaseConfig.write("TIMEOUT", "3");
 		super.setIsSuccess(true);
 		return SUCCESS;

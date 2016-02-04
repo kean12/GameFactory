@@ -77,7 +77,8 @@ public class IndexAction extends BaseAction {
 	 * 找回密码--一
 	 */
 	public String findpswAnswer() throws Exception {
-		if (username == null || pswtype == null || findtype == null || vercode == null) {
+		if (username == null || pswtype == null || findtype == null
+				|| vercode == null) {
 			return INPUT;
 		}
 		String ver2 = (String) Struts2Util.getSession().get("randomCode");
@@ -113,7 +114,8 @@ public class IndexAction extends BaseAction {
 			username = CryptTool.base64Decode(username);
 			user = userService.findUserByName(username, 1);
 
-			if (!user.getAnswer().equals(answer) || !user.getHint().equals(question)) {
+			if (!user.getAnswer().equals(answer)
+					|| !user.getHint().equals(question)) {
 				throw new Exception("密码提示问题回答不正确");
 			}
 

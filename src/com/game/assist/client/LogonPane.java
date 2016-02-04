@@ -41,7 +41,9 @@ public class LogonPane extends JPanel implements ActionListener {
 
 		ipField.setText(ConfigUtil.getValue("ip"));
 		portField.setText("8001");
-		com.game.assist.task.SpringUtilities.makeCompactGrid(this, 4, 2, // rows, // cols
+		com.game.assist.task.SpringUtilities.makeCompactGrid(this, 4, 2, // rows,
+																			// //
+																			// cols
 				10, 10, // initX, initY
 				6, 10); // xPad, yPad
 
@@ -68,7 +70,8 @@ public class LogonPane extends JPanel implements ActionListener {
 		relatedButton = button;
 	}
 
-	protected static JTextField addLabeledField(Container c, String label, ActionListener als) {
+	protected static JTextField addLabeledField(Container c, String label,
+			ActionListener als) {
 		JLabel l = new JLabel(label);
 		c.add(l);
 		JTextField field = new JTextField(15);
@@ -78,7 +81,8 @@ public class LogonPane extends JPanel implements ActionListener {
 		return field;
 	}
 
-	protected static JPasswordField addLabeledPasswordField(Container c, String label, ActionListener als) {
+	protected static JPasswordField addLabeledPasswordField(Container c,
+			String label, ActionListener als) {
 		JLabel l = new JLabel(label);
 		c.add(l);
 		JPasswordField field = new JPasswordField(15);

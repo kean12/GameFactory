@@ -9,8 +9,9 @@ import com.game.util.domain.User;
 import com.game.util.web.Constant;
 
 public class MyEnabledUserAction implements UserAction {
-	private Manage manage ;
-	private User user ;
+	private Manage manage;
+	private User user;
+
 	public boolean isCreateFolderEnabled(HttpServletRequest request) {
 		setValue(request);
 		return (manage != null || user != null);
@@ -20,12 +21,15 @@ public class MyEnabledUserAction implements UserAction {
 		setValue(request);
 		return (manage != null || user != null);
 	}
+
 	public boolean isEnabledForFileUpload(HttpServletRequest request) {
 		setValue(request);
 		return (manage != null || user != null);
 	}
-	private void setValue(HttpServletRequest request){
-		manage = (Manage) MyContextPathBuilder.getSession(request, Constant.MANAGE);
-		user = (User) MyContextPathBuilder.getSession(request, Constant.USER) ;
+
+	private void setValue(HttpServletRequest request) {
+		manage = (Manage) MyContextPathBuilder.getSession(request,
+				Constant.MANAGE);
+		user = (User) MyContextPathBuilder.getSession(request, Constant.USER);
 	}
 }

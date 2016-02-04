@@ -41,13 +41,11 @@ public final class MD5 {
 
 	private String digestHexStr;
 
-
 	private byte[] buffer = new byte[64]; // input buffer
 
 	private long[] count = new long[2];
 
 	private byte[] digest = new byte[16];
-
 
 	private long[] state = new long[4]; // state (ABCD)
 

@@ -31,7 +31,8 @@ public class AssessAction extends BaseAction {
 	public String execute() throws Exception {
 		User user = Struts2Util.getUserSession();
 		User owner = orderService.getEntity(Order.class, orderID).getOwner(); // 取得卖家信息
-		User consumer = orderService.getEntity(Order.class, orderID).getConsumer(); // 取得买家信息
+		User consumer = orderService.getEntity(Order.class, orderID)
+				.getConsumer(); // 取得买家信息
 
 		assess.setInitiative(user);
 		assess.setOrder(orderService.getEntity(Order.class, orderID));
@@ -66,17 +67,21 @@ public class AssessAction extends BaseAction {
 		if (assessList.size() == 2) {
 			for (Assess as : assessList) {
 				if (as.getType() == 1) {// 买家给卖家打分
-					int grade = owner.getUserInfo().getSellerCredit() + as.getGrade();
+					int grade = owner.getUserInfo().getSellerCredit()
+							+ as.getGrade();
 					owner.getUserInfo().setSellerCredit(grade);
 					userInfoService.updateUserInfo(owner.getUserInfo());
 				} else {// 卖家给买家打分
-					int grade = consumer.getUserInfo().getBuyerCredit() + as.getGrade();
+					int grade = consumer.getUserInfo().getBuyerCredit()
+							+ as.getGrade();
 					consumer.getUserInfo().setBuyerCredit(grade);
 					userInfoService.updateUserInfo(consumer.getUserInfo());
 				}
 				NumberFormat formatter = new DecimalFormat("0.00");
-				List<Object[]> seller = assessService.getAssessByPassive(owner.getId(), 1, null);
-				List<Object[]> buyer = assessService.getAssessByPassive(consumer.getId(), 0, null);
+				List<Object[]> seller = assessService.getAssessByPassive(
+						owner.getId(), 1, null);
+				List<Object[]> buyer = assessService.getAssessByPassive(
+						consumer.getId(), 0, null);
 				int sellerHp = 0; // 作为卖家好评数
 				int sellerZp = 0; // 作为卖家中评数
 				int sellerCp = 0; // 作为卖家差评数
@@ -105,16 +110,20 @@ public class AssessAction extends BaseAction {
 					}
 				}
 				if (sellerHp + sellerZp + sellerCp != 0) {
-					Double x = new Double(Arith.intercept((double) sellerHp / (sellerHp + sellerZp + sellerCp) * 100, 2));
+					Double x = new Double(Arith.intercept((double) sellerHp
+							/ (sellerHp + sellerZp + sellerCp) * 100, 2));
 					sellerPositiveRatio = formatter.format(x);
 				}
-				owner.getUserInfo().setSellerPositiveRatio(sellerPositiveRatio + "%");
+				owner.getUserInfo().setSellerPositiveRatio(
+						sellerPositiveRatio + "%");
 				userInfoService.updateUserInfo(owner.getUserInfo());
 				if (buyerHp + buyerZp + buyerCp != 0) {
-					Double x = new Double(Arith.intercept((double) buyerHp / (buyerHp + buyerZp + buyerCp) * 100, 2));
+					Double x = new Double(Arith.intercept((double) buyerHp
+							/ (buyerHp + buyerZp + buyerCp) * 100, 2));
 					buyerPositiveRatio = formatter.format(x);
 				}
-				consumer.getUserInfo().setBuyerPositiveRatio(buyerPositiveRatio + "%");
+				consumer.getUserInfo().setBuyerPositiveRatio(
+						buyerPositiveRatio + "%");
 				userInfoService.updateUserInfo(consumer.getUserInfo());
 			}
 		}

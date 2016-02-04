@@ -37,7 +37,8 @@ public class ShipmentsAction extends BaseAction {
 		}
 		User user = Struts2Util.getUserSession();
 		Order order = orderService.getEntity(Order.class, orderID);
-		if (order.getState() != 1 || !order.getOwner().getId().equals(user.getId())) {
+		if (order.getState() != 1
+				|| !order.getOwner().getId().equals(user.getId())) {
 			return INPUT;
 		}
 		if (upload == null || upload.size() == 0) {
@@ -46,8 +47,9 @@ public class ShipmentsAction extends BaseAction {
 
 		// 文件上传
 		String subdirectory = user.getUsername() + "\\order";
-		Help.chkImage(upload, uploadFileName, Constant.IMAGE_SIZE);//图片验证
-		List<String> fileNameList = Help.uploadImageToUserPath(upload, uploadFileName, subdirectory);
+		Help.chkImage(upload, uploadFileName, Constant.IMAGE_SIZE);// 图片验证
+		List<String> fileNameList = Help.uploadImageToUserPath(upload,
+				uploadFileName, subdirectory);
 
 		List<Shipments> shipmentsList = null;
 		Shipments shipments = null;

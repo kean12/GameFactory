@@ -26,7 +26,8 @@ public interface ManageService extends GenericService<Manage, Long> {
 	/**
 	 * @name 根据角色名查询后台用户
 	 */
-	public List<Manage> findManageByRole(String name, Integer state) throws Exception;
+	public List<Manage> findManageByRole(String name, Integer state)
+			throws Exception;
 
 	/**
 	 * 根据用户登录名查询后台用户
@@ -37,7 +38,8 @@ public interface ManageService extends GenericService<Manage, Long> {
 	 *            角色名
 	 * @throws Exception
 	 */
-	public Manage findManageByName(String name, String roleName) throws Exception;
+	public Manage findManageByName(String name, String roleName)
+			throws Exception;
 
 	/**
 	 * 根据客户端传递过来的用户名和密码登陆
@@ -48,6 +50,7 @@ public interface ManageService extends GenericService<Manage, Long> {
 	 *            角色名
 	 * @throws Exception
 	 */
-	public Manage findManageByClientLogin(String username, String password) throws Exception;
+	public Manage findManageByClientLogin(String username, String password)
+			throws Exception;
 
 }

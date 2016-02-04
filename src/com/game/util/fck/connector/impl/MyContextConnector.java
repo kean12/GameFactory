@@ -13,36 +13,45 @@ import net.fckeditor.handlers.ResourceType;
 
 /**
  * 2010-03-17
- * @author rplees
- *  ÖØÐ´ fck ÎÄ¼þÉÏ´«Àà
+ * 
+ * @author rplees ï¿½ï¿½Ð´ fck ï¿½Ä¼ï¿½ï¿½Ï´ï¿½ï¿½ï¿½
  */
-public  class  MyContextConnector extends ContextConnector {
+public class MyContextConnector extends ContextConnector {
 
-	/* (non-Javadoc)
-	 * @see net.fckeditor.connector.impl.AbstractLocalFileSystemConnector#fileUpload(net.fckeditor.handlers.ResourceType, java.lang.String, java.lang.String, java.io.InputStream)
-	 * ÉÏ´ÎÎÄ¼þ-´Ë·½·¨ÖÐ¿ÉÒÔ¶ÔÎÄ¼þÖØÃüÃû
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * net.fckeditor.connector.impl.AbstractLocalFileSystemConnector#fileUpload
+	 * (net.fckeditor.handlers.ResourceType, java.lang.String, java.lang.String,
+	 * java.io.InputStream) ï¿½Ï´ï¿½ï¿½Ä¼ï¿½-ï¿½Ë·ï¿½ï¿½ï¿½ï¿½Ð¿ï¿½ï¿½Ô¶ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	@Override
 	public String fileUpload(ResourceType type, String currentFolder,
 			String fileName, InputStream inputStream)
 			throws InvalidCurrentFolderException, WriteException {
 		try {
-			fileName = URLDecoder.decode(fileName ,"utf-8") ;
+			fileName = URLDecoder.decode(fileName, "utf-8");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
-		}//ÖØÃüÃû²Ù×÷ÔÚÕâÀï½øÐÐ
+		}// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		return super.fileUpload(type, currentFolder, fileName, inputStream);
 	}
-	/* (non-Javadoc)
-	 * @see net.fckeditor.connector.impl.AbstractLocalFileSystemConnector#createFolder(net.fckeditor.handlers.ResourceType, java.lang.String, java.lang.String)
-	 * ´´½¨ÎÄ¼þ
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * net.fckeditor.connector.impl.AbstractLocalFileSystemConnector#createFolder
+	 * (net.fckeditor.handlers.ResourceType, java.lang.String, java.lang.String)
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½
 	 */
 	@Override
 	public void createFolder(ResourceType type, String currentFolder,
 			String newFolder) throws InvalidCurrentFolderException,
 			InvalidNewFolderNameException, FolderAlreadyExistsException {
 		try {
-			newFolder = URLDecoder.decode(newFolder ,"utf-8") ;
+			newFolder = URLDecoder.decode(newFolder, "utf-8");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}

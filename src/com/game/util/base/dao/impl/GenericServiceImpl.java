@@ -9,7 +9,8 @@ import com.game.util.base.dao.GenericService;
 /**
  * 公用方法实现层
  */
-public class GenericServiceImpl<T, K extends Serializable> implements GenericService<T, K> {
+public class GenericServiceImpl<T, K extends Serializable> implements
+		GenericService<T, K> {
 	protected BaseDAO<T, K> baseDAO;
 
 	/**

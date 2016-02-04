@@ -34,7 +34,8 @@ public class ProfessionAction extends BaseAction {
 	public String addProfession() throws Exception {
 		game = gameService.getEntity(Game.class, gameID);
 		if (professionID != null) {
-			profession = professionService.getEntity(Profession.class, professionID);
+			profession = professionService.getEntity(Profession.class,
+					professionID);
 		}
 		return "addProfession";
 	}

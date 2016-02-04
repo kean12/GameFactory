@@ -8,13 +8,17 @@ import com.game.util.user.services.ParticularsService;
 import com.game.util.web.Page;
 import com.game.util.web.Validator;
 
-public class ParticularsServiceImpl extends GenericServiceImpl<Particulars, Long> implements ParticularsService {
+public class ParticularsServiceImpl extends
+		GenericServiceImpl<Particulars, Long> implements ParticularsService {
 
-	public Particulars createParticulars(Particulars particulars) throws Exception {
+	public Particulars createParticulars(Particulars particulars)
+			throws Exception {
 		return baseDAO.saveEntity(particulars);
 	}
 
-	public Page<Particulars> findParticulars(Long userID, String orderNum, String runningNum, String bank, Integer type, String beginTime, String endTime, int size, int goPage) throws Exception {
+	public Page<Particulars> findParticulars(Long userID, String orderNum,
+			String runningNum, String bank, Integer type, String beginTime,
+			String endTime, int size, int goPage) throws Exception {
 		String hql = "from Particulars a where 1=1";
 		if (userID != null) {
 			hql += " and a.user.id=" + userID;
@@ -50,7 +54,8 @@ public class ParticularsServiceImpl extends GenericServiceImpl<Particulars, Long
 		baseDAO.updateEntity(particulars);
 	}
 
-	public Particulars getParticularsNum(String orderNum, String runningNum) throws Exception {
+	public Particulars getParticularsNum(String orderNum, String runningNum)
+			throws Exception {
 		String[] param = { orderNum, runningNum };
 		String hql = "from Particulars a where a.orderNum=? and runningNum=?";
 		List<Particulars> list = baseDAO.findEntity(hql, param);

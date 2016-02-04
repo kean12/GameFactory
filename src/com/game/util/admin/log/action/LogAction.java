@@ -7,31 +7,32 @@ import com.game.util.web.Page;
 
 public class LogAction extends BaseAction {
 	private static final long serialVersionUID = 6653262505204329953L;
-	private LogService logService ;
-	private Page<Log> page ;
-	private Log log ;
-	private long id ;
-	
+	private LogService logService;
+	private Page<Log> page;
+	private Log log;
+	private long id;
+
 	public String allLogs() throws Exception {
-		
-		page = logService.getAllManage(15, super.getGoPage(), log) ;
+
+		page = logService.getAllManage(15, super.getGoPage(), log);
 		return "logList";
 	}
-	
+
 	public String checkLog() throws Exception {
-		if(id > 0){
+		if (id > 0) {
 			log = logService.getLog(id);
 		}
 		return "checkLog";
 	}
+
 	public String removeLog() throws Exception {
-		if(id > 0 ){
+		if (id > 0) {
 			logService.removeLog(id);
 		}
-		return SUCCESS ;
+		return SUCCESS;
 	}
-	
-	//~==================================
+
+	// ~==================================
 
 	public LogService getLogService() {
 		return logService;

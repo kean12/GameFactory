@@ -4,7 +4,8 @@ import com.game.util.base.dao.impl.GenericServiceImpl;
 import com.game.util.domain.UserInfo;
 import com.game.util.user.services.UserInfoService;
 
-public class UserInfoServiceImpl extends GenericServiceImpl<UserInfo, Long> implements UserInfoService {
+public class UserInfoServiceImpl extends GenericServiceImpl<UserInfo, Long>
+		implements UserInfoService {
 	public UserInfo getUserInfoById(Long id) throws Exception {
 		return baseDAO.getEntity(UserInfo.class, id);
 	}

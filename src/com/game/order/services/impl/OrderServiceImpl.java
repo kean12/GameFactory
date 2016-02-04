@@ -11,7 +11,8 @@ import com.game.util.web.DateUtil;
 import com.game.util.web.Page;
 import com.game.util.web.Validator;
 
-public class OrderServiceImpl extends GenericServiceImpl<Order, Long> implements OrderService {
+public class OrderServiceImpl extends GenericServiceImpl<Order, Long> implements
+		OrderService {
 	public Order createOrder(Order order) throws Exception {
 		String riqi = DateUtil.nowDate(Constant.YYYYMMDD);
 		Random rd = new java.util.Random(System.currentTimeMillis());
@@ -21,7 +22,8 @@ public class OrderServiceImpl extends GenericServiceImpl<Order, Long> implements
 		return baseDAO.saveEntity(order);
 	}
 
-	public Order getOrder(Long ownerId, Long consumerId, Long orderId) throws Exception {
+	public Order getOrder(Long ownerId, Long consumerId, Long orderId)
+			throws Exception {
 		String hql = "from Order a where 1=1";
 		if (ownerId != null) {
 			hql += " and a.owner.id=" + ownerId;
@@ -40,7 +42,8 @@ public class OrderServiceImpl extends GenericServiceImpl<Order, Long> implements
 	}
 
 	public Order getOrder(String orderNum, Long consumerId) throws Exception {
-		String hql = "from Order a where a.orderNum=? and a.consumer.id=" + consumerId;
+		String hql = "from Order a where a.orderNum=? and a.consumer.id="
+				+ consumerId;
 		List<Order> list = baseDAO.findEntity(hql, orderNum);
 		if (!Validator.isEmpty(list)) {
 			return list.get(0);
@@ -52,7 +55,8 @@ public class OrderServiceImpl extends GenericServiceImpl<Order, Long> implements
 		baseDAO.removeEntity(super.getEntity(Order.class, id));
 	}
 
-	public Page<Order> searchOrder(Long userID, Integer state, Integer type, int size, int goPage) throws Exception {
+	public Page<Order> searchOrder(Long userID, Integer state, Integer type,
+			int size, int goPage) throws Exception {
 		String hql = "from Order a where 1=1";
 		if (userID != null) {
 			if (type == 1) {// 卖
@@ -73,7 +77,8 @@ public class OrderServiceImpl extends GenericServiceImpl<Order, Long> implements
 	}
 
 	public List<Order> findOrderByCount(int state, int count) throws Exception {
-		String hql = "from Order a where a.state=" + state + " and a.bizInfo.serial is not null order by a.orderTime desc";
+		String hql = "from Order a where a.state=" + state
+				+ " and a.bizInfo.serial is not null order by a.orderTime desc";
 		return baseDAO.findEntity(hql, 0, count);
 	}
 
@@ -87,18 +92,21 @@ public class OrderServiceImpl extends GenericServiceImpl<Order, Long> implements
 	}
 
 	public List<Object[]> game_ranking_merchant(Long gameID) throws Exception {
-		String hql = "select a.owner.username,a.owner.id,count(*) from Order a where a.state=6 and a.server.area.game.id=" + gameID
+		String hql = "select a.owner.username,a.owner.id,count(*) from Order a where a.state=6 and a.server.area.game.id="
+				+ gameID
 				+ " and a.game.id is null group by a.owner.username,a.owner.id order by count(*) desc";
 		return baseDAO.findListArray(hql, 0, 50);
 	}
 
 	public List<Order> findSellerOrder(Long ownerID) throws Exception {
-		String hql = "from Order o where o.state = 6 and o.isAssess in(0,1,2) and o.owner.id=" + ownerID;
+		String hql = "from Order o where o.state = 6 and o.isAssess in(0,1,2) and o.owner.id="
+				+ ownerID;
 		return baseDAO.findEntity(hql);
 	}
 
 	public List<Order> findBuyerOrder(Long consumerID) throws Exception {
-		String hql = "from Order o where o.state = 6 and o.isAssess in(0,1,3) and o.consumer.id=" + consumerID;
+		String hql = "from Order o where o.state = 6 and o.isAssess in(0,1,3) and o.consumer.id="
+				+ consumerID;
 		return baseDAO.findEntity(hql);
 	}
 
@@ -106,20 +114,26 @@ public class OrderServiceImpl extends GenericServiceImpl<Order, Long> implements
 			String orderTimeStart, String orderTimeEnd, String succTimeStart,
 			String succTimeEnd, double sumPriceMin, double sumPriceMax,
 			Order filterOrder) throws Exception {
-		
+
 		String hql = "from Order o where 1=1 ";
 		if (filterOrder != null) {
 			if (!Validator.isBlank(filterOrder.getOrderNum())) {
 				hql += " and o.orderNum='" + filterOrder.getOrderNum() + "'";
 			}
-			if (filterOrder.getState() != null && filterOrder.getState().intValue() >= 0) {
+			if (filterOrder.getState() != null
+					&& filterOrder.getState().intValue() >= 0) {
 				hql += " and o.state=" + filterOrder.getState().intValue();
 			}
-			if (filterOrder.getOwner() != null && !Validator.isBlank(filterOrder.getOwner().getUsername())) {
-				hql += " and o.owner.username like '%" + filterOrder.getOwner().getUsername() + "%'";
+			if (filterOrder.getOwner() != null
+					&& !Validator.isBlank(filterOrder.getOwner().getUsername())) {
+				hql += " and o.owner.username like '%"
+						+ filterOrder.getOwner().getUsername() + "%'";
 			}
-			if (filterOrder.getConsumer() != null && !Validator.isBlank(filterOrder.getConsumer().getUsername())) {
-				hql += " and o.consumer.username like '%" + filterOrder.getConsumer().getUsername() + "%'";
+			if (filterOrder.getConsumer() != null
+					&& !Validator.isBlank(filterOrder.getConsumer()
+							.getUsername())) {
+				hql += " and o.consumer.username like '%"
+						+ filterOrder.getConsumer().getUsername() + "%'";
 			}
 		}
 		if (!Validator.isBlank(orderTimeStart)) {

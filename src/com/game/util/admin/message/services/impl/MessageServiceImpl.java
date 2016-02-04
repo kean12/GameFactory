@@ -5,7 +5,8 @@ import com.game.util.base.dao.impl.GenericServiceImpl;
 import com.game.util.domain.Message;
 import com.game.util.web.Page;
 
-public class MessageServiceImpl extends GenericServiceImpl<Message, Long> implements MessageService {
+public class MessageServiceImpl extends GenericServiceImpl<Message, Long>
+		implements MessageService {
 
 	public void removeMessage(Long id) throws Exception {
 		baseDAO.removeEntity(super.getEntity(Message.class, id));

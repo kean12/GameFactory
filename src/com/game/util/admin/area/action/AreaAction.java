@@ -27,7 +27,8 @@ public class AreaAction extends BaseAction {
 		if (gameID == null) {
 			return "err";
 		}
-		page = areaService.searchAreaByGame(areaName, gameID, 20, super.getGoPage());
+		page = areaService.searchAreaByGame(areaName, gameID, 20,
+				super.getGoPage());
 		areaList = page.getResultlist();
 		return "listarea";
 	}

@@ -20,7 +20,9 @@ public class OrderAction extends BaseAction {
 	private double sumPriceMax; // 总价格最多
 
 	public String allOrders() throws Exception {
-		page = orderService.getOrderPage(15, super.getGoPage(), orderTimeStart, orderTimeEnd, succTimeStart, succTimeEnd, sumPriceMin, sumPriceMax, order);
+		page = orderService.getOrderPage(15, super.getGoPage(), orderTimeStart,
+				orderTimeEnd, succTimeStart, succTimeEnd, sumPriceMin,
+				sumPriceMax, order);
 		return "allOrders";
 	}
 

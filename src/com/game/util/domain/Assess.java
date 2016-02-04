@@ -123,6 +123,4 @@ public class Assess implements Domain {
 		this.time = time;
 	}
 
-	
-
 }

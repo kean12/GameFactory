@@ -31,7 +31,8 @@ public class AjaxList {
 	}
 
 	public List<Server> serverList(Long areaID) throws Exception {
-		ServerService serverService = (ServerService) DWRUtil.getBean("serverService");
+		ServerService serverService = (ServerService) DWRUtil
+				.getBean("serverService");
 		if (areaID != null) {
 			return serverService.findServerByArea(areaID, 1);
 		}
@@ -39,7 +40,8 @@ public class AjaxList {
 	}
 
 	public List<BizKind> bizKindList(Long gameID) throws Exception {
-		BizKindService bizKindService = (BizKindService) DWRUtil.getBean("bizKindService");
+		BizKindService bizKindService = (BizKindService) DWRUtil
+				.getBean("bizKindService");
 		if (gameID != null) {
 			return bizKindService.findGameKindByGame(gameID, 1);
 		}

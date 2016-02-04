@@ -96,7 +96,8 @@ public class ExamineAction extends BaseAction {
 		tmpOrder.setPlayPhoneNum(order.getPlayPhoneNum());
 		String errorMess = VerifyOrder.verify(tmpOrder, bizInfo);
 		if (errorMess != null) {
-			Struts2Util.setSession("errorMessage", new OrderErrorInfo(errorMess, tmpOrder));
+			Struts2Util.setSession("errorMessage", new OrderErrorInfo(
+					errorMess, tmpOrder));
 			return INPUT;
 		}
 		orderService.updateEntity(tmpOrder);

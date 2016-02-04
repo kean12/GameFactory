@@ -51,7 +51,8 @@ public class AssignAction extends BaseAction {
 		if (!name.equals("admin")) {
 			manageID = manage.getId();
 		}
-		page = assignService.findAssignByManage(manageID, 0, 20, super.getGoPage());
+		page = assignService.findAssignByManage(manageID, 0, 20,
+				super.getGoPage());
 		manageList = manageService.findManageByRole("trade", null);
 		assignList = page.getResultlist();
 		return "list_assign";
@@ -72,7 +73,8 @@ public class AssignAction extends BaseAction {
 		if (content != null) {
 			String[] arr = content.split(";");
 			if (arr.length > 0) {
-				String time = DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM_SS_MMM);
+				String time = DateUtil
+						.nowDate(Constant.YYYY_MM_DD_HH_MM_SS_MMM);
 				Manage admin = null;
 				@SuppressWarnings("unused")
 				Order order = null;
@@ -81,10 +83,15 @@ public class AssignAction extends BaseAction {
 				String[] parm = null;
 				for (String str : arr) {
 					parm = str.split("[|]");
-					admin = manageService.getEntity(Manage.class, Long.valueOf(parm[0]));
-					order = orderService.getEntity(Order.class, Long.valueOf(parm[1]));
-					assign = assignService.getEntity(Assign.class, Long.valueOf(parm[2]));
-					assign.setRemark("订单重分配，操作员:" + assign.getManage().getName() + ";原始订单时间：" + assign.getStartTime());
+					admin = manageService.getEntity(Manage.class,
+							Long.valueOf(parm[0]));
+					order = orderService.getEntity(Order.class,
+							Long.valueOf(parm[1]));
+					assign = assignService.getEntity(Assign.class,
+							Long.valueOf(parm[2]));
+					assign.setRemark("订单重分配，操作员:"
+							+ assign.getManage().getName() + ";原始订单时间："
+							+ assign.getStartTime());
 					assign.setStartTime(time);
 					assign.setManage(admin);
 					assignList.add(assign);
@@ -104,7 +111,8 @@ public class AssignAction extends BaseAction {
 		if (!name.equals("admin")) {
 			manageID = manage.getId();
 		}
-		page = assignService.findAssignByOvertime(manageID, orderNum, 20, super.getGoPage());
+		page = assignService.findAssignByOvertime(manageID, orderNum, 20,
+				super.getGoPage());
 		assignList = page.getResultlist();
 		manageList = manageService.findManageByRole("trade", null);
 		return "list_overtime_assign";
@@ -150,15 +158,20 @@ public class AssignAction extends BaseAction {
 						assign.getOrder().setQuantity("10.00");
 						User consumer = assign.getOrder().getConsumer();
 						String money = consumer.getUserInfo().getMoney();
-						consumer.getUserInfo().setMoney(Arith.intercept(Arith.add(money, "10.00"), 2) + "");
+						consumer.getUserInfo().setMoney(
+								Arith.intercept(Arith.add(money, "10.00"), 2)
+										+ "");
 						assignService.updateEntity(assign);
-						String total = "" + Arith.intercept(Arith.add(consumer.getUserInfo().getMoney(), consumer.getUserInfo().getFreemoney()), 2);
-						Record.set(consumer, null, null, null, 7, "10.0", null, total, "超时赔付");
-						String lg = "订单号:" + orderNum 
-								+ "\t用户:" + consumer.getUsername() 
-								+ "\t原始可用金额:" + money
-								+ "\t赔付金额:10.00" 
-								+ "\t赔付后可用金额:" + consumer.getUserInfo().getMoney()
+						String total = ""
+								+ Arith.intercept(Arith.add(consumer
+										.getUserInfo().getMoney(), consumer
+										.getUserInfo().getFreemoney()), 2);
+						Record.set(consumer, null, null, null, 7, "10.0", null,
+								total, "超时赔付");
+						String lg = "订单号:" + orderNum + "\t用户:"
+								+ consumer.getUsername() + "\t原始可用金额:" + money
+								+ "\t赔付金额:10.00" + "\t赔付后可用金额:"
+								+ consumer.getUserInfo().getMoney()
 								+ "\t操作管理员登录账号:" + manage.getUsername()
 								+ "\t操作管理员名称:" + manage.getName();
 						log.info(lg);

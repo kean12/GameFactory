@@ -108,12 +108,14 @@ public class Setting {
 	 * @param als
 	 *            组件被注册的ActionListener
 	 */
-	public static JButton createButton(String text, int mn, String command, KeyStroke stroke, Container c, ActionListener als) {
+	public static JButton createButton(String text, int mn, String command,
+			KeyStroke stroke, Container c, ActionListener als) {
 		JButton button = new JButton(text);
 		button.setMnemonic(mn);
 		button.setActionCommand(command);
 		button.addActionListener(als);
-		button.registerKeyboardAction(als, command, stroke, JComponent.WHEN_IN_FOCUSED_WINDOW);
+		button.registerKeyboardAction(als, command, stroke,
+				JComponent.WHEN_IN_FOCUSED_WINDOW);
 		button.setFocusable(false);
 		c.add(button);
 		return button;

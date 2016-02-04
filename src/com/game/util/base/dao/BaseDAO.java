@@ -82,7 +82,7 @@ public interface BaseDAO<T, K extends Serializable> extends DAO {
 	 * 根据hql查询 返回Object集合
 	 */
 	public List<Object> findList(String hql, Object obj) throws Exception;
-	
+
 	/**
 	 * 根据hql查询 返回Object
 	 */

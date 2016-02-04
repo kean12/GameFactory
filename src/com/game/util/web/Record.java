@@ -16,22 +16,32 @@ public class Record {
 	private static ParticularsService particularsService;
 
 	/**
-	 * @param user 用户外键
-	 * @param orderNum 商户订单号
-	 * @param runningNum 业务流水号
-	 * @param bank 交易场所
-	 * @param type 交易类型 1.交易付款 2.交易收款 3.在线充值 4.退款 5.提现 6.差额入账 7.超时赔付
-	 * @param income 收入
-	 * @param expense 支出
-	 * @param money 账户总额
-	 * @param synopsis 交易详情 return 交易流水号
+	 * @param user
+	 *            用户外键
+	 * @param orderNum
+	 *            商户订单号
+	 * @param runningNum
+	 *            业务流水号
+	 * @param bank
+	 *            交易场所
+	 * @param type
+	 *            交易类型 1.交易付款 2.交易收款 3.在线充值 4.退款 5.提现 6.差额入账 7.超时赔付
+	 * @param income
+	 *            收入
+	 * @param expense
+	 *            支出
+	 * @param money
+	 *            账户总额
+	 * @param synopsis
+	 *            交易详情 return 交易流水号
 	 */
 	public static String set(User user, String orderNum, String runningNum,
 			String bank, Integer type, String income, String expense,
 			String money, String synopsis) throws Exception {
-		
+
 		if (particularsService == null) {
-			particularsService = (ParticularsService) SpringUtil.getBean("particularsService");
+			particularsService = (ParticularsService) SpringUtil
+					.getBean("particularsService");
 		}
 		Particulars particulars = new Particulars();
 		particulars.setUser(user);
@@ -63,17 +73,23 @@ public class Record {
 
 	/**
 	 * 更具商户订单号和业务流水号校验
-	 * @param orderNum 商户订单号
-	 * @param runningNum 业务流水号
+	 * 
+	 * @param orderNum
+	 *            商户订单号
+	 * @param runningNum
+	 *            业务流水号
 	 * @return 是否存在此记录
 	 * @throws Exception
 	 */
-	public static boolean chk_Recoed(String orderNum, String runningNum) throws Exception {
+	public static boolean chk_Recoed(String orderNum, String runningNum)
+			throws Exception {
 		if (particularsService == null) {
-			particularsService = (ParticularsService) SpringUtil.getBean("particularsService");
+			particularsService = (ParticularsService) SpringUtil
+					.getBean("particularsService");
 		}
 		boolean flag = false;
-		Particulars particulars = particularsService.getParticularsNum(orderNum, runningNum);
+		Particulars particulars = particularsService.getParticularsNum(
+				orderNum, runningNum);
 		if (particulars != null) {
 			flag = true;
 		}

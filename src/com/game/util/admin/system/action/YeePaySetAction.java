@@ -6,10 +6,10 @@ import com.game.util.web.YeePayConfig;
 
 public class YeePaySetAction extends BaseAction {
 	private static final long serialVersionUID = 5542415256790375271L;
-	private String p1_MerId;//商户编号
-	private String keyValue;//商户密钥
-	private String onlinePaymentReqURL;//交易请求地址
-	private String queryRefundReqURL;//查询和退款地址
+	private String p1_MerId;// 商户编号
+	private String keyValue;// 商户密钥
+	private String onlinePaymentReqURL;// 交易请求地址
+	private String queryRefundReqURL;// 查询和退款地址
 
 	public String yeePaySet() throws Exception {
 		return "yeePaySet";
@@ -19,16 +19,16 @@ public class YeePaySetAction extends BaseAction {
 		if (!Validator.isBlank(p1_MerId)) {
 			YeePayConfig.write("p1_MerId", p1_MerId);
 		}
-		
+
 		if (!Validator.isBlank(keyValue)) {
 			YeePayConfig.write("keyValue", keyValue);
 		}
-		
+
 		if (!Validator.isBlank(onlinePaymentReqURL)) {
 			YeePayConfig.write("onlinePaymentReqURL", onlinePaymentReqURL);
 			YeePayConfig.write("yeepayCommonReqURL", onlinePaymentReqURL);
 		}
-		
+
 		if (!Validator.isBlank(queryRefundReqURL)) {
 			YeePayConfig.write("queryRefundReqURL", queryRefundReqURL);
 		}

@@ -85,7 +85,10 @@ public class SearchAction extends BaseAction {
 		if (bizKindID != null) {
 			bizKind = bizKindService.getEntity(BizKind.class, bizKindID);
 		}
-		page = bizInfoService.findBizInfoByState(ownerID, gameID, areaID, serverID, bizKindID, searchContent, 1, DateUtil.nowDate(Constant.HH_MM), order_by, sort, size, super.getGoPage());
+		page = bizInfoService.findBizInfoByState(ownerID, gameID, areaID,
+				serverID, bizKindID, searchContent, 1,
+				DateUtil.nowDate(Constant.HH_MM), order_by, sort, size,
+				super.getGoPage());
 		bizInfoList = page.getResultlist();
 		return "browse";
 	}
@@ -97,8 +100,10 @@ public class SearchAction extends BaseAction {
 		bizInfo = bizInfoService.getBizInfo(userID, bizInfoID);
 		if (bizInfo != null) {
 			pictureList = pictureService.findPictureByBizInfo(bizInfo.getId());
-			List<Object[]> seller = assessService.getAssessByPassive(bizInfo.getOwner().getId(), 1, null);
-			List<Object[]> buyer = assessService.getAssessByPassive(bizInfo.getOwner().getId(), 0, null);
+			List<Object[]> seller = assessService.getAssessByPassive(bizInfo
+					.getOwner().getId(), 1, null);
+			List<Object[]> buyer = assessService.getAssessByPassive(bizInfo
+					.getOwner().getId(), 0, null);
 			int sellerHp = 0; // 作为卖家好评数
 			int sellerZp = 0; // 作为卖家中评数
 			int sellerCp = 0; // 作为卖家差评数
@@ -127,14 +132,16 @@ public class SearchAction extends BaseAction {
 			}
 			NumberFormat formatter = new DecimalFormat("0.00");
 			if (sellerHp + sellerZp + sellerCp != 0) {
-				Double x = new Double(Arith.intercept((double) sellerHp / (sellerHp + sellerZp + sellerCp) * 100, 2));
+				Double x = new Double(Arith.intercept((double) sellerHp
+						/ (sellerHp + sellerZp + sellerCp) * 100, 2));
 				sellerPositiveRatio = formatter.format(x);
 				isSellerPositiveRatio = 0;
 			} else {
 				isSellerPositiveRatio = -1;
 			}
 			if (buyerHp + buyerZp + buyerCp != 0) {
-				Double x = new Double(Arith.intercept((double) buyerHp / (buyerHp + buyerZp + buyerCp) * 100, 2));
+				Double x = new Double(Arith.intercept((double) buyerHp
+						/ (buyerHp + buyerZp + buyerCp) * 100, 2));
 				buyerPositiveRatio = formatter.format(x);
 				isBuyerPositiveRatio = 0;
 			} else {
@@ -182,7 +189,8 @@ public class SearchAction extends BaseAction {
 		return searchContent;
 	}
 
-	public void setSearchContent(String searchContent) throws UnsupportedEncodingException {
+	public void setSearchContent(String searchContent)
+			throws UnsupportedEncodingException {
 		if (!Validator.isBlank(searchContent)) {
 			this.searchContent = URLDecoder.decode(searchContent.trim(),
 					"utf-8");

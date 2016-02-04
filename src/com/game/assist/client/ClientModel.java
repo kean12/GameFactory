@@ -42,7 +42,8 @@ public class ClientModel {
 	 * 
 	 * 
 	 */
-	public ClientModel(String ip, int port) throws IOException, UnknownHostException {
+	public ClientModel(String ip, int port) throws IOException,
+			UnknownHostException {
 		// TODO: 在这添加你的代码
 		socket = new Socket(ip, port);
 		sendQueue = new LinkedBlockingQueue();
@@ -129,7 +130,8 @@ public class ClientModel {
 				if (message.type == message.ENTER) {
 					if (!nameList.contains(message.source)) {
 						nameList.add(message.source);
-						name_address_map.put(message.source, (InetSocketAddress) message.content);
+						name_address_map.put(message.source,
+								(InetSocketAddress) message.content);
 					}
 				} else if (message.type == message.EXIT) {
 					nameList.remove(message.source);
@@ -137,7 +139,8 @@ public class ClientModel {
 				}
 			} else if (object instanceof Socket) {
 				System.out.println("与服务器失去连接...");
-				message = new Information(Information.EXIT, Setting.SERVER, null);
+				message = new Information(Information.EXIT, Setting.SERVER,
+						null);
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -166,6 +169,7 @@ public class ClientModel {
 				public int getSize() {
 					return nameList.size();
 				}
+
 				public Object getElementAt(int index) {
 					return nameList.get(index);
 				}

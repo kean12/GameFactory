@@ -1,6 +1,5 @@
 package com.game.util.system.exception;
 
-
 public class UnknownException extends BaseException {
 	private static final long serialVersionUID = -3213220323455001439L;
 

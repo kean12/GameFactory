@@ -8,7 +8,8 @@ import com.game.util.user.services.UserService;
 import com.game.util.web.Page;
 import com.game.util.web.Validator;
 
-public class UserServiceImpl extends GenericServiceImpl<User, Long> implements UserService {
+public class UserServiceImpl extends GenericServiceImpl<User, Long> implements
+		UserService {
 
 	public User createUser(User user) throws Exception {
 		user = baseDAO.saveEntity(user);
@@ -54,11 +55,13 @@ public class UserServiceImpl extends GenericServiceImpl<User, Long> implements U
 		return baseDAO.findEntity(hql);
 	}
 
-	public Page<User> getAllUsers(int size, int goPage, User u) throws Exception {
+	public Page<User> getAllUsers(int size, int goPage, User u)
+			throws Exception {
 		return getAllUsers(size, goPage, u, "id");
 	}
 
-	public Page<User> getAllUsers(int size, int goPage, User u, String orderBy) throws Exception {
+	public Page<User> getAllUsers(int size, int goPage, User u, String orderBy)
+			throws Exception {
 		String hql = "from User u where u.userInfo.money is not null ";
 		if (u != null) {
 			if (u.getId() != null && u.getId() > 0) {

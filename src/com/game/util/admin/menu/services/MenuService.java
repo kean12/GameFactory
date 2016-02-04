@@ -11,14 +11,16 @@ public interface MenuService extends GenericService<Menu, Long> {
 	public void updatePowers(Map<Long, List<Long>> powersMap) throws Exception;
 
 	/**
-	 * @param menuName 菜单名称
+	 * @param menuName
+	 *            菜单名称
 	 * @param parentID
 	 * @name 根据菜单名查询
 	 */
 	public Menu findMenuByName(String menuName, Long parentID) throws Exception;
 
 	/**
-	 * @param parentID 父节点ID
+	 * @param parentID
+	 *            父节点ID
 	 * @name 根据菜单名查询
 	 */
 	public List<Menu> findMenuByParent(Long parentID) throws Exception;

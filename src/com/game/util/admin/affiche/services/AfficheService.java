@@ -28,6 +28,7 @@ public interface AfficheService extends GenericService<Affiche, Long> {
 	/**
 	 * @name 根据类型和状态查询出N条记录
 	 */
-	public List<Affiche> findAfficheByCount(Integer type, Integer state, int count) throws Exception;
+	public List<Affiche> findAfficheByCount(Integer type, Integer state,
+			int count) throws Exception;
 
 }

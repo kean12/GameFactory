@@ -14,7 +14,8 @@ import com.game.assist.task.ConfigUtil;
 public class TunnelClient {
 
 	public static Object get(Object msgOut) {
-		String strUrl = "http://" + ConfigUtil.getValue("address") + "/servlet/LoginServer.shtml";
+		String strUrl = "http://" + ConfigUtil.getValue("address")
+				+ "/servlet/LoginServer.shtml";
 		Object msgIn = null;
 		try {
 			// 准备URL连接
@@ -37,8 +38,8 @@ public class TunnelClient {
 			// 输出消息到服务器
 			con.setRequestProperty("Content-type", "application/octet-stream");
 			con.setRequestProperty("Content-length", "" + buf.length);
-			DataOutputStream dataOut = new DataOutputStream(con
-					.getOutputStream());
+			DataOutputStream dataOut = new DataOutputStream(
+					con.getOutputStream());
 
 			dataOut.write(buf);
 			dataOut.flush();

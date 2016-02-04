@@ -15,7 +15,8 @@ import com.game.util.base.dao.BaseDAO;
 import com.game.util.web.Page;
 
 @SuppressWarnings("unchecked")
-public class BaseDAOImpl<T, K extends Serializable> extends HibernateDaoSupport implements BaseDAO<T, K> {
+public class BaseDAOImpl<T, K extends Serializable> extends HibernateDaoSupport
+		implements BaseDAO<T, K> {
 
 	/**
 	 * 加载实体
@@ -64,7 +65,8 @@ public class BaseDAOImpl<T, K extends Serializable> extends HibernateDaoSupport 
 	 */
 	public void updateEntity(final String hql) throws Exception {
 		this.getHibernateTemplate().execute(new HibernateCallback() {
-			public Object doInHibernate(Session session) throws HibernateException, SQLException {
+			public Object doInHibernate(Session session)
+					throws HibernateException, SQLException {
 				return session.createQuery(hql).executeUpdate();
 			}
 		});
@@ -133,7 +135,7 @@ public class BaseDAOImpl<T, K extends Serializable> extends HibernateDaoSupport 
 	public List<Object> findList(String hql, Object obj) throws Exception {
 		return this.getHibernateTemplate().find(hql, obj);
 	}
-	
+
 	/**
 	 * 根据hql查询 返回Object
 	 */
@@ -151,11 +153,14 @@ public class BaseDAOImpl<T, K extends Serializable> extends HibernateDaoSupport 
 	/**
 	 * 根据hql查询 返回Object数组
 	 */
-	public List<Object[]> findListArray(final String hql, final int start, final int num) throws Exception {
+	public List<Object[]> findListArray(final String hql, final int start,
+			final int num) throws Exception {
 		return (List<Object[]>) this.getHibernateTemplate().execute(
 				new HibernateCallback() {
-					public Object doInHibernate(Session session) throws HibernateException, SQLException {
-						return session.createQuery(hql).setFirstResult(start).setMaxResults(num).list();
+					public Object doInHibernate(Session session)
+							throws HibernateException, SQLException {
+						return session.createQuery(hql).setFirstResult(start)
+								.setMaxResults(num).list();
 					}
 				});
 	}
@@ -174,15 +179,18 @@ public class BaseDAOImpl<T, K extends Serializable> extends HibernateDaoSupport 
 	// {
 	// return this.getHibernateTemplate().find(hql, obj);
 	// }
-	//	
+	//
 	/**
 	 * 通过hql语句查找实体集合
 	 */
-	public List<T> findEntity(final String hql, final int start, final int num) throws Exception {
+	public List<T> findEntity(final String hql, final int start, final int num)
+			throws Exception {
 		return (List<T>) this.getHibernateTemplate().execute(
 				new HibernateCallback() {
-					public Object doInHibernate(Session session) throws HibernateException, SQLException {
-						return session.createQuery(hql).setFirstResult(start).setMaxResults(num).list();
+					public Object doInHibernate(Session session)
+							throws HibernateException, SQLException {
+						return session.createQuery(hql).setFirstResult(start)
+								.setMaxResults(num).list();
 					}
 				});
 	}
@@ -193,7 +201,8 @@ public class BaseDAOImpl<T, K extends Serializable> extends HibernateDaoSupport 
 	public List<T> findListBySql(final String sql) throws Exception {
 		return (List) this.getHibernateTemplate().execute(
 				new HibernateCallback() {
-					public Object doInHibernate(Session session) throws HibernateException, SQLException {
+					public Object doInHibernate(Session session)
+							throws HibernateException, SQLException {
 						return session.createSQLQuery(sql).list();
 					}
 				});
@@ -205,8 +214,10 @@ public class BaseDAOImpl<T, K extends Serializable> extends HibernateDaoSupport 
 	public void executeSQL(final String sql) throws Exception {
 		this.getHibernateTemplate().execute(new HibernateCallback() {
 			@SuppressWarnings("deprecation")
-			public Object doInHibernate(Session session) throws HibernateException, SQLException {
-				return session.connection().createStatement().executeUpdate(sql);
+			public Object doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				return session.connection().createStatement()
+						.executeUpdate(sql);
 			}
 		});
 	}
@@ -222,11 +233,14 @@ public class BaseDAOImpl<T, K extends Serializable> extends HibernateDaoSupport 
 	 * 分页实现方法
 	 * 
 	 * @param hql
-	 * @param pageLength 每页大小
-	 * @param currentPage 当前页
+	 * @param pageLength
+	 *            每页大小
+	 * @param currentPage
+	 *            当前页
 	 * @return 分页对象
 	 */
-	private Page<T> searchForPager(String hql, int pageLength, int currentPage) throws Exception {
+	private Page<T> searchForPager(String hql, int pageLength, int currentPage)
+			throws Exception {
 		int maxPage;
 		List<T> results;
 		List<Integer> pageNum = new ArrayList<Integer>();
@@ -236,7 +250,8 @@ public class BaseDAOImpl<T, K extends Serializable> extends HibernateDaoSupport 
 		if (hql.indexOf("order by") == -1) {
 			thql = "select count(*) " + hql;
 		} else {
-			thql = "select count(*) " + hql.substring(0, hql.indexOf("order by"));
+			thql = "select count(*) "
+					+ hql.substring(0, hql.indexOf("order by"));
 		}
 
 		int count = Integer.valueOf(this.findEntity(thql).get(0).toString());
@@ -252,7 +267,9 @@ public class BaseDAOImpl<T, K extends Serializable> extends HibernateDaoSupport 
 			maxPage = 1;
 			currentPage = 1;
 		} else {
-			currentPage = currentPage <= maxPage ? (currentPage > 0 ? currentPage : 1) : maxPage;
+			currentPage = currentPage <= maxPage ? (currentPage > 0 ? currentPage
+					: 1)
+					: maxPage;
 		}
 
 		// 页码
@@ -273,7 +290,8 @@ public class BaseDAOImpl<T, K extends Serializable> extends HibernateDaoSupport 
 				}
 			}
 		}
-		results = this.findEntity(hql, (currentPage - 1) * pageLength, pageLength);
+		results = this.findEntity(hql, (currentPage - 1) * pageLength,
+				pageLength);
 		Page<T> p = new Page<T>(currentPage, maxPage, pageNum, results);
 		return p;
 	}

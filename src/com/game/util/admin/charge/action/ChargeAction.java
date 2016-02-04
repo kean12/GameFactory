@@ -25,37 +25,50 @@ public class ChargeAction extends BaseAction {
 
 	/**
 	 * 分页获得帐户明细
+	 * 
 	 * @throws Exception
 	 */
 	public String allParticularses() throws Exception {
 		if (particulars == null) {
-			page = particularsService.findParticulars(null, null, null, null, null, null, null, 15, super.getGoPage());
+			page = particularsService.findParticulars(null, null, null, null,
+					null, null, null, 15, super.getGoPage());
 		} else if (particulars.getUser() == null) {
-			page = particularsService.findParticulars(null, particulars.getOrderNum(), particulars.getRunningNum(), particulars.getBank(), particulars.getType(), beginTime, endTime, 15, super.getGoPage());
+			page = particularsService.findParticulars(null,
+					particulars.getOrderNum(), particulars.getRunningNum(),
+					particulars.getBank(), particulars.getType(), beginTime,
+					endTime, 15, super.getGoPage());
 		} else {
-			page = particularsService.findParticulars(particulars.getUser().getId(), particulars.getOrderNum(), particulars.getRunningNum(), particulars.getBank(), particulars.getType(), beginTime, endTime, 15, super.getGoPage());
+			page = particularsService.findParticulars(particulars.getUser()
+					.getId(), particulars.getOrderNum(), particulars
+					.getRunningNum(), particulars.getBank(), particulars
+					.getType(), beginTime, endTime, 15, super.getGoPage());
 		}
 		return "allParticularses";
 	}
 
 	/**
 	 * 根据ID获得帐户明细
+	 * 
 	 * @throws Exception
 	 */
 	public String checkParticulars() throws Exception {
-		if (null != particulars && particulars.getId() != null && particulars.getId() > 0) {
-			particulars = particularsService.getParticularsById(particulars.getId());
+		if (null != particulars && particulars.getId() != null
+				&& particulars.getId() > 0) {
+			particulars = particularsService.getParticularsById(particulars
+					.getId());
 		}
 		return "checkParticulars";
 	}
 
 	/**
 	 * 保存帐户明细
+	 * 
 	 * @throws Exception
 	 */
 	public String saveParticulars() throws Exception {
 		particularsService.updateParticulars(particulars);
-		logService.saveLog(particulars, Struts2Util.getManageSession() + " 修改了帐户明细！", Log.INFO);
+		logService.saveLog(particulars, Struts2Util.getManageSession()
+				+ " 修改了帐户明细！", Log.INFO);
 		return "successUpdate";
 	}
 

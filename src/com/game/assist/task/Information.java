@@ -24,7 +24,8 @@ public class Information implements Serializable {
 	 * Method Information 构造方法 param type 信息类型，可以是ENTER、EXIT、MESSAGE三种类型 param
 	 * source 信息来源 param cotent 信息内容，必须是被序列化了的对象
 	 */
-	public Information(int type, String source, Object content, String username, boolean assign, Object obj) {
+	public Information(int type, String source, Object content,
+			String username, boolean assign, Object obj) {
 		this.type = type;
 		this.source = source;
 		this.content = content;

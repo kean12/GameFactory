@@ -15,10 +15,9 @@ public class AuthorityInterceptor extends AbstractInterceptor {
 		} else {
 			String url;
 			if (Validator.isBlank(Struts2Util.getQueryString()))
-				url =Struts2Util.getRequestURL();
+				url = Struts2Util.getRequestURL();
 			else
-				url = Struts2Util.getRequestURL()
-						+ "?"
+				url = Struts2Util.getRequestURL() + "?"
 						+ Struts2Util.getQueryString();
 			Struts2Util.setSession("url", url);
 			return "login";

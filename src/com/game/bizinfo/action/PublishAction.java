@@ -59,7 +59,7 @@ public class PublishAction extends BaseAction {
 	private List<String> uploadContentType;
 	private List<String> uploadFileName;
 	private String allowTypes;
-	
+
 	private List<File> file;
 	private List<String> fileContentType;
 	private List<String> fileFileName;
@@ -77,7 +77,7 @@ public class PublishAction extends BaseAction {
 	private List<Profession> professionList;
 	private List<Details> detailsList;
 	private List<String> tradeType;
-	
+
 	/**
 	 * 商家—-发布商品——类别
 	 */
@@ -85,8 +85,10 @@ public class PublishAction extends BaseAction {
 		if (gameName != null && !gameName.equals("")) {
 			gameList = gameService.findGameByName(gameName, 1);
 		}
-		
-		tradeType = Arrays.asList(ConfigUtil.getInstance(Constant.SYS_CONFIG_PATH).getKeyValue("trade_Type").split(","));
+
+		tradeType = Arrays.asList(ConfigUtil
+				.getInstance(Constant.SYS_CONFIG_PATH)
+				.getKeyValue("trade_Type").split(","));
 		return "publish";
 	}
 
@@ -94,7 +96,8 @@ public class PublishAction extends BaseAction {
 	 * 商家—-发布商品--数据
 	 */
 	public String publishData() throws Exception {
-		if (bizKindID == null || typeID == null || gameID == null && serverID == null) {
+		if (bizKindID == null || typeID == null || gameID == null
+				&& serverID == null) {
 			return "error";
 		}
 
@@ -104,19 +107,24 @@ public class PublishAction extends BaseAction {
 
 		if (serverID != null) {
 			server = serverService.getEntity(Server.class, serverID);
-			gameKind = gameKindService.getGameKind(bizKindID, server.getArea().getGame().getId());
+			gameKind = gameKindService.getGameKind(bizKindID, server.getArea()
+					.getGame().getId());
 		} else {
 			game = gameService.getEntity(Game.class, gameID);
 			gameKind = gameKindService.getGameKind(bizKindID, game.getId());
 		}
 		if (gameKind.getTradeType() != null && gameKind.getTradeType() == 1) {
-			details = detailsService.findDetailsByAccountGroup(gameKind.getId(), 1);
+			details = detailsService.findDetailsByAccountGroup(
+					gameKind.getId(), 1);
 			return "publishAccountData";// 账号交易
-		} else if (gameKind.getTradeType() != null && gameKind.getTradeType() == 2) {
+		} else if (gameKind.getTradeType() != null
+				&& gameKind.getTradeType() == 2) {
 			if (Struts2Util.getSession("customInfo") != null) {
-				customInfo = (CustomInfo) Struts2Util.getSession().get("customInfo");
+				customInfo = (CustomInfo) Struts2Util.getSession().get(
+						"customInfo");
 			}
-			detailsList = detailsService.findDetailsByAttributeGroup(gameKind.getId(), 2);
+			detailsList = detailsService.findDetailsByAttributeGroup(
+					gameKind.getId(), 2);
 			return "publishDefinitionData";// 自定义属性
 		} else {
 			return "publishDefaultData";// 默认
@@ -127,12 +135,14 @@ public class PublishAction extends BaseAction {
 	 * 商家—-发布商品--数据--自定义属性方式
 	 */
 	public String publishDefinitionDataSave() throws Exception {
-		if (gameKindID == null || typeID == null || gameID == null && serverID == null || bizInfo == null) {
+		if (gameKindID == null || typeID == null || gameID == null
+				&& serverID == null || bizInfo == null) {
 			return ERROR;
 		}
 		gameKind = gameKindService.getEntity(GameKind.class, gameKindID);
 		bizKindID = gameKind.getBizKind().getId();
-		if (!VerifyPublishCustom.verify(bizInfo, customInfo, file, fileFileName)) {
+		if (!VerifyPublishCustom
+				.verify(bizInfo, customInfo, file, fileFileName)) {
 			flag = "false";
 			return ERROR;
 		}
@@ -150,26 +160,28 @@ public class PublishAction extends BaseAction {
 			bizInfo.setGame(gameService.getEntity(Game.class, gameID));
 			bizInfo.setServer(null);
 		}
-		
-		if(ConfigUtil.getInstance(Constant.SYS_CONFIG_PATH).getKeyValue("trade_Type").indexOf(String.valueOf(typeID)) != -1){
+
+		if (ConfigUtil.getInstance(Constant.SYS_CONFIG_PATH)
+				.getKeyValue("trade_Type").indexOf(String.valueOf(typeID)) != -1) {
 			bizInfo.setBuyType(typeID);// '交易类型（1.寄售、2.担保）'
-		}else{
+		} else {
 			throw new Exception("不存在此交易类型");
 		}
-		
-		
+
 		bizInfo.setOwner(user);// '发布者（用户）'
 		bizInfo.setIsBuy(1);// '是否上架(1、上架 0、下架)'
-		
+
 		bizInfo.setBizCreTime(DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM));// '添加时间'
 		bizInfo.setAmount("1");// 每件宝贝数量
 		bizInfo.setProportion(bizInfo.getPrice());// '比例'
 		bizInfo.setUnit(gameKind.getUnit());// '单位（金、万金）'
 		bizInfo.setStartSellTime(bizInfo.getBizCreTime());// '开始销售时间'
-		bizInfo.setEndSellTime(DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM, DateUtil.Ds(7)));// '结束销售时间'
+		bizInfo.setEndSellTime(DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM,
+				DateUtil.Ds(7)));// '结束销售时间'
 		bizInfo.setTradeStart("00:00");// 方便交易时间
 		bizInfo.setTradeEnd("23:59");
-		detailsList = detailsService.findDetailsByAttributeGroup(gameKind.getId(), 2);// '上架描述信息'
+		detailsList = detailsService.findDetailsByAttributeGroup(
+				gameKind.getId(), 2);// '上架描述信息'
 		Map<String, String> map = customInfo.getMap();
 		String info = "<dl class=\"zhmm_spxx\">";
 		for (Details dts : detailsList) {
@@ -178,9 +190,13 @@ public class PublishAction extends BaseAction {
 				for (Details dt : dts.getChild()) {
 					if (dt.getIsUser() == 1) {
 						if (map.get(dt.getAttributeName()) == null) {
-							info += "<dd><em class=\"mintxt\">" + dt.getAttributeName() + ":</em>&nbsp;</dd>";
+							info += "<dd><em class=\"mintxt\">"
+									+ dt.getAttributeName()
+									+ ":</em>&nbsp;</dd>";
 						} else {
-							info += "<dd><em class=\"mintxt\">" + dt.getAttributeName() + ":</em>" + map.get(dt.getAttributeName()) + "</dd>";
+							info += "<dd><em class=\"mintxt\">"
+									+ dt.getAttributeName() + ":</em>"
+									+ map.get(dt.getAttributeName()) + "</dd>";
 						}
 					}
 				}
@@ -190,9 +206,12 @@ public class PublishAction extends BaseAction {
 		bizInfo.setInfo(info);
 		// 图片信息集 文件上传
 		Set<Picture> pictureSet = null;
-		
-		Help.chkImage(customInfo.getFile(), customInfo.getFileFileName(), Constant.IMAGE_SIZE);//图片验证
-		List<String> fileNameList = Help.uploadImageToUserPath(customInfo.getFile(), customInfo.getFileFileName(), user.getUsername() + "/bizInfo");
+
+		Help.chkImage(customInfo.getFile(), customInfo.getFileFileName(),
+				Constant.IMAGE_SIZE);// 图片验证
+		List<String> fileNameList = Help.uploadImageToUserPath(
+				customInfo.getFile(), customInfo.getFileFileName(),
+				user.getUsername() + "/bizInfo");
 		Picture picture = null;
 		if (!Validator.isEmpty(fileNameList)) {
 			pictureSet = new HashSet<Picture>();
@@ -207,12 +226,14 @@ public class PublishAction extends BaseAction {
 		// 密码加密
 		bizInfo.setPassword(CryptTool.base64Encode(bizInfo.getPassword()));
 		if (Validator.isBlank(bizInfo.getCoded_lock())) {
-			bizInfo.setCoded_lock(CryptTool.base64Encode(bizInfo.getCoded_lock()));
+			bizInfo.setCoded_lock(CryptTool.base64Encode(bizInfo
+					.getCoded_lock()));
 		}
 
 		// 密保卡上传
-		Help.chkImage(file, fileFileName, Constant.IMAGE_SIZE);//图片验证
-		List<String> pwdFileNameList = Help.uploadImageToUserPath(file, fileFileName, user.getUsername() + "/bizInfo/secure");
+		Help.chkImage(file, fileFileName, Constant.IMAGE_SIZE);// 图片验证
+		List<String> pwdFileNameList = Help.uploadImageToUserPath(file,
+				fileFileName, user.getUsername() + "/bizInfo/secure");
 		if (!Validator.isEmpty(pwdFileNameList)) {
 			bizInfo.setPwdSrc(pwdFileNameList.get(0));
 		} else {
@@ -231,15 +252,19 @@ public class PublishAction extends BaseAction {
 		if (flag.equals("true")) {
 			Struts2Util.removeSession("attributeInfo");
 		}
-		if (gameKindID == null || typeID == null || gameID == null && serverID == null) {
+		if (gameKindID == null || typeID == null || gameID == null
+				&& serverID == null) {
 			flag = "false";
 			return ERROR;
 		}
 		gameKind = gameKindService.getEntity(GameKind.class, gameKindID);
 		bizKindID = gameKind.getBizKind().getId();
-		Iterator<Details> it = detailsService.getEntity(Details.class, parentID).getChild().iterator();
+		Iterator<Details> it = detailsService
+				.getEntity(Details.class, parentID).getChild().iterator();
 
-		if (Struts2Util.getSession("accountInfo") == null || Struts2Util.getSession("attributeInfo") == null) {// 账号资料是否为空 空的话需要验证
+		if (Struts2Util.getSession("accountInfo") == null
+				|| Struts2Util.getSession("attributeInfo") == null) {// 账号资料是否为空
+																		// 空的话需要验证
 			if (!VerifyPublishAccount.verify(accountInfo, it)) {
 				flag = "false";
 				return ERROR;
@@ -247,12 +272,15 @@ public class PublishAction extends BaseAction {
 		}
 
 		if (gameID == null && serverID != null) {
-			gameID = serverService.getEntity(Server.class, serverID).getArea().getGame().getId();
+			gameID = serverService.getEntity(Server.class, serverID).getArea()
+					.getGame().getId();
 		}
 		professionList = professionService.findProfessionByGame(gameID, 1);
-		detailsList = detailsService.findDetailsByAttributeGroup(gameKind.getId(), 2);
+		detailsList = detailsService.findDetailsByAttributeGroup(
+				gameKind.getId(), 2);
 		if (Struts2Util.getSession("attributeInfo") != null) {
-			attributeInfo = (AttributeInfo) Struts2Util.getSession("attributeInfo");
+			attributeInfo = (AttributeInfo) Struts2Util
+					.getSession("attributeInfo");
 		}
 		return "publishAccountSecondPage";
 	}
@@ -261,7 +289,8 @@ public class PublishAction extends BaseAction {
 	 * 商家—-发布商品--数据--保存（账号方式）
 	 */
 	public String publishAccountDataSave() throws Exception {
-		if (gameKindID == null || typeID == null || gameID == null && serverID == null) {
+		if (gameKindID == null || typeID == null || gameID == null
+				&& serverID == null) {
 			flag = "false";
 			return ERROR;
 		}
@@ -284,9 +313,10 @@ public class PublishAction extends BaseAction {
 			bizInfo.setGame(gameService.getEntity(Game.class, gameID));
 			bizInfo.setServer(null);
 		}
-		if(ConfigUtil.getInstance(Constant.SYS_CONFIG_PATH).getKeyValue("trade_Type").indexOf(String.valueOf(typeID)) != -1){
+		if (ConfigUtil.getInstance(Constant.SYS_CONFIG_PATH)
+				.getKeyValue("trade_Type").indexOf(String.valueOf(typeID)) != -1) {
 			bizInfo.setBuyType(typeID);// '交易类型（1.寄售、2.担保）'
-		}else{
+		} else {
 			throw new Exception("不存在此交易类型");
 		}
 		bizInfo.setStock("1");// '库存量'
@@ -300,19 +330,22 @@ public class PublishAction extends BaseAction {
 		bizInfo.setSellModel(3);// 交易方式（1.游戏中当面 2.邮寄 3,账号交易 4,自定义属性交易）
 		bizInfo.setSite("账号交易");// 交易地点
 		bizInfo.setStartSellTime(bizInfo.getBizCreTime());// '开始销售时间'
-		bizInfo.setEndSellTime(DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM, DateUtil.Ds(7)));// '结束销售时间'
+		bizInfo.setEndSellTime(DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM,
+				DateUtil.Ds(7)));// '结束销售时间'
 		bizInfo.setTradeStart("00:00");// 方便交易时间
 		bizInfo.setTradeEnd("23:59");
 		bizInfo.setQq(attributeInfo.getQq());// 联系QQ
 		bizInfo.setPhoneNum(attributeInfo.getPhoneNum());// 联系电话
-		String title = "【" + attributeInfo.getProfessionName() + " " + attributeInfo.getSex() + " " + attributeInfo.getGrade() + "】";
+		String title = "【" + attributeInfo.getProfessionName() + " "
+				+ attributeInfo.getSex() + " " + attributeInfo.getGrade() + "】";
 		title += attributeInfo.getTitle2();
 		bizInfo.setTitle(title);// '标题'
 		accountInfo = (AccountInfo) Struts2Util.getSession("accountInfo");
 		bizInfo.setAccount(accountInfo.getAccount());// 账户
 		bizInfo.setAccountInfo(accountInfo.getContent());// 其他账号信息
 		bizInfo.setPassword(CryptTool.base64Encode(accountInfo.getPassword()));// 密码
-		detailsList = detailsService.findDetailsByAttributeGroup(gameKind.getId(), 2);// '上架描述信息'
+		detailsList = detailsService.findDetailsByAttributeGroup(
+				gameKind.getId(), 2);// '上架描述信息'
 		Map<String, String> map = attributeInfo.getMap();
 		String info = "<dl class=\"zhmm_spxx\">";
 		for (Details dts : detailsList) {
@@ -321,9 +354,13 @@ public class PublishAction extends BaseAction {
 				for (Details dt : dts.getChild()) {
 					if (dt.getIsUser() == 1) {
 						if (map.get(dt.getAttributeName()) == null) {
-							info += "<dd><em class=\"mintxt\">" + dt.getAttributeName() + ":</em>&nbsp;</dd>";
+							info += "<dd><em class=\"mintxt\">"
+									+ dt.getAttributeName()
+									+ ":</em>&nbsp;</dd>";
 						} else {
-							info += "<dd><em class=\"mintxt\">" + dt.getAttributeName() + ":</em>" + map.get(dt.getAttributeName()) + "</dd>";
+							info += "<dd><em class=\"mintxt\">"
+									+ dt.getAttributeName() + ":</em>"
+									+ map.get(dt.getAttributeName()) + "</dd>";
 						}
 					}
 				}
@@ -333,8 +370,11 @@ public class PublishAction extends BaseAction {
 		bizInfo.setInfo(info);
 		// 图片信息集 文件上传
 		Set<Picture> pictureSet = null;
-		Help.chkImage(attributeInfo.getFile(), attributeInfo.getFileFileName(), Constant.IMAGE_SIZE);//图片验证
-		List<String> fileNameList = Help.uploadImageToUserPath(attributeInfo.getFile(), attributeInfo.getFileFileName(), user.getUsername() + "/bizInfo");
+		Help.chkImage(attributeInfo.getFile(), attributeInfo.getFileFileName(),
+				Constant.IMAGE_SIZE);// 图片验证
+		List<String> fileNameList = Help.uploadImageToUserPath(
+				attributeInfo.getFile(), attributeInfo.getFileFileName(),
+				user.getUsername() + "/bizInfo");
 		Picture picture = null;
 		if (!Validator.isEmpty(fileNameList)) {
 			pictureSet = new HashSet<Picture>();
@@ -350,7 +390,9 @@ public class PublishAction extends BaseAction {
 		// 身份证上传--将已经上传的文件从临时目录中移出来
 		Set<Identity> identitySet = null;
 		Identity identity = null;
-		fileNameList = Help.moveFile(accountInfo.getFileFileName(), "/" + user.getUsername() + "/bizInfo/identity/temp/", "/" + user.getUsername() + "/bizInfo/identity/");
+		fileNameList = Help.moveFile(accountInfo.getFileFileName(),
+				"/" + user.getUsername() + "/bizInfo/identity/temp/", "/"
+						+ user.getUsername() + "/bizInfo/identity/");
 		if (!Validator.isEmpty(fileNameList)) {
 			identitySet = new HashSet<Identity>();
 			for (String str : fileNameList) {
@@ -371,7 +413,8 @@ public class PublishAction extends BaseAction {
 	 * 商家—-发布商品--数据--保存（默认方式）
 	 */
 	public String publishDefaultDataSave() throws Exception {
-		if (gameKindID == null || typeID == null || gameID == null && serverID == null) {
+		if (gameKindID == null || typeID == null || gameID == null
+				&& serverID == null) {
 			flag = "false";
 			return ERROR;
 		}
@@ -391,11 +434,13 @@ public class PublishAction extends BaseAction {
 		clearBizInfoSession();// 清空Session
 		// 文件上传
 		User user = Struts2Util.getUserSession();
-		Help.chkImage(upload, uploadFileName, Constant.IMAGE_SIZE);//图片验证
-		List<String> fileNameList = Help.uploadImageToUserPath(upload, uploadFileName, user.getUsername() + "/bizInfo");
+		Help.chkImage(upload, uploadFileName, Constant.IMAGE_SIZE);// 图片验证
+		List<String> fileNameList = Help.uploadImageToUserPath(upload,
+				uploadFileName, user.getUsername() + "/bizInfo");
 		// 密保卡上传
-		Help.chkImage(file, fileFileName, Constant.IMAGE_SIZE);//图片验证
-		List<String> pwdFileNameList = Help.uploadImageToUserPath(file, fileFileName, user.getUsername() + "/bizInfo/secure");
+		Help.chkImage(file, fileFileName, Constant.IMAGE_SIZE);// 图片验证
+		List<String> pwdFileNameList = Help.uploadImageToUserPath(file,
+				fileFileName, user.getUsername() + "/bizInfo/secure");
 		Random rd = new java.util.Random(System.currentTimeMillis());
 		long num = rd.nextLong();
 		num = Math.abs(num);
@@ -403,16 +448,19 @@ public class PublishAction extends BaseAction {
 		// 将编辑器中的临时图片移到正式文件目录下
 		bizInfo.setInfo(Help.moveKindEditorImage(bizInfo.getInfo(), "bizInfo"));
 		bizInfo.setBizCreTime(DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM));
-		if(ConfigUtil.getInstance(Constant.SYS_CONFIG_PATH).getKeyValue("trade_Type").indexOf(String.valueOf(typeID)) != -1){
+		if (ConfigUtil.getInstance(Constant.SYS_CONFIG_PATH)
+				.getKeyValue("trade_Type").indexOf(String.valueOf(typeID)) != -1) {
 			bizInfo.setBuyType(typeID);// '交易类型（1.寄售、2.担保）'
-		}else{
+		} else {
 			throw new Exception("不存在此交易类型");
 		}
 		bizInfo.setStartSellTime(bizInfo.getBizCreTime());
-		bizInfo.setEndSellTime(DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM, DateUtil.Ds(bizInfo.getTerm_of_validity())));
+		bizInfo.setEndSellTime(DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM,
+				DateUtil.Ds(bizInfo.getTerm_of_validity())));
 		bizInfo.setIsBuy(1);
 		bizInfo.setOwner(user);
-		bizInfo.setPrice(new BigDecimal(bizInfo.getPrice()).setScale(2, BigDecimal.ROUND_DOWN).toString());
+		bizInfo.setPrice(new BigDecimal(bizInfo.getPrice()).setScale(2,
+				BigDecimal.ROUND_DOWN).toString());
 		double amount = Double.parseDouble(bizInfo.getAmount());
 		double unit_price = Double.parseDouble(bizInfo.getPrice());
 		double proportion = Arith.div(unit_price, amount);
@@ -464,7 +512,7 @@ public class PublishAction extends BaseAction {
 		Struts2Util.getSession().remove("attributeInfo");
 		Struts2Util.getSession().remove("customInfo");
 	}
-	
+
 	// *************上传图片**************
 	public String getAllowTypes() {
 		return allowTypes;
@@ -522,6 +570,7 @@ public class PublishAction extends BaseAction {
 	public void setFileFileName(List<String> fileFileName) {
 		this.fileFileName = fileFileName;
 	}
+
 	// end
 	// ****************************
 
@@ -748,6 +797,5 @@ public class PublishAction extends BaseAction {
 	public void setTradeType(List<String> tradeType) {
 		this.tradeType = tradeType;
 	}
-	
-	
+
 }

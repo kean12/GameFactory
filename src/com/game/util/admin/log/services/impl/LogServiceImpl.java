@@ -11,8 +11,10 @@ import com.game.util.web.Constant;
 import com.game.util.web.DateUtil;
 import com.game.util.web.Page;
 
-public class LogServiceImpl extends GenericServiceImpl<Log, Long> implements LogService {
-	public Page<Log> getAllManage(int size, int goPage, Log filterLog) throws Exception {
+public class LogServiceImpl extends GenericServiceImpl<Log, Long> implements
+		LogService {
+	public Page<Log> getAllManage(int size, int goPage, Log filterLog)
+			throws Exception {
 		String hql = "from Log l where 1=1 ";
 		if (filterLog != null) {
 			if (filterLog.getType() > 0) {
@@ -31,11 +33,13 @@ public class LogServiceImpl extends GenericServiceImpl<Log, Long> implements Log
 		baseDAO.executeSQL("delete from SYS_LOG where id=" + id);
 	}
 
-	public void saveLog(Domain domain, String remark, int type) throws Exception {
+	public void saveLog(Domain domain, String remark, int type)
+			throws Exception {
 		Log log = new Log();
 		log.setRemark(remark);
 		log.setType(type);
-		log.setContent(ToStringBuilder.reflectionToString(domain, ToStringStyle.DEFAULT_STYLE));
+		log.setContent(ToStringBuilder.reflectionToString(domain,
+				ToStringStyle.DEFAULT_STYLE));
 		log.setRecordTime(DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM_SS));
 		super.createEntity(log);
 	}
@@ -44,7 +48,8 @@ public class LogServiceImpl extends GenericServiceImpl<Log, Long> implements Log
 		saveLog(domain, null, type);
 	}
 
-	public void saveLog(String content, String remark, int type) throws Exception {
+	public void saveLog(String content, String remark, int type)
+			throws Exception {
 		Log log = new Log();
 		log.setRemark(remark);
 		log.setType(type);

@@ -6,7 +6,8 @@ import com.game.order.services.ShipmentsService;
 import com.game.util.base.dao.impl.GenericServiceImpl;
 import com.game.util.domain.Shipments;
 
-public class ShipmentsServiceImpl extends GenericServiceImpl<Shipments, Long> implements ShipmentsService {
+public class ShipmentsServiceImpl extends GenericServiceImpl<Shipments, Long>
+		implements ShipmentsService {
 	public Shipments createShipments(Shipments shipments) throws Exception {
 		return baseDAO.saveEntity(shipments);
 	}
@@ -16,7 +17,8 @@ public class ShipmentsServiceImpl extends GenericServiceImpl<Shipments, Long> im
 	}
 
 	public List<Shipments> getShipments(Long orderId) throws Exception {
-		return baseDAO.findEntity("from Shipments a where a.order.id=? order by a.time", orderId);
+		return baseDAO.findEntity(
+				"from Shipments a where a.order.id=? order by a.time", orderId);
 	}
 
 	public Shipments getShipmentsById(Long id) throws Exception {

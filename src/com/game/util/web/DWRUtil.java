@@ -13,20 +13,20 @@ public class DWRUtil {
 	public static User getUserSession() {
 		return (User) getSession(Constant.USER);
 	}
-	
+
 	public static void setUserSession(Object obj) {
 		setSession(Constant.USER, obj);
 	}
-	
+
 	public static HttpSession session() {
 		return WebContextFactory.get().getSession();
 	}
-	
+
 	public static Object getSession(String key) {
 		return session().getAttribute(key);
 	}
-	
-	public static void setSession(String key,Object value) {
+
+	public static void setSession(String key, Object value) {
 		session().setAttribute(key, value);
 	}
 

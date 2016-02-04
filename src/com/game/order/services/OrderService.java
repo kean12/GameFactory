@@ -10,9 +10,11 @@ public interface OrderService extends GenericService<Order, Long> {
 
 	/**
 	 * 获得分页数据
+	 * 
 	 * @param size
 	 * @param goPage
-	 * @param filterOrder 过滤对象
+	 * @param filterOrder
+	 *            过滤对象
 	 * @return Page
 	 * @throws Exception
 	 */
@@ -31,7 +33,8 @@ public interface OrderService extends GenericService<Order, Long> {
 	 */
 	public void updateOrder(String hql) throws Exception;
 
-	public Order getOrder(Long owner_id, Long consumer_id, Long order_id) throws Exception;
+	public Order getOrder(Long owner_id, Long consumer_id, Long order_id)
+			throws Exception;
 
 	public Order getOrder(String orderNum, Long consumer_id) throws Exception;
 
@@ -53,7 +56,8 @@ public interface OrderService extends GenericService<Order, Long> {
 	 * @param goPage
 	 *            第几页
 	 */
-	public Page<Order> searchOrder(Long userID, Integer state, Integer type, int size, int goPage) throws Exception;
+	public Page<Order> searchOrder(Long userID, Integer state, Integer type,
+			int size, int goPage) throws Exception;
 
 	public List<Order> findOrderByCount(int state, int count) throws Exception;
 

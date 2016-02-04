@@ -16,9 +16,12 @@ public class LoginServer extends BaseAction {
 	public void clientLogin() {
 		try {
 			// 来自客户端的信息
-			ManageModel manageModel = (ManageModel) TunnelServerUtil.get(Struts2Util.getRequest());
+			ManageModel manageModel = (ManageModel) TunnelServerUtil
+					.get(Struts2Util.getRequest());
 
-			Manage manage = manageService.findManageByClientLogin(manageModel.getUsername(), MD5.toMD5(manageModel.getPassword()));
+			Manage manage = manageService.findManageByClientLogin(
+					manageModel.getUsername(),
+					MD5.toMD5(manageModel.getPassword()));
 			manageModel = new ManageModel(manage.getName());// 将真实姓名放入对象
 			TunnelServerUtil.set(manageModel, Struts2Util.getResponse());// 将处理结果返回到客户端
 		} catch (Exception e) {

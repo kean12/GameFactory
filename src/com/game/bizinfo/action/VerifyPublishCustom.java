@@ -11,7 +11,8 @@ import com.game.util.web.Struts2Util;
 import com.game.util.web.Validator;
 
 public class VerifyPublishCustom {
-	public static boolean verify(BizInfo bizInfo, CustomInfo customInfo, List<File> file, List<String> fileFileName) {
+	public static boolean verify(BizInfo bizInfo, CustomInfo customInfo,
+			List<File> file, List<String> fileFileName) {
 		boolean flag = true;
 		Map<String, String> map = new HashMap<String, String>();// 表单值
 		Map<String, Boolean> error = new HashMap<String, Boolean>();// 错误信息
@@ -34,7 +35,8 @@ public class VerifyPublishCustom {
 			error.put("price", false);
 		} else {
 			try {
-				double price = Arith.round(Double.parseDouble(bizInfo.getPrice()), 2);
+				double price = Arith.round(
+						Double.parseDouble(bizInfo.getPrice()), 2);
 				if (price >= 0) {
 					bizInfo.setPrice("" + price);
 					error.put("price", true);
@@ -171,7 +173,8 @@ public class VerifyPublishCustom {
 			for (int i = 0; i < arr.length; i++) {
 				str = arr[i].split("::");
 				try {
-					if (!Validator.isBlank(str[0]) && !Validator.isBlank(str[1].trim())) {
+					if (!Validator.isBlank(str[0])
+							&& !Validator.isBlank(str[1].trim())) {
 						map.put(str[0], str[1]);
 					}
 				} catch (Exception e) {

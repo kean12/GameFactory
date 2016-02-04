@@ -90,7 +90,8 @@ public class Server extends JFrame implements ActionListener {
 			server.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			server.setVisible(true);
 		} else {
-			int port = (Integer) portField.getValue(), mostConnect = (Integer) sizeField.getValue();
+			int port = (Integer) portField.getValue(), mostConnect = (Integer) sizeField
+					.getValue();
 			model.setMostConnect(mostConnect);
 			try {
 				model.startOn(port);
@@ -128,7 +129,9 @@ public class Server extends JFrame implements ActionListener {
 		logArea.setBackground(Color.black);
 		logArea.setForeground(Color.red);
 		logArea.setPreferredSize(new Dimension(600, 400));
-		return new JScrollPane(logArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		return new JScrollPane(logArea,
+				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 	}
 
 	/**
@@ -195,7 +198,8 @@ public class Server extends JFrame implements ActionListener {
 		final JTextField textField = new JTextField();
 		textField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Information info = new Information(Information.MESSAGE, Setting.SERVER, textField.getText());
+				Information info = new Information(Information.MESSAGE,
+						Setting.SERVER, textField.getText());
 				model.sendMessage(info);
 				textField.setText("");
 			}
@@ -213,12 +217,15 @@ public class Server extends JFrame implements ActionListener {
 	}
 
 	public void orderMessage(String str) {
-		Information info = new Information(Information.MESSAGE, Setting.SERVER, str);
+		Information info = new Information(Information.MESSAGE, Setting.SERVER,
+				str);
 		model.sendMessage(info);
 	}
 
-	public void orderMessage(String str, String username, boolean assign, Object obj) {
-		Information info = new Information(Information.MESSAGE, Setting.SERVER, str, username, assign, obj);
+	public void orderMessage(String str, String username, boolean assign,
+			Object obj) {
+		Information info = new Information(Information.MESSAGE, Setting.SERVER,
+				str, username, assign, obj);
 		model.sendMessage(info);
 	}
 
@@ -248,7 +255,8 @@ public class Server extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO: 在这添加你的代码
 		if (e.getSource() == startButton) {
-			int port = (Integer) portField.getValue(), mostConnect = (Integer) sizeField.getValue();
+			int port = (Integer) portField.getValue(), mostConnect = (Integer) sizeField
+					.getValue();
 			model.setMostConnect(mostConnect);
 			try {
 				model.startOn(port);
@@ -262,7 +270,8 @@ public class Server extends JFrame implements ActionListener {
 			}
 		} else if (e.getSource() == closeButton) {
 			if (model.getConnectNumber() != 0) {
-				JOptionPane.showMessageDialog(Server.this, "有用户正连接在服务器上，请先关闭用户连接！");
+				JOptionPane.showMessageDialog(Server.this,
+						"有用户正连接在服务器上，请先关闭用户连接！");
 				tabbedPane.setSelectedIndex(2);
 			} else {
 				try {
@@ -301,7 +310,8 @@ public class Server extends JFrame implements ActionListener {
 
 	private void exit() {
 		if (model.isRunning()) {
-			int option = JOptionPane.showConfirmDialog(this, "服务器正在运行中，您确定退出吗？", "请选择", JOptionPane.YES_NO_OPTION);
+			int option = JOptionPane.showConfirmDialog(this,
+					"服务器正在运行中，您确定退出吗？", "请选择", JOptionPane.YES_NO_OPTION);
 			if (option != JOptionPane.YES_OPTION)
 				return;
 		}
@@ -317,7 +327,8 @@ public class Server extends JFrame implements ActionListener {
 		logger.addHandler(new TextPaneHandler(logArea));
 		// 配置文件记录日志
 		try {
-			Handler fileHandle = new FileHandler("server%g.log", 1000000, 2, true);
+			Handler fileHandle = new FileHandler("server%g.log", 1000000, 2,
+					true);
 			fileHandle.setFormatter(new InfoFormatter());
 			logger.addHandler(fileHandle);
 		} catch (IOException e) {
@@ -375,7 +386,9 @@ public class Server extends JFrame implements ActionListener {
 	 */
 	class InfoFormatter extends SimpleFormatter {
 		String newline = System.getProperty("line.separator");
-		java.text.DateFormat dateFormatter = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss ");
+		java.text.DateFormat dateFormatter = new java.text.SimpleDateFormat(
+				"yyyy-MM-dd HH:mm:ss ");
+
 		public String format(LogRecord record) {
 			if (record.getLevel() != Level.INFO) {
 				return super.format(record);
@@ -384,7 +397,8 @@ public class Server extends JFrame implements ActionListener {
 				String param = "";
 				if (params != null)
 					param = params[0].toString();
-				return dateFormatter.format(new Date()) + param + newline + "信息：" + record.getMessage() + newline;
+				return dateFormatter.format(new Date()) + param + newline
+						+ "信息：" + record.getMessage() + newline;
 			}
 		}
 	}

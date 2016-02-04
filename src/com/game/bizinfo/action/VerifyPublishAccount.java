@@ -11,7 +11,8 @@ import com.game.util.web.Struts2Util;
 import com.game.util.web.Validator;
 
 public class VerifyPublishAccount {
-	public static boolean verify(AccountInfo accountInfo, Iterator<Details> it) throws Exception {
+	public static boolean verify(AccountInfo accountInfo, Iterator<Details> it)
+			throws Exception {
 		boolean flag = true;
 		Map<String, String> map = new HashMap<String, String>();// 表单值
 		Map<String, Boolean> error = new HashMap<String, Boolean>();// 错误信息
@@ -63,23 +64,35 @@ public class VerifyPublishAccount {
 		}
 
 		// 身份证是否上传
-		Help.removeTempImage(Constant.USER_UPLOAD_PATH + "/" + (Struts2Util.getUserSession()).getUsername() + "/bizInfo/identity/temp");
+		Help.removeTempImage(Constant.USER_UPLOAD_PATH + "/"
+				+ (Struts2Util.getUserSession()).getUsername()
+				+ "/bizInfo/identity/temp");
 		if (accountInfo.getIdentityType() == 1) {// 1代
-			if (accountInfo.getFile() == null || accountInfo.getFile().size() != 1) {
+			if (accountInfo.getFile() == null
+					|| accountInfo.getFile().size() != 1) {
 				error.put("file", false);
 			} else {
 				error.put("file", true);
-				Help.chkImage(accountInfo.getFile(), accountInfo.getFileFileName(), Constant.IMAGE_SIZE);//图片验证
-				accountInfo.setFileFileName(Help.uploadImageToUserPath(accountInfo.getFile(), accountInfo.getFileFileName(), (Struts2Util.getUserSession()).getUsername() + "/bizInfo/identity/temp"));
+				Help.chkImage(accountInfo.getFile(),
+						accountInfo.getFileFileName(), Constant.IMAGE_SIZE);// 图片验证
+				accountInfo.setFileFileName(Help.uploadImageToUserPath(
+						accountInfo.getFile(), accountInfo.getFileFileName(),
+						(Struts2Util.getUserSession()).getUsername()
+								+ "/bizInfo/identity/temp"));
 				accountInfo.setFile(null);
 			}
 		} else if (accountInfo.getIdentityType() == 2) {// 2代
-			if (accountInfo.getFile() == null || accountInfo.getFile().size() != 2) {
+			if (accountInfo.getFile() == null
+					|| accountInfo.getFile().size() != 2) {
 				error.put("file", false);
 			} else {
 				error.put("file", true);
-				Help.chkImage(accountInfo.getFile(), accountInfo.getFileFileName(), Constant.IMAGE_SIZE);//图片验证
-				accountInfo.setFileFileName(Help.uploadImageToUserPath(accountInfo.getFile(), accountInfo.getFileFileName(), (Struts2Util.getUserSession()).getUsername() + "/bizInfo/identity/temp"));
+				Help.chkImage(accountInfo.getFile(),
+						accountInfo.getFileFileName(), Constant.IMAGE_SIZE);// 图片验证
+				accountInfo.setFileFileName(Help.uploadImageToUserPath(
+						accountInfo.getFile(), accountInfo.getFileFileName(),
+						(Struts2Util.getUserSession()).getUsername()
+								+ "/bizInfo/identity/temp"));
 				accountInfo.setFile(null);
 			}
 		} else {// 不上传
@@ -101,7 +114,8 @@ public class VerifyPublishAccount {
 			Details details = null;
 			while (it.hasNext()) {
 				details = it.next();
-				if (details.getParent().getIsUser() == 0 || details.getParent().getParent().getIsUser() == 0) {
+				if (details.getParent().getIsUser() == 0
+						|| details.getParent().getParent().getIsUser() == 0) {
 					break;
 				}
 				if (details.getIsUser() == 1) {
@@ -110,7 +124,8 @@ public class VerifyPublishAccount {
 						error.put(details.getAttributeName(), false);
 					} else {
 						error.put(details.getAttributeName(), true);
-						map.put(details.getAttributeName(), map.get(details.getAttributeName()).trim());
+						map.put(details.getAttributeName(),
+								map.get(details.getAttributeName()).trim());
 					}
 				}
 			}

@@ -6,7 +6,8 @@ import com.game.bizinfo.services.PictureService;
 import com.game.util.base.dao.impl.GenericServiceImpl;
 import com.game.util.domain.Picture;
 
-public class PictureServiceImpl extends GenericServiceImpl<Picture, Long> implements PictureService {
+public class PictureServiceImpl extends GenericServiceImpl<Picture, Long>
+		implements PictureService {
 
 	public void removePicture(List<Picture> list) throws Exception {
 		baseDAO.removeAllEntity(list);

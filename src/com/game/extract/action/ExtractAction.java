@@ -43,7 +43,8 @@ public class ExtractAction extends BaseAction {
 		} else {
 			this.bank = null;
 		}
-		page = extractService.searchExtract(user.getId(), bank, account, state, beginTime, endTime, 15, super.getGoPage());
+		page = extractService.searchExtract(user.getId(), bank, account, state,
+				beginTime, endTime, 15, super.getGoPage());
 		extractList = page.getResultlist();
 		return "listExtract";
 	}
@@ -95,10 +96,12 @@ public class ExtractAction extends BaseAction {
 		extract.setUser(user); // 提现用户
 		extractService.createEntity(extract);
 		user.getUserInfo().setMoney("" + leavings);
-		user.getUserInfo().setFreemoney("" + Arith.add("" + total, user.getUserInfo().getFreemoney()));
+		user.getUserInfo().setFreemoney(
+				"" + Arith.add("" + total, user.getUserInfo().getFreemoney()));
 		userService.updateUser(user);
 		Struts2Util.setUserSession(user);
-		String info = "用户：" + user.getUsername() + " 于" + extract.getTime() + " 提现申请 申请金额：" + money + " 手续费：" + charge;
+		String info = "用户：" + user.getUsername() + " 于" + extract.getTime()
+				+ " 提现申请 申请金额：" + money + " 手续费：" + charge;
 		log.info(info);
 		return "extractApplySubmit";
 	}

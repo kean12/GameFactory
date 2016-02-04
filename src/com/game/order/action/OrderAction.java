@@ -57,8 +57,10 @@ public class OrderAction extends BaseAction {
 
 	/**
 	 * @name 订单状态更改验证
-	 * @param user 登录用户
-	 * @param kind 1.商家 0.客户
+	 * @param user
+	 *            登录用户
+	 * @param kind
+	 *            1.商家 0.客户
 	 */
 	private void updateState() {
 		if (orderID == null || state == null || user == null)
@@ -76,23 +78,27 @@ public class OrderAction extends BaseAction {
 			int buyType = order.getBuyType();// 交易类型（1.寄售、2.担保）
 
 			switch (state) {
-			case 1:/** 1 已付款————不需要在此处理 */
+			case 1:
+				/** 1 已付款————不需要在此处理 */
 				break;
-			case 2:/** 2 已发货 */
+			case 2:
+				/** 2 已发货 */
 				if (order.getState() == 1 && kind == 1 && buyType != 1) {
 					flag = "shipments";
 					// order.setState(2);//发货需要跳转到发货页面 让商家上传凭证
 					// orderService.updateOrder(order);
 				}
 				break;
-			case 3:/** 3 交易关闭————只能由商家关闭 */
+			case 3:
+				/** 3 交易关闭————只能由商家关闭 */
 				if (kind == 1 && buyType != 1) {
 					// 需要将金额处理
 					order.setState(3);
 					orderService.updateEntity(order);
 				}
 				break;
-			case 4:/** 4 退款处理————只能由客户发起申请 */
+			case 4:
+				/** 4 退款处理————只能由客户发起申请 */
 				if (kind == 0) {
 					flag = "refundment";
 					// //发货需要跳转到发货页面 让商家上传凭证
@@ -101,47 +107,73 @@ public class OrderAction extends BaseAction {
 					// orderService.updateOrder(order);
 				}
 				break;
-			case 5:/** 5 退款完成————只能由商家处理 */
+			case 5:
+				/** 5 退款完成————只能由商家处理 */
 				if (order.getState() == 4 && kind == 1 && buyType != 1) {
 					String assureMoney = order.getAssureMoney();// 中间金额
 					User consumer = order.getConsumer();
 					String consumerMoney = consumer.getUserInfo().getMoney();
-					consumer.getUserInfo().setMoney("" + Arith.intercept(Arith.add(consumerMoney, assureMoney), 2));
+					consumer.getUserInfo().setMoney(
+							""
+									+ Arith.intercept(Arith.add(consumerMoney,
+											assureMoney), 2));
 					order.setState(5);
 					order.setAssureMoney("0.00");
 					orderService.updateEntity(order);
 					userService.updateUser(consumer);
-					MessageUtil.toMessage(4, order, DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM), order.getConsumer());// 发送站内信
+					MessageUtil.toMessage(4, order,
+							DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM),
+							order.getConsumer());// 发送站内信
 
-					String tol = "" + Arith.intercept(Arith.add(consumer.getUserInfo().getMoney(), consumer.getUserInfo().getFreemoney()), 2);
-					String synopsis = "订单编号：" + order.getOrderNum() + " " + order.getTitle() + " 退款";
-					Record.set(consumer, null, null, null, 4, assureMoney, null, tol, synopsis);
+					String tol = ""
+							+ Arith.intercept(Arith.add(consumer.getUserInfo()
+									.getMoney(), consumer.getUserInfo()
+									.getFreemoney()), 2);
+					String synopsis = "订单编号：" + order.getOrderNum() + " "
+							+ order.getTitle() + " 退款";
+					Record.set(consumer, null, null, null, 4, assureMoney,
+							null, tol, synopsis);
 				}
 				break;
-			case 6:/** 6 交易成功————必须是已发货的订单 且由买家执行 */
-				if ((order.getState() == 2 || order.getState() == 4 || order.getState() == 7) && kind == 0) {
+			case 6:
+				/** 6 交易成功————必须是已发货的订单 且由买家执行 */
+				if ((order.getState() == 2 || order.getState() == 4 || order
+						.getState() == 7) && kind == 0) {
 					User owner = order.getOwner();
 					String assureMoney = order.getAssureMoney();// 中间金额
-					owner.getUserInfo().setMoney(Arith.intercept(Arith.add(assureMoney, owner.getUserInfo().getMoney()), 2) + "");
+					owner.getUserInfo().setMoney(
+							Arith.intercept(Arith.add(assureMoney, owner
+									.getUserInfo().getMoney()), 2)
+									+ "");
 					order.setState(6);
 					order.setAssureMoney("0.00");
-					order.setSuccTime(DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM));
+					order.setSuccTime(DateUtil
+							.nowDate(Constant.YYYY_MM_DD_HH_MM));
 					userService.updateUser(owner);
 					orderService.updateEntity(order);
 
-					String tol = "" + Arith.intercept(Arith.add(owner.getUserInfo().getMoney(), owner.getUserInfo().getFreemoney()), 2);
-					String synopsis = "订单编号：" + order.getOrderNum() + " " + order.getTitle() + " 交易收款";
-					Record.set(owner, null, null, null, 2, assureMoney, null, tol, synopsis);
+					String tol = ""
+							+ Arith.intercept(Arith.add(owner.getUserInfo()
+									.getMoney(), owner.getUserInfo()
+									.getFreemoney()), 2);
+					String synopsis = "订单编号：" + order.getOrderNum() + " "
+							+ order.getTitle() + " 交易收款";
+					Record.set(owner, null, null, null, 2, assureMoney, null,
+							tol, synopsis);
 				}
 				break;
-			case 7:/** 7拒绝退款————必须是申请退款的订单 且由卖家执行 */
+			case 7:
+				/** 7拒绝退款————必须是申请退款的订单 且由卖家执行 */
 				if (order.getState() == 4 && kind == 1 && buyType != 1) {
 					order.setState(7);
 					orderService.updateEntity(order);
-					MessageUtil.toMessage(5, order, DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM), order.getConsumer());// 发送站内信
+					MessageUtil.toMessage(5, order,
+							DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM),
+							order.getConsumer());// 发送站内信
 				}
 				break;
-			default:/** 0 待付款————不需要在此处理 */
+			default:
+				/** 0 待付款————不需要在此处理 */
 				break;
 			}
 		} catch (Exception e) {
@@ -150,7 +182,8 @@ public class OrderAction extends BaseAction {
 	}
 
 	public void assessState(Order order) throws Exception {
-		List<Assess> assessList = assessService.findAssessByOrder(order.getId());
+		List<Assess> assessList = assessService
+				.findAssessByOrder(order.getId());
 		if (assessList.size() == 0) {
 			order.setIsAssess(1);// 双方都没有评价。
 		} else if (assessList.size() == 2) {
@@ -158,8 +191,10 @@ public class OrderAction extends BaseAction {
 		} else {
 			for (Assess as : assessList) {
 				user = Struts2Util.getUserSession();
-				User consumer = orderService.getEntity(Order.class, order.getId()).getConsumer(); // 取得买家信息
-				User owner = orderService.getEntity(Order.class, order.getId()).getOwner(); // 取得买家信息
+				User consumer = orderService.getEntity(Order.class,
+						order.getId()).getConsumer(); // 取得买家信息
+				User owner = orderService.getEntity(Order.class, order.getId())
+						.getOwner(); // 取得买家信息
 				if (user.getUsername().equals(consumer.getUsername())) {
 					if (as.getType() == 1) {
 						order.setIsAssess(3);// 我（买家）评了，对方（卖家）没有评。
@@ -190,7 +225,8 @@ public class OrderAction extends BaseAction {
 		}
 		user = userService.getUserById(user.getId());
 		Struts2Util.setUserSession(user);
-		page = orderService.searchOrder(user.getId(), type, 1, 15, super.getGoPage());
+		page = orderService.searchOrder(user.getId(), type, 1, 15,
+				super.getGoPage());
 		orderList = page.getResultlist();
 		for (Order o : orderList) {
 			assessState(o);
@@ -210,7 +246,8 @@ public class OrderAction extends BaseAction {
 			assessState(order);
 			return "refundment";
 		}
-		page = orderService.searchOrder(user.getId(), type, 0, 15, super.getGoPage());
+		page = orderService.searchOrder(user.getId(), type, 0, 15,
+				super.getGoPage());
 		orderList = page.getResultlist();
 		for (Order o : orderList) {
 			assessState(o);
@@ -227,7 +264,8 @@ public class OrderAction extends BaseAction {
 		}
 		user = Struts2Util.getUserSession();
 		order = orderService.getOrder(null, user.getId(), orderID);
-		if (order == null || order.getReason() != null && !order.getReason().equals("")) {
+		if (order == null || order.getReason() != null
+				&& !order.getReason().equals("")) {
 			throw new Exception("退款申请正在处理中，请耐心等待。");
 		}
 		if (order.getState() != 2) {
@@ -242,6 +280,7 @@ public class OrderAction extends BaseAction {
 
 	/**
 	 * 交易详情
+	 * 
 	 * @throws Exception
 	 */
 	public String transactionDetail() throws Exception {
@@ -258,9 +297,11 @@ public class OrderAction extends BaseAction {
 	 * 客户—-购买——填写订单
 	 */
 	public String buyNow() throws Exception {
-		OrderErrorInfo orderErrorInfo = (OrderErrorInfo) Struts2Util.getSession("errorMessage");
+		OrderErrorInfo orderErrorInfo = (OrderErrorInfo) Struts2Util
+				.getSession("errorMessage");
 		if (orderErrorInfo != null) {
-			Struts2Util.getRequest().setAttribute("errorMessage", orderErrorInfo);
+			Struts2Util.getRequest().setAttribute("errorMessage",
+					orderErrorInfo);
 			Struts2Util.removeSession("errorMessage");
 		}
 		bizInfo = bizInfoService.getEntity(BizInfo.class, bizInfoID);
@@ -274,13 +315,15 @@ public class OrderAction extends BaseAction {
 
 	public String buyNowSubmit() throws Exception {
 		bizInfo = bizInfoService.getEntity(BizInfo.class, bizInfoID);
-		if (bizInfo == null || bizInfo.getStock().equals("") || bizInfo.getStock().equals("0") || bizInfo.getIsBuy() == 0) {
+		if (bizInfo == null || bizInfo.getStock().equals("")
+				|| bizInfo.getStock().equals("0") || bizInfo.getIsBuy() == 0) {
 			throw new Exception("此宝贝已下架货不存在！");
 		}
 
 		String errorMess = VerifyOrder.verify(order, bizInfo);
 		if (errorMess != null) {
-			Struts2Util.setSession("errorMessage", new OrderErrorInfo(errorMess, order));
+			Struts2Util.setSession("errorMessage", new OrderErrorInfo(
+					errorMess, order));
 			return INPUT;
 		}
 		User consumer = Struts2Util.getUserSession();
@@ -329,7 +372,8 @@ public class OrderAction extends BaseAction {
 		MessageUtil.toMessage(1, order, order.getOrderTime(), consumer);// 发送站内信
 
 		// 存储用户收获角色名
-		UserRole userRole = userRoleService.getUserRole(consumer.getId(), order.getPlayerRole());
+		UserRole userRole = userRoleService.getUserRole(consumer.getId(),
+				order.getPlayerRole());
 		if (userRole == null) {
 			userRole = new UserRole();
 			userRole.setUser(consumer);
@@ -354,7 +398,8 @@ public class OrderAction extends BaseAction {
 		if (order == null) {
 			throw new Exception("你访问的页面不存在！");
 		}
-		if (Double.parseDouble(order.getSumPrice()) > Double.parseDouble(user.getUserInfo().getMoney())) {
+		if (Double.parseDouble(order.getSumPrice()) > Double.parseDouble(user
+				.getUserInfo().getMoney())) {
 			flag = "false";
 		} else {
 			flag = "true";
@@ -369,7 +414,10 @@ public class OrderAction extends BaseAction {
 	public String tradePaymentSubmit() throws Exception {
 		User user = Struts2Util.getUserSession();
 		user = userService.getUserById(user.getId());
-		if (applyPwd == null || user.getUserInfo().getApplyPwd() == null || !user.getUserInfo().getApplyPwd().equals(MD5.toMD5(applyPwd))) {
+		if (applyPwd == null
+				|| user.getUserInfo().getApplyPwd() == null
+				|| !user.getUserInfo().getApplyPwd()
+						.equals(MD5.toMD5(applyPwd))) {
 			throw new Exception("支付密码错误"); // ***********************更改为页面alert**************************
 		}
 		order = orderService.getOrder(null, user.getId(), orderID);
@@ -387,15 +435,23 @@ public class OrderAction extends BaseAction {
 				YeePay.setYeePayRequest(order, sumPrice - money, bank, 6);
 				return "yeepay";
 			} else {
-				user.getUserInfo().setMoney(Arith.intercept(Arith.sub(money, sumPrice), 2) + ""); // 更新账户可用金额
+				user.getUserInfo().setMoney(
+						Arith.intercept(Arith.sub(money, sumPrice), 2) + ""); // 更新账户可用金额
 				order.setAssureMoney(order.getSumPrice()); // 付款金额保存到中间金额
 				order.setState(1); // 这只订单状态为 已付款
 				userService.updateUser(user);
 				orderService.updateEntity(order);
-				MessageUtil.toMessage(2, order, DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM), order.getConsumer());// 发送站内信
-				String total = "" + Arith.intercept(Arith.add(user.getUserInfo().getMoney(), user.getUserInfo().getFreemoney()), 2);
-				String synopsis = "订单编号：" + order.getOrderNum() + " " + order.getTitle();
-				runningNum = Record.set(user, null, null, null, 1, null, "-" + sumPrice, total, synopsis);
+				MessageUtil.toMessage(2, order,
+						DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM),
+						order.getConsumer());// 发送站内信
+				String total = ""
+						+ Arith.intercept(
+								Arith.add(user.getUserInfo().getMoney(), user
+										.getUserInfo().getFreemoney()), 2);
+				String synopsis = "订单编号：" + order.getOrderNum() + " "
+						+ order.getTitle();
+				runningNum = Record.set(user, null, null, null, 1, null, "-"
+						+ sumPrice, total, synopsis);
 				if (order.getBuyType() == 1) {// 寄售交易分配给交易员
 					AssignUtil.to_assign(order);
 				}

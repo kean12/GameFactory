@@ -13,7 +13,8 @@ public class AjaxUser extends BaseAction {
 	}
 
 	/**
-	 * @param usernamen 需要检验的用户名
+	 * @param usernamen
+	 *            需要检验的用户名
 	 * @return 存在返回true 否则返回false
 	 */
 	public String checkname(String username) throws Exception {
@@ -29,7 +30,9 @@ public class AjaxUser extends BaseAction {
 
 	/**
 	 * 验证验证码
-	 * @param vercode 用户填写的 验证码
+	 * 
+	 * @param vercode
+	 *            用户填写的 验证码
 	 * @return true 正确，false 错误
 	 */
 	public boolean checkvercode(String vercode) {

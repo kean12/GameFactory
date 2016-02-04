@@ -201,7 +201,8 @@ public class ServerModel implements Runnable {
 				if (socket_queue_map.size() >= mostConnect) {
 					socket.close();
 				} else if (testName(socket)) {
-					logger.info(socket_name_map.get(socket) + socket.getRemoteSocketAddress() + "\t已连接...");
+					logger.info(socket_name_map.get(socket)
+							+ socket.getRemoteSocketAddress() + "\t已连接...");
 					sendNames(socket);
 					new Sender(socket, socket_queue_map.get(socket)).start();
 					new Receiver(socket, queue).start();
@@ -227,7 +228,8 @@ public class ServerModel implements Runnable {
 		boolean valid = Setting.isValidName(name) && !names.contains(name);
 		dos.writeBoolean(valid);
 		if (valid) {
-			Information info = new Information(Information.ENTER, name, socket.getRemoteSocketAddress());
+			Information info = new Information(Information.ENTER, name,
+					socket.getRemoteSocketAddress());
 			try {
 				queue.put(info);
 			} catch (InterruptedException e) {
@@ -276,7 +278,8 @@ public class ServerModel implements Runnable {
 	 * 
 	 */
 	private void sendNames(Socket socket) throws IOException {
-		ObjectOutputStream dos = new ObjectOutputStream(socket.getOutputStream());
+		ObjectOutputStream dos = new ObjectOutputStream(
+				socket.getOutputStream());
 		int size = socketList.size();
 		dos.writeInt(size);
 		for (int i = 0; i < size; i++) {
@@ -304,7 +307,10 @@ public class ServerModel implements Runnable {
 								if (info.content instanceof StyledDocument) {
 									StyledDocument doc = (StyledDocument) info.content;
 									try {
-										logger.log(Level.INFO, doc.getText(0, doc.getLength()), info.source);
+										logger.log(
+												Level.INFO,
+												doc.getText(0, doc.getLength()),
+												info.source);
 									} catch (BadLocationException be) {
 										logger.warning(be.getMessage());
 									}
@@ -312,7 +318,8 @@ public class ServerModel implements Runnable {
 							}
 						} else if (object instanceof Socket) {// 退出的socket
 							Socket socket = (Socket) object;
-							logger.info(socket.getRemoteSocketAddress() + "\t退出...");
+							logger.info(socket.getRemoteSocketAddress()
+									+ "\t退出...");
 							String name = socket_name_map.get(socket);
 							info = new Information(Information.EXIT, name, null);
 							removeUser(socket);
@@ -328,18 +335,22 @@ public class ServerModel implements Runnable {
 								info.assign = false;// 将值清空初始化
 								info.obj = null;
 							}
-							Iterator<Map.Entry<Socket, String>> it = socket_name_map.entrySet().iterator();
+							Iterator<Map.Entry<Socket, String>> it = socket_name_map
+									.entrySet().iterator();
 							while (it.hasNext()) {
 								Map.Entry<Socket, String> entry = it.next();
 								if (entry.getValue().equals(info.username)) {
-									socket_queue_map.get(entry.getKey()).put(info);
+									socket_queue_map.get(entry.getKey()).put(
+											info);
 								}
 							}
 						} else {
 							// 遍历每个Socket，info发送给socket
-							Iterator<Map.Entry<Socket, BlockingQueue>> i = socket_queue_map.entrySet().iterator();
+							Iterator<Map.Entry<Socket, BlockingQueue>> i = socket_queue_map
+									.entrySet().iterator();
 							while (i.hasNext()) {
-								Map.Entry<Socket, BlockingQueue> entry = i.next();
+								Map.Entry<Socket, BlockingQueue> entry = i
+										.next();
 								entry.getValue().put(info);
 							}
 						}

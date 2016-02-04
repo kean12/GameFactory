@@ -31,7 +31,8 @@ public class TunnelServerUtil {
 		// 来自客户端的信息
 		Object obj = null;
 		try {
-			ObjectInputStream in = new ObjectInputStream(request.getInputStream());
+			ObjectInputStream in = new ObjectInputStream(
+					request.getInputStream());
 			obj = in.readObject();
 			in.close();
 		} catch (Exception e) {
@@ -66,7 +67,8 @@ public class TunnelServerUtil {
 	 * 设置在线工具在线用户
 	 */
 	private static void setOnlineUser(Object msgOut) {
-		String strUrl = "http://" + ConfigUtil.getValue("address") + "/servlet/OnlineUserServer.shtml";
+		String strUrl = "http://" + ConfigUtil.getValue("address")
+				+ "/servlet/OnlineUserServer.shtml";
 		try {
 			// 准备URL连接
 			URL url = new URL(strUrl);
@@ -88,7 +90,8 @@ public class TunnelServerUtil {
 			// 输出消息到服务器
 			con.setRequestProperty("Content-type", "application/octet-stream");
 			con.setRequestProperty("Content-length", "" + buf.length);
-			DataOutputStream dataOut = new DataOutputStream(con.getOutputStream());
+			DataOutputStream dataOut = new DataOutputStream(
+					con.getOutputStream());
 
 			dataOut.write(buf);
 			dataOut.flush();

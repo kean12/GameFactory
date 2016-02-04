@@ -24,7 +24,7 @@ public class CreditAction extends BaseAction {
 	private Integer grade;
 	private Integer type;
 	private Integer isSeller;
-	
+
 	List<Runnable> runningThreads = null;
 
 	public String execute() throws Exception {
@@ -35,10 +35,11 @@ public class CreditAction extends BaseAction {
 			userID = user.getId();
 		}
 		creditCount = assessService.findCountByTime(userID);
-		
-		page = assessService.findAssess(userID, type, grade, isSeller, 5, super.getGoPage());
+
+		page = assessService.findAssess(userID, type, grade, isSeller, 5,
+				super.getGoPage());
 		sellerAssess = page.getResultlist();
-		
+
 		return SUCCESS;
 	}
 

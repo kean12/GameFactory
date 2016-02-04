@@ -38,7 +38,9 @@ public class LoginAction extends BaseAction {
 	 * 用户登陆
 	 */
 	public String carry() throws Exception {
-		if (Validator.isBlank(vercode) || user == null || Validator.isBlank(user.getUsername()) || Validator.isBlank(user.getPassword())) {
+		if (Validator.isBlank(vercode) || user == null
+				|| Validator.isBlank(user.getUsername())
+				|| Validator.isBlank(user.getPassword())) {
 			return INPUT;
 		}
 
@@ -112,11 +114,11 @@ public class LoginAction extends BaseAction {
 	 */
 	public String logout() throws Exception {
 		User tmp_user = Struts2Util.getUserSession();
-			if (tmp_user != null) {
-				Struts2Util.removeUserSession();
-				log.info("用户： " + tmp_user.getUsername() + " 退出系统");
-			}
-			removeErrorSession();
+		if (tmp_user != null) {
+			Struts2Util.removeUserSession();
+			log.info("用户： " + tmp_user.getUsername() + " 退出系统");
+		}
+		removeErrorSession();
 		return "logout";
 	}
 

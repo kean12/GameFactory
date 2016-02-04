@@ -17,12 +17,15 @@ public class MessageUtil {
 	private static AssignService assignService;
 
 	private static void getservice() {
-		if (messageService == null || assignService == null || postService == null) {
+		if (messageService == null || assignService == null
+				|| postService == null) {
 			if (messageService == null) {
-				messageService = (MessageService) SpringUtil.getBean("messageService");
+				messageService = (MessageService) SpringUtil
+						.getBean("messageService");
 			}
 			if (assignService == null) {
-				assignService = (AssignService) SpringUtil.getBean("assignService");
+				assignService = (AssignService) SpringUtil
+						.getBean("assignService");
 			}
 			if (postService == null) {
 				postService = (PostService) SpringUtil.getBean("postService");
@@ -31,9 +34,11 @@ public class MessageUtil {
 	}
 
 	/**
-	 * @param title 4.提现申请通过 5.提现申请拒绝
+	 * @param title
+	 *            4.提现申请通过 5.提现申请拒绝
 	 */
-	public static void toMessage(int title, Extract extract, String time, User user) throws Exception {
+	public static void toMessage(int title, Extract extract, String time,
+			User user) throws Exception {
 		getservice();// 获得服务
 		Message message = new Message();
 		message.setTime(time);
@@ -53,7 +58,8 @@ public class MessageUtil {
 	/**
 	 * 提现申请获得标题 4.提现申请通过 5.提现申请拒绝
 	 */
-	private static void getTitle(int title, Extract extract, Message message) throws Exception {
+	private static void getTitle(int title, Extract extract, Message message)
+			throws Exception {
 		switch (title) {
 		case 4: {
 			message.setTitle("您的提现申请已通过，请查收");
@@ -71,7 +77,8 @@ public class MessageUtil {
 	/**
 	 * 提现申请站内信 内容
 	 */
-	private static void setContent(Extract extract, Message message) throws Exception {
+	private static void setContent(Extract extract, Message message)
+			throws Exception {
 		String content = "";
 		content += "交易编号：" + extract.getExtractNum();
 		content += "<br />";
@@ -93,7 +100,8 @@ public class MessageUtil {
 	 * @param title
 	 *            1.拍下宝贝时 2.付款时 3.商家已发货时 4.退款申请通过 5.退款申请拒绝 6.寄售订单已成功售出
 	 */
-	public static void toMessage(int title, Order order, String time, User user) throws Exception {
+	public static void toMessage(int title, Order order, String time, User user)
+			throws Exception {
 		getservice();// 获得服务
 		Message message = new Message();
 		message.setTime(time);
@@ -112,15 +120,16 @@ public class MessageUtil {
 	/**
 	 * Message private String title; //信息标题 private String content; //信息内容
 	 * private String time; //信息时间 private String addresser; //发布者 private
-	 * Integer type; //信息类别：1.系统信息
-	 * Post private Message message; //信息id private User user; //用户id private
-	 * Integer type; //类别：1，收件，0，发件 private Integer state; //状态：1，已读
+	 * Integer type; //信息类别：1.系统信息 Post private Message message; //信息id private
+	 * User user; //用户id private Integer type; //类别：1，收件，0，发件 private Integer
+	 * state; //状态：1，已读
 	 */
 
 	/**
 	 * 交易过程站内信 获得标题 1.拍下宝贝时 2.付款时 3.商家已发货时 4.退款申请通过 5.退款申请拒绝 6.寄售订单已成功售出
 	 */
-	private static void getTitle(int title, Order order, Message message) throws Exception {
+	private static void getTitle(int title, Order order, Message message)
+			throws Exception {
 		switch (title) {
 		case 1: {
 			message.setTitle("您已拍下物品请尽快付款");
@@ -164,14 +173,17 @@ public class MessageUtil {
 	/**
 	 * 交易状态更改 站内信提醒
 	 */
-	private static void setContent(Order order, Message message) throws Exception {
-		String content = "商品标题：<a href=\"/user/trade/bizInfo/detail.shtml?bizInfoID=" + order.getBizInfo().getId() + "\">" + order.getTitle();
+	private static void setContent(Order order, Message message)
+			throws Exception {
+		String content = "商品标题：<a href=\"/user/trade/bizInfo/detail.shtml?bizInfoID="
+				+ order.getBizInfo().getId() + "\">" + order.getTitle();
 		content += "</a><br />";
 		content += "游戏/区/服：";
 		if (order.getGame() != null) {
 			content += order.getGame().getGameName();
 		} else {
-			content += order.getServer().getArea().getGame().getGameName() + "/";
+			content += order.getServer().getArea().getGame().getGameName()
+					+ "/";
 			content += order.getServer().getArea().getAreaName() + "/";
 			content += order.getServer().getServerName();
 		}
@@ -200,7 +212,8 @@ public class MessageUtil {
 		content += "<br />";
 		content += "买家联系QQ：" + order.getPlayQQ();
 		content += "<br />";
-		Assign assign = assignService.getAssignByOrderNum(order.getOrderNum(), null, null);
+		Assign assign = assignService.getAssignByOrderNum(order.getOrderNum(),
+				null, null);
 		if (assign != null) {
 			content += "交易员联系QQ：" + assign.getManage().getQq();
 		}

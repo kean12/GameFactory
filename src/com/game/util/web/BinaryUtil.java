@@ -5,7 +5,9 @@ import java.util.List;
 public class BinaryUtil {
 	/**
 	 * 对集合里面的数做 逻辑（|）的操作并返回
-	 * @param ns Number...集合
+	 * 
+	 * @param ns
+	 *            Number...集合
 	 * @return Number
 	 */
 	public static Number logic(Number... ns) {
@@ -18,7 +20,9 @@ public class BinaryUtil {
 
 	/**
 	 * 对集合里面的数做 逻辑（|）的操作并返回
-	 * @param nl List<Number>集合
+	 * 
+	 * @param nl
+	 *            List<Number>集合
 	 * @return Number
 	 */
 	public static Number logic(List<? extends Number> nl) {

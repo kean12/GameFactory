@@ -9,13 +9,16 @@ import com.game.util.web.Constant;
 import com.game.util.web.DateUtil;
 import com.game.util.web.Page;
 
-public class ExtractServiceImpl extends GenericServiceImpl<Extract, Long> implements ExtractService {
+public class ExtractServiceImpl extends GenericServiceImpl<Extract, Long>
+		implements ExtractService {
 
 	public void removeExtract(Long id) throws Exception {
 		baseDAO.removeEntity(super.getEntity(Extract.class, id));
 	}
 
-	public Page<Extract> searchExtract(Long userID, String bank, String account, Integer state, String beginTime, String endTime, int size, int goPage) throws Exception {
+	public Page<Extract> searchExtract(Long userID, String bank,
+			String account, Integer state, String beginTime, String endTime,
+			int size, int goPage) throws Exception {
 		String hql = "from Extract a where 1=1";
 		if (userID != null) {
 			hql += " and a.user.id=" + userID;
@@ -39,7 +42,8 @@ public class ExtractServiceImpl extends GenericServiceImpl<Extract, Long> implem
 		return baseDAO.search(hql, size, goPage);
 	}
 
-	public Page<Extract> searchExtract(Map<String, Object> map, int size, int goPage) throws Exception {
+	public Page<Extract> searchExtract(Map<String, Object> map, int size,
+			int goPage) throws Exception {
 		String hql = "from Extract a where 1=1";
 		if (map.get("username") != null) {
 			hql += " and a.user.username='" + map.get("username") + "'";
@@ -92,8 +96,10 @@ public class ExtractServiceImpl extends GenericServiceImpl<Extract, Long> implem
 
 	public Integer getExtractCount(Long userID) throws Exception {
 		String nowTime = DateUtil.nowDate(Constant.YYYY_MM_DD);
-		String hql = "select count(*) from Extract a where a.user.id=? and a.time>='" + nowTime + "' and a.time<='" + nowTime + " 23:59:59:999'";
-		int count = Integer.valueOf(baseDAO.findList(hql, userID).get(0).toString());
+		String hql = "select count(*) from Extract a where a.user.id=? and a.time>='"
+				+ nowTime + "' and a.time<='" + nowTime + " 23:59:59:999'";
+		int count = Integer.valueOf(baseDAO.findList(hql, userID).get(0)
+				.toString());
 		return count;
 	}
 }

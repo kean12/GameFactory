@@ -30,7 +30,9 @@ public class BizInfoAction extends BaseAction {
 	 * @throws Exception
 	 */
 	public String allBizInfos() throws Exception {
-		page = bizInfoService.findBizInfoByState(null, null, null, null, null, searchContent, null, null, order_by, null, 15, super.getGoPage());
+		page = bizInfoService.findBizInfoByState(null, null, null, null, null,
+				searchContent, null, null, order_by, null, 15,
+				super.getGoPage());
 		return "allBizInfos";
 	}
 
@@ -55,7 +57,8 @@ public class BizInfoAction extends BaseAction {
 	 */
 	public String saveBizInfo() throws Exception {
 		if (bizInfo != null && bizInfo.getId() != null) {
-			BizInfo tmp = bizInfoService.getEntity(BizInfo.class, bizInfo.getId());
+			BizInfo tmp = bizInfoService.getEntity(BizInfo.class,
+					bizInfo.getId());
 			tmp.setBuyType(bizInfo.getBuyType());
 			tmp.setStock(bizInfo.getStock());
 			tmp.setPrice(bizInfo.getPrice());

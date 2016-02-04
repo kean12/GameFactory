@@ -9,13 +9,15 @@ import com.game.util.domain.Menu;
 import com.game.util.web.BinaryUtil;
 import com.game.util.web.Validator;
 
-public class MenuServiceImpl extends GenericServiceImpl<Menu, Long> implements MenuService {
+public class MenuServiceImpl extends GenericServiceImpl<Menu, Long> implements
+		MenuService {
 	public void updatePowers(Map<Long, List<Long>> powersMap) throws Exception {
 		String hql = "";
 		int power;
 		for (Long menuId : powersMap.keySet()) {
 			power = BinaryUtil.logic(powersMap.get(menuId)).intValue();
-			hql = "update Menu a set a.power=" + power + " where a.id=" + menuId;
+			hql = "update Menu a set a.power=" + power + " where a.id="
+					+ menuId;
 			baseDAO.updateEntity(hql);
 		}
 	}
@@ -33,7 +35,8 @@ public class MenuServiceImpl extends GenericServiceImpl<Menu, Long> implements M
 	}
 
 	public List<Menu> findMenuByView(Integer isView) throws Exception {
-		return baseDAO.findEntity("from Menu a where a.isView=? order by a.orderIndex", isView);
+		return baseDAO.findEntity(
+				"from Menu a where a.isView=? order by a.orderIndex", isView);
 	}
 
 	public Menu findMenuByName(String menuName, Long parentID) throws Exception {

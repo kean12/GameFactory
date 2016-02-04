@@ -27,7 +27,8 @@ public class AssignUtil {
 		if (orderserver == null) {
 			orderserver = (Server) SpringUtil.getBean("orderserver");
 		}
-		String message = DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM_SS) + ":你有新订单，单号" + order.getOrderNum();
+		String message = DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM_SS)
+				+ ":你有新订单，单号" + order.getOrderNum();
 		orderserver.orderMessage(message, null, true, order);
 
 	}
@@ -43,7 +44,8 @@ public class AssignUtil {
 	 * @return username 返回所分配的用户名
 	 * @throws Exception
 	 */
-	public static String to_allocate(Map<Socket, String> socket_name_map, Object obj) throws Exception {
+	public static String to_allocate(Map<Socket, String> socket_name_map,
+			Object obj) throws Exception {
 		if (manageService == null) {
 			manageService = (ManageService) SpringUtil.getBean("manageService");
 		}
@@ -55,11 +57,13 @@ public class AssignUtil {
 			Object[] coll = socket_name_map.values().toArray();
 			rd = new Random(System.currentTimeMillis());
 			int num = rd.nextInt(coll.length);
-			manage = manageService.findManageByName(coll[num].toString(), "trade");
+			manage = manageService.findManageByName(coll[num].toString(),
+					"trade");
 			if (manage == null) {
 				username = assign_temp(obj);
 			} else {
-				assign = new Assign((Order) obj, manage, DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM_SS), 0, null);
+				assign = new Assign((Order) obj, manage,
+						DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM_SS), 0, null);
 				assignService.createEntity(assign);
 				username = manage.getName();
 			}
@@ -79,7 +83,8 @@ public class AssignUtil {
 		rd = new Random(System.currentTimeMillis());
 		int num = rd.nextInt(manageList.size());
 		manage = manageList.get(num);
-		assign = new Assign((Order) obj, manage, DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM_SS), 0, "临时客服");
+		assign = new Assign((Order) obj, manage,
+				DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM_SS), 0, "临时客服");
 		assignService.createEntity(assign);
 		return manage.getName();
 	}

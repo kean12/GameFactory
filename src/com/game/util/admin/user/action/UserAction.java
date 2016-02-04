@@ -67,10 +67,13 @@ public class UserAction extends BaseAction {
 	 */
 	public String saveUser() throws Exception {
 		if (user.getId() != null && user.getId() > 0) {
-			if (!Validator.isBlank(updatePwd) && !user.getPassword().equals(TradeMD5.toMD5(updatePwd))) {
+			if (!Validator.isBlank(updatePwd)
+					&& !user.getPassword().equals(TradeMD5.toMD5(updatePwd))) {
 				user.setPassword(TradeMD5.toMD5(updatePwd));
 			}
-			if (!Validator.isBlank(updateApplyPwd) && !user.getUserInfo().getApplyPwd().equals(MD5.toMD5(updateApplyPwd))) {
+			if (!Validator.isBlank(updateApplyPwd)
+					&& !user.getUserInfo().getApplyPwd()
+							.equals(MD5.toMD5(updateApplyPwd))) {
 				user.getUserInfo().setApplyPwd(MD5.toMD5(updateApplyPwd));
 			}
 			user.getUserInfo().setId(user.getId());
@@ -84,7 +87,9 @@ public class UserAction extends BaseAction {
 			// +
 			// ToStringBuilder.reflectionToString(user,ToStringStyle.MULTI_LINE_STYLE))
 			// ;
-			logService.saveLog(user, m.getUsername() + "重新设定客户信息" + user.getUsername(), com.game.util.domain.Log.INFO);
+			logService.saveLog(user,
+					m.getUsername() + "重新设定客户信息" + user.getUsername(),
+					com.game.util.domain.Log.INFO);
 		}
 		return SUCCESS;
 	}

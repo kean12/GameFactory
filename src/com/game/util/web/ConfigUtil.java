@@ -45,8 +45,11 @@ public class ConfigUtil {
 
 	/**
 	 * 更新（或插入）一对properties信息(主键及其键值) 如果该主键已经存在，更新该主键的值； 如果该主键不存在，则插件一对键值。
-	 * @param keyname 键名
-	 * @param keyvalue 键值
+	 * 
+	 * @param keyname
+	 *            键名
+	 * @param keyvalue
+	 *            键值
 	 */
 	public void writeProperties(String keyname, String keyvalue) {
 		try {

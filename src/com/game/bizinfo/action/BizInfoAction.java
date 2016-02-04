@@ -100,7 +100,8 @@ public class BizInfoAction extends BaseAction {
 				if (Integer.parseInt(bi.getStock()) > 0) {
 					bi.setIsBuy(1);
 					if (DateUtil.convertTimeMillis(bi.getEndSellTime()) <= time) {
-						bi.setEndSellTime(DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM, DateUtil.Ds(7)));
+						bi.setEndSellTime(DateUtil.nowDate(
+								Constant.YYYY_MM_DD_HH_MM, DateUtil.Ds(7)));
 					}
 					bizInfoService.saveorupdate(bi);
 				}
@@ -113,7 +114,8 @@ public class BizInfoAction extends BaseAction {
 					if (Integer.parseInt(bi.getStock()) > 0) {
 						bi.setIsBuy(1);
 						if (DateUtil.convertTimeMillis(bi.getEndSellTime()) <= time) {
-							bi.setEndSellTime(DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM, DateUtil.Ds(7)));
+							bi.setEndSellTime(DateUtil.nowDate(
+									Constant.YYYY_MM_DD_HH_MM, DateUtil.Ds(7)));
 						}
 						list.add(bi);
 					}

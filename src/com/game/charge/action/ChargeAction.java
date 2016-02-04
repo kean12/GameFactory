@@ -61,7 +61,8 @@ public class ChargeAction extends BaseAction {
 			bank = null;
 		}
 		User user = Struts2Util.getUserSession();
-		page = particularsService.findParticulars(user.getId(), orderNum, runningNum, bank, 3, beginTime, endTime, 20, super.getGoPage());
+		page = particularsService.findParticulars(user.getId(), orderNum,
+				runningNum, bank, 3, beginTime, endTime, 20, super.getGoPage());
 		particularsList = page.getResultlist();
 		return "record";
 	}
@@ -86,7 +87,8 @@ public class ChargeAction extends BaseAction {
 		return orderNum;
 	}
 
-	public void setOrderNum(String orderNum) throws UnsupportedEncodingException {
+	public void setOrderNum(String orderNum)
+			throws UnsupportedEncodingException {
 		if (!Validator.isBlank(orderNum)) {
 			this.orderNum = URLDecoder.decode(orderNum, "utf-8");
 		} else {
@@ -99,7 +101,8 @@ public class ChargeAction extends BaseAction {
 		return runningNum;
 	}
 
-	public void setRunningNum(String runningNum) throws UnsupportedEncodingException {
+	public void setRunningNum(String runningNum)
+			throws UnsupportedEncodingException {
 		if (!Validator.isBlank(runningNum)) {
 			this.runningNum = URLDecoder.decode(runningNum, "utf-8");
 		} else {

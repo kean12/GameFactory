@@ -73,7 +73,8 @@ public class VerifyPublishAttribute {
 			error.put("price", false);
 		} else {
 			try {
-				double price = Arith.round(Double.parseDouble(attributeInfo.getPrice().trim()), 2);
+				double price = Arith.round(
+						Double.parseDouble(attributeInfo.getPrice().trim()), 2);
 				if (price >= 15) {
 					attributeInfo.setPrice("" + price);
 					error.put("price", true);
@@ -112,7 +113,8 @@ public class VerifyPublishAttribute {
 			for (int i = 0; i < arr.length; i++) {
 				str = arr[i].split("::");
 				try {
-					if (!Validator.isBlank(str[0]) && !Validator.isBlank(str[1].trim())) {
+					if (!Validator.isBlank(str[0])
+							&& !Validator.isBlank(str[1].trim())) {
 						map.put(str[0], str[1]);
 					}
 				} catch (Exception e) {
@@ -122,7 +124,8 @@ public class VerifyPublishAttribute {
 		}
 		// 是否上传商品图片
 		if (attributeInfo.getType() != null && attributeInfo.getType() == 1) {
-			if (attributeInfo.getFile() == null || attributeInfo.getFile().size() < 1) {
+			if (attributeInfo.getFile() == null
+					|| attributeInfo.getFile().size() < 1) {
 				flag = false;
 				error.put("file", false);
 			} else {

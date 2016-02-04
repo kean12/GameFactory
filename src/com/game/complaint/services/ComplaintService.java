@@ -15,12 +15,19 @@ public interface ComplaintService extends GenericService<Complaint, Long> {
 
 	/**
 	 * @name 获得订单
-	 * @param userID 投诉用户ID
-	 * @param defendant 被投诉用户ID
-	 * @param state 状态
-	 * @param type 类型
-	 * @param size 每页条数
-	 * @param goPage 第几页
+	 * @param userID
+	 *            投诉用户ID
+	 * @param defendant
+	 *            被投诉用户ID
+	 * @param state
+	 *            状态
+	 * @param type
+	 *            类型
+	 * @param size
+	 *            每页条数
+	 * @param goPage
+	 *            第几页
 	 */
-	public Page<Complaint> searchComplaint(Long userID, Long defendant, Integer state, Integer type, int size, int goPage) throws Exception;
+	public Page<Complaint> searchComplaint(Long userID, Long defendant,
+			Integer state, Integer type, int size, int goPage) throws Exception;
 }

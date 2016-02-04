@@ -8,8 +8,10 @@ import com.game.util.domain.Area;
 import com.game.util.web.Page;
 import com.game.util.web.Validator;
 
-public class AreaServiceImpl extends GenericServiceImpl<Area, Long> implements AreaService {
-	public Page<Area> searchAreaByGame(String areaName, Long gameID, int size, int goPage) throws Exception {
+public class AreaServiceImpl extends GenericServiceImpl<Area, Long> implements
+		AreaService {
+	public Page<Area> searchAreaByGame(String areaName, Long gameID, int size,
+			int goPage) throws Exception {
 		String hql = "from Area a where a.game.id=" + gameID;
 		if (areaName != null && !areaName.equals("")) {
 			hql += " and a.areaName like '%" + areaName + "%'";
@@ -20,7 +22,8 @@ public class AreaServiceImpl extends GenericServiceImpl<Area, Long> implements A
 
 	public Long getAreaMaxID(Long gameID) throws Exception {
 		long val = 0;
-		List<Object> list = baseDAO.findList("select max(id) from Area a where a.game.id=?", gameID);
+		List<Object> list = baseDAO.findList(
+				"select max(id) from Area a where a.game.id=?", gameID);
 		Object obj = list.get(0);
 		if (obj != null) {
 			val = Long.valueOf(obj.toString()) + 1;
@@ -40,11 +43,14 @@ public class AreaServiceImpl extends GenericServiceImpl<Area, Long> implements A
 	}
 
 	public List<Area> findAreaByState(Integer state) throws Exception {
-		return baseDAO.findEntity("from Area a where a.state=? order by a.id", state);
+		return baseDAO.findEntity("from Area a where a.state=? order by a.id",
+				state);
 	}
 
-	public List<Area> finfAreaByGame(Long gameID, Integer state) throws Exception {
-		String hql = "from Area a where a.game.id=? and a.state=" + state + " order by a.id";
+	public List<Area> finfAreaByGame(Long gameID, Integer state)
+			throws Exception {
+		String hql = "from Area a where a.game.id=? and a.state=" + state
+				+ " order by a.id";
 		return baseDAO.findEntity(hql, gameID);
 	}
 

@@ -12,7 +12,7 @@ public class SystemAction extends BaseAction {
 	private String siteDoMain;// 本站域名
 	private String siteName;// 站点名称
 	private String description;// 描述
-	private String keywords;//关键字
+	private String keywords;// 关键字
 	private String siteMail;// 站长信箱
 	private String upImg_Size;// 允许上传图片大小
 	private String mail_Server;// 发送邮件服务器
@@ -32,11 +32,12 @@ public class SystemAction extends BaseAction {
 			for (String i : trade_Type) {
 				str += i + ",";
 			}
-			SysConfig.write("trade_Type", str.substring(0, str.lastIndexOf(",")));
-		}else{
+			SysConfig.write("trade_Type",
+					str.substring(0, str.lastIndexOf(",")));
+		} else {
 			SysConfig.write("trade_Type", "");
 		}
-		
+
 		if (!Validator.isBlank(siteDoMain)) {
 			SysConfig.write("siteDoMain", siteDoMain);
 		}
@@ -44,11 +45,11 @@ public class SystemAction extends BaseAction {
 		if (!Validator.isBlank(siteName)) {
 			SysConfig.write("siteName", siteName);
 		}
-		
+
 		if (!Validator.isBlank(description)) {
 			SysConfig.write("description", description);
 		}
-		
+
 		if (!Validator.isBlank(keywords)) {
 			SysConfig.write("keywords", keywords);
 		}
@@ -96,7 +97,7 @@ public class SystemAction extends BaseAction {
 	public void setSiteName(String siteName) {
 		this.siteName = siteName;
 	}
-	
+
 	public String getDescription() {
 		return description;
 	}

@@ -34,14 +34,16 @@ public class AuthImg extends HttpServlet {
 		return new Color(r, g, b);
 	}
 
-	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.setHeader("Pragma", "No-cache");
 		response.setHeader("Cache-Control", "no-cache");
 		response.setDateHeader("Expires", 0);
 		response.setContentType("image/jpeg");
 
 		int width = 100, height = 18;
-		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		BufferedImage image = new BufferedImage(width, height,
+				BufferedImage.TYPE_INT_RGB);
 
 		Graphics g = image.getGraphics();
 		Random random = new Random();
@@ -71,7 +73,8 @@ public class AuthImg extends HttpServlet {
 		for (int i = 0; i < 6; i++) {
 			String tmp = getRandomChar();
 			sRand += tmp;
-			g.setColor(new Color(20 + random.nextInt(110), 20 + random.nextInt(110), 20 + random.nextInt(110)));
+			g.setColor(new Color(20 + random.nextInt(110), 20 + random
+					.nextInt(110), 20 + random.nextInt(110)));
 			g.drawString(tmp, 15 * i + 10, 15);
 		}
 

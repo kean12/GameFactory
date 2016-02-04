@@ -11,7 +11,8 @@ public interface AreaService extends GenericService<Area, Long> {
 	/**
 	 * @name 分页查询
 	 */
-	public Page<Area> searchAreaByGame(String areaName, Long gameID, int size, int goPage) throws Exception;
+	public Page<Area> searchAreaByGame(String areaName, Long gameID, int size,
+			int goPage) throws Exception;
 
 	/**
 	 * 获得添加数据库的id值
@@ -25,6 +26,7 @@ public interface AreaService extends GenericService<Area, Long> {
 
 	public List<Area> findAreaByState(Integer state) throws Exception;
 
-	public List<Area> finfAreaByGame(Long gameID, Integer state) throws Exception;
+	public List<Area> finfAreaByGame(Long gameID, Integer state)
+			throws Exception;
 
 }

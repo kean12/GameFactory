@@ -57,7 +57,8 @@ public class SaleAction extends BaseAction {
 	 * 寄售订单管理
 	 */
 	public String saleList() throws Exception {
-		page = orderService.findOrderBySale(ownerName, consumerName, orderNum, state, startTime, endTime, 15, super.getGoPage());
+		page = orderService.findOrderBySale(ownerName, consumerName, orderNum,
+				state, startTime, endTime, 15, super.getGoPage());
 		return "saleList";
 	}
 
@@ -83,21 +84,27 @@ public class SaleAction extends BaseAction {
 		if (name.equals("admin")) {
 			assign = assignService.getAssignByOrderNum(orderNum, null, 0);
 		} else if (name.equals("trade") || name.equals("temp")) {
-			assign = assignService.getAssignByOrderNum(orderNum, manage.getId(), 0);
+			assign = assignService.getAssignByOrderNum(orderNum,
+					manage.getId(), 0);
 		}
 
 		if (assign != null) {
-			if (!name.equals("admin") && !assign.getManage().getId().equals(manage.getId())) {
+			if (!name.equals("admin")
+					&& !assign.getManage().getId().equals(manage.getId())) {
 				throw new Exception("您没有此权限");
 			}
 			assignID = assign.getId();
 			order = assign.getOrder();
 			if (order != null) {
 				if (order.getBizInfo().getPassword() != null) {
-					order.getBizInfo().setPassword(CryptTool.base64Decode(order.getBizInfo().getPassword()));
+					order.getBizInfo().setPassword(
+							CryptTool.base64Decode(order.getBizInfo()
+									.getPassword()));
 				}
 				if (order.getBizInfo().getCoded_lock() != null) {
-					order.getBizInfo().setCoded_lock(CryptTool.base64Decode(order.getBizInfo().getCoded_lock()));
+					order.getBizInfo().setCoded_lock(
+							CryptTool.base64Decode(order.getBizInfo()
+									.getCoded_lock()));
 				}
 			}
 		}
@@ -132,11 +139,14 @@ public class SaleAction extends BaseAction {
 	public String saleShipments() throws Exception {
 		Manage manage = Struts2Util.getManageSession();
 		String name = manage.getRole().getName();
-		if (assignID == null || (!name.equals("admin") && !name.equals("trade") && !name.equals("temp"))) {
+		if (assignID == null
+				|| (!name.equals("admin") && !name.equals("trade") && !name
+						.equals("temp"))) {
 			throw new Exception("您没有此权限");
 		}
 		assign = assignService.getEntity(Assign.class, assignID);
-		if (!name.equals("admin") && !assign.getManage().getId().equals(manage.getId())) {
+		if (!name.equals("admin")
+				&& !assign.getManage().getId().equals(manage.getId())) {
 			throw new Exception("您没有此权限");
 		}
 		if (assign.getOrder().getState() == 2) {
@@ -151,11 +161,14 @@ public class SaleAction extends BaseAction {
 	public String saleShipmentsSubmit() throws Exception {
 		Manage manage = Struts2Util.getManageSession();
 		String name = manage.getRole().getName();
-		if (assignID == null || (!name.equals("admin") && !name.equals("trade") && !name.equals("temp"))) {
+		if (assignID == null
+				|| (!name.equals("admin") && !name.equals("trade") && !name
+						.equals("temp"))) {
 			throw new Exception("您没有此权限");
 		}
 		assign = assignService.getEntity(Assign.class, assignID);
-		if (!name.equals("admin") && !assign.getManage().getId().equals(manage.getId())) {
+		if (!name.equals("admin")
+				&& !assign.getManage().getId().equals(manage.getId())) {
 			throw new Exception("您没有此权限");
 		}
 		if (assign.getOrder().getState() == 2) {
@@ -169,14 +182,15 @@ public class SaleAction extends BaseAction {
 		Order order = assign.getOrder();
 
 		String subdirectory = order.getOwner().getUsername() + "\\order";
-		Help.chkImage(upload, uploadFileName, Constant.IMAGE_SIZE);//图片验证
-		List<String> fileNameList = Help.uploadImageToUserPath(upload, uploadFileName, subdirectory);
+		Help.chkImage(upload, uploadFileName, Constant.IMAGE_SIZE);// 图片验证
+		List<String> fileNameList = Help.uploadImageToUserPath(upload,
+				uploadFileName, subdirectory);
 
 		List<Shipments> shipmentsList = null;
 		Shipments shipments = null;
 		if (!Validator.isEmpty(fileNameList)) {
 			long time1 = System.currentTimeMillis();
-			String time = DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM,time1);
+			String time = DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM, time1);
 			shipmentsList = new ArrayList<Shipments>();
 			for (String str : fileNameList) {
 				shipments = new Shipments();
@@ -201,7 +215,8 @@ public class SaleAction extends BaseAction {
 			order.setCostTime(assign.getCostTime());
 
 			String tradeTime = assign.getOrder().getBizKind().getTradeTime();
-			if (DateUtil.costTime(assign.getStartTime(), assign.getEndTime(), tradeTime) < 0) {
+			if (DateUtil.costTime(assign.getStartTime(), assign.getEndTime(),
+					tradeTime) < 0) {
 				order.setOvertime(1);
 				assign.setOvertime(1);
 			} else {
@@ -221,7 +236,8 @@ public class SaleAction extends BaseAction {
 	 * 发货管理--发货成功
 	 */
 	public String saleShipmentsSuccess() throws Exception {
-		message = URLDecoder.decode(URLEncoder.encode(message, "iso-8859-1"), "utf-8");
+		message = URLDecoder.decode(URLEncoder.encode(message, "iso-8859-1"),
+				"utf-8");
 		return "saleShipmentsSuccess";
 	}
 

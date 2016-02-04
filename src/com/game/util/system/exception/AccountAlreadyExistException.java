@@ -6,7 +6,7 @@ package com.game.util.system.exception;
  *         Comments
  */
 public class AccountAlreadyExistException extends BusinessException {
-    
+
 	private static final long serialVersionUID = -5055313828633739939L;
 
 	public AccountAlreadyExistException() {

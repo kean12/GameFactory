@@ -12,7 +12,8 @@ public class OnlineUserServer extends BaseAction {
 	public void setOnlineUser() {
 		try {
 			// 来自客户端的信息
-			OnlineUser onlineUser = (OnlineUser) TunnelServerUtil.get(Struts2Util.getRequest());
+			OnlineUser onlineUser = (OnlineUser) TunnelServerUtil
+					.get(Struts2Util.getRequest());
 			Struts2Util.getApplication().put("onlineUser", onlineUser);
 		} catch (Exception e) {
 			e.printStackTrace();

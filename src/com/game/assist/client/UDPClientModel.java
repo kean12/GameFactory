@@ -50,10 +50,12 @@ public class UDPClientModel extends Observable implements Runnable {
 		socket.close();
 	}
 
-	public void send(Serializable object, SocketAddress address) throws IOException {
+	public void send(Serializable object, SocketAddress address)
+			throws IOException {
 		byte[] buf = getBytes(object);
 		byte[] length = new Integer(buf.length).toString().getBytes();
-		DatagramPacket bufLength = new DatagramPacket(length, length.length, address);
+		DatagramPacket bufLength = new DatagramPacket(length, length.length,
+				address);
 		DatagramPacket message = new DatagramPacket(buf, buf.length, address);
 		socket.send(bufLength);
 		socket.send(message);

@@ -84,7 +84,8 @@ public class UDPClient extends Observable implements ActionListener {
 
 	// 发送信息过程
 	protected boolean send() throws java.io.IOException {
-		DefaultStyledDocument doc = (DefaultStyledDocument) editor.getStyledDocument();
+		DefaultStyledDocument doc = (DefaultStyledDocument) editor
+				.getStyledDocument();
 		if (doc.getLength() == 0) {
 			JOptionPane.showMessageDialog(frame, "请不要发送空消息！");
 			return false;
@@ -92,7 +93,8 @@ public class UDPClient extends Observable implements ActionListener {
 			Information info = new Information(Information.MESSAGE, name, doc);
 			model.send(info, remoteAddress);
 			setChanged();
-			notifyObservers(new Information(Information.MESSAGE, remoteName, doc));
+			notifyObservers(new Information(Information.MESSAGE, remoteName,
+					doc));
 			editor.setDocument(editor.getEditorKit().createDefaultDocument());
 			return true;
 		}

@@ -18,16 +18,19 @@ public class InitService implements ServletContextListener {
 		try {
 			String path = event.getServletContext().getRealPath("");
 			File file1 = new File(path + "/js/index/gameListVal.js");
-			File file2 = new File(path + "/WEB-INF/index/common/search_gameList.jsp");
+			File file2 = new File(path
+					+ "/WEB-INF/index/common/search_gameList.jsp");
 
 			if (!file1.exists() || !file2.exists()) {
-				GameService gameService = (GameService) SpringUtil.getBean(event, "gameService");
+				GameService gameService = (GameService) SpringUtil.getBean(
+						event, "gameService");
 				Help.updateGamePage(path, gameService);
 			}
 
 			file1 = new File(path + "/js/index/bizKindListVal.js");
 			if (!file1.exists()) {
-				BizKindService bizKindService = (BizKindService) SpringUtil.getBean(event, "bizKindService");
+				BizKindService bizKindService = (BizKindService) SpringUtil
+						.getBean(event, "bizKindService");
 				Help.updateBizKind(path, bizKindService);
 			}
 		} catch (Exception e) {

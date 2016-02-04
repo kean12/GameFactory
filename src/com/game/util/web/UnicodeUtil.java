@@ -3,7 +3,9 @@ package com.game.util.web;
 public class UnicodeUtil {
 	/**
 	 * 解码unicode
-	 * @param dataStr 需要解码的字符串
+	 * 
+	 * @param dataStr
+	 *            需要解码的字符串
 	 * @return 解码后的字符串
 	 */
 	public static String decodeUnicode(final String dataStr) {
@@ -31,7 +33,9 @@ public class UnicodeUtil {
 
 	/**
 	 * 将中文转换成unicode编码
-	 * @param gbString 需要转换的字符
+	 * 
+	 * @param gbString
+	 *            需要转换的字符
 	 * @return 转换后的字符串
 	 */
 	public static String gbEncoding(final String gbString) {

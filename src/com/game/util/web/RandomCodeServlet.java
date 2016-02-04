@@ -25,8 +25,10 @@ public class RandomCodeServlet extends HttpServlet {
 	// 验证码图片的高度。
 	private int height = 20;
 
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, java.io.IOException {
-		BufferedImage buffImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+	protected void service(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, java.io.IOException {
+		BufferedImage buffImg = new BufferedImage(width, height,
+				BufferedImage.TYPE_INT_RGB);
 		Graphics2D g = buffImg.createGraphics();
 
 		// 创建一个随机数生成器类。

@@ -26,11 +26,13 @@ public interface BizKindService extends GenericService<BizKind, Long> {
 	 * @name 获得默认挂卖类别
 	 * @param isUse
 	 */
-	public List<BizKind> findBizKindByToleration(Integer isUse) throws Exception;
+	public List<BizKind> findBizKindByToleration(Integer isUse)
+			throws Exception;
 
 	/**
 	 * @name 获得此游戏的所有挂卖类别
 	 */
-	public List<BizKind> findGameKindByGame(Long gameID, Integer isUse) throws Exception;
+	public List<BizKind> findGameKindByGame(Long gameID, Integer isUse)
+			throws Exception;
 
 }

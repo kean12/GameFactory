@@ -7,14 +7,16 @@ import com.game.util.web.Record;
 import com.game.util.web.Struts2Util;
 
 public class YeePay {
-	public static void setYeePayRequest(Order order, double price, String bank, int type) {
+	public static void setYeePayRequest(Order order, double price, String bank,
+			int type) {
 		HttpServletRequest request = Struts2Util.getRequest();
 		request.setAttribute("p2_Order", Record.getOrderNum(type));
 		request.setAttribute("p3_Amt", price);
 		request.setAttribute("p5_Pid", order.getTitle());// 商品名称
 		request.setAttribute("p6_Pcat", "充值");// 种类
 		request.setAttribute("p7_Pdesc", "差额入账");// 描述
-		request.setAttribute("pa_MP", getMode(type) + "|" + bourse(bank) + "|" + order.getOrderNum());// 扩展信息
+		request.setAttribute("pa_MP", getMode(type) + "|" + bourse(bank) + "|"
+				+ order.getOrderNum());// 扩展信息
 		if (bank != null || !bank.equals("")) {
 			request.setAttribute("pd_FrpId", bank.toUpperCase());// 支付通道 哪个银行
 		}

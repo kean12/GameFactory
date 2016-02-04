@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class DateUtil {
 	private static final String DEFAULT_DATE_FORMAT = getDefaultDateFormat();
-	
+
 	/**
 	 * 当前时间加上N天
 	 */
@@ -28,7 +28,7 @@ public class DateUtil {
 		calendar.set(Calendar.MONTH, day + days);
 		return calendar.getTime();
 	}
-	
+
 	/**
 	 * 获得系统当前时间
 	 */
@@ -45,27 +45,26 @@ public class DateUtil {
 		else
 			return getDateFormat(df).format(System.currentTimeMillis());
 	}
-	
+
 	/**
 	 * 获得当前指定时间
 	 */
-	public static String nowDate(String df,Date date) {
+	public static String nowDate(String df, Date date) {
 		if (Validator.isBlank(df))
 			return getDateFormat().format(date);
 		else
 			return getDateFormat(df).format(date);
 	}
-	
+
 	/**
 	 * 获得当前指定时间
 	 */
-	public static String nowDate(String df,long currentTimeMillis) {
+	public static String nowDate(String df, long currentTimeMillis) {
 		if (Validator.isBlank(df))
 			return getDateFormat().format(currentTimeMillis);
 		else
 			return getDateFormat(df).format(currentTimeMillis);
 	}
-	
 
 	/**
 	 * 时间差计算
@@ -107,66 +106,79 @@ public class DateUtil {
 
 	/**
 	 * 时间差计算
-	 * @param startTime 开始时间
-	 * @param minute 限制时间
+	 * 
+	 * @param startTime
+	 *            开始时间
+	 * @param minute
+	 *            限制时间
 	 * @return 剩余毫秒数
 	 */
-	public static long costTime(String startTime, String minute) throws ParseException {
-		Date date = getDateFormat(Constant.YYYY_MM_DD_HH_MM_SS).parse(startTime);
+	public static long costTime(String startTime, String minute)
+			throws ParseException {
+		Date date = getDateFormat(Constant.YYYY_MM_DD_HH_MM_SS)
+				.parse(startTime);
 		long originalTimeMillis = date.getTime();
 		long currentTimeMillis = System.currentTimeMillis();
 		long minuteTimeMillis = Long.parseLong(minute) * 60 * 1000;
 
 		return minuteTimeMillis - (currentTimeMillis - originalTimeMillis);
 	}
-	
+
 	/**
 	 * 时间差计算
-	 * @param startTime 开始时间
-	 * @param endTime 结束时间
-	 * @param minute 限制时间
+	 * 
+	 * @param startTime
+	 *            开始时间
+	 * @param endTime
+	 *            结束时间
+	 * @param minute
+	 *            限制时间
 	 * @return 剩余毫秒数
 	 */
-	public static long costTime(String startTime, String endTime, String minute) throws Exception {
+	public static long costTime(String startTime, String endTime, String minute)
+			throws Exception {
 		long originalTimeMillis = convertTimeMillis(startTime);
 		long currentTimeMillis = convertTimeMillis(endTime);
 		long minuteTimeMillis = Long.parseLong(minute) * 60 * 1000;
 		return minuteTimeMillis - (currentTimeMillis - originalTimeMillis);
 	}
-	
+
 	/**
 	 * 将指定时间转换为毫秒数
-	 * @param time 指定时间
+	 * 
+	 * @param time
+	 *            指定时间
 	 */
 	public static long convertTimeMillis(String time) throws Exception {
 		try {
-			return getDateFormat(Constant.YYYY_MM_DD_HH_MM_SS).parse(time).getTime();
+			return getDateFormat(Constant.YYYY_MM_DD_HH_MM_SS).parse(time)
+					.getTime();
 		} catch (Exception e) {
 			return getDateFormat(getDefaultDateFormat()).parse(time).getTime();
 		}
 	}
-	
+
 	/**
 	 * 默认日期格式
 	 */
 	protected static String getDefaultDateFormat() {
 		return Constant.YYYY_MM_DD_HH_MM;
 	}
-	
+
 	/**
 	 * 获得默认日期格式
 	 */
 	protected static DateFormat getDateFormat() {
-    	return new SimpleDateFormat(DEFAULT_DATE_FORMAT);
-    }
-    
+		return new SimpleDateFormat(DEFAULT_DATE_FORMAT);
+	}
+
 	/**
 	 * 获得指定日期格式
 	 */
 	protected static DateFormat getDateFormat(String format) {
-    	return new SimpleDateFormat(format);
-    }
-	
+		return new SimpleDateFormat(format);
+	}
+
 	/**
 	 * 根据日期格式格式化时间
 	 */

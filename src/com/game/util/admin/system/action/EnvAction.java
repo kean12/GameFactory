@@ -16,14 +16,15 @@ public class EnvAction extends BaseAction {
 	private String serverInfo;
 	private Integer serverPort;
 	private String realPath;
-	
-	public String env() throws Exception{
+
+	public String env() throws Exception {
 		serverName = Struts2Util.getRequest().getServerName();
 		remoteAddr = Struts2Util.getRequest().getRemoteAddr();
 		serverTime = DateUtil.nowDate(Constant.YYYY_MM_DD_HH_MM_SS);
 		serverInfo = Struts2Util.getServletContext().getServerInfo();
 		serverPort = Struts2Util.getRequest().getServerPort();
-		realPath = Struts2Util.getRealPath(Struts2Util.getRequest().getServletPath());
+		realPath = Struts2Util.getRealPath(Struts2Util.getRequest()
+				.getServletPath());
 		return "env";
 	}
 
@@ -50,9 +51,5 @@ public class EnvAction extends BaseAction {
 	public String getRealPath() {
 		return realPath;
 	}
-	
-	
-	
-	
-}
 
+}
